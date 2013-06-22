@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="setup-guide-android"></a><h2>Setup Guide Android</h2>
+<p><img src="images/WT_HG_Developer_GetStarted_Android_IMG.png" /></p>
+<a name="project-setup"></a><h3>Project Setup</h3>
+<ul>
+<li>Create a new <a href="http://developer.android.com/tools/projects/projects-eclipse.html#CreatingAProject">Android Application Project</a> (There is also a working SampleProject bundled in this SDK, where all these steps are already made)</li>
+<li>Create a <code>libs</code> folders in your project root directory and copy <code>libs/wikitudesdk.jar</code></li>
+<li><p>In Eclipse enter <code>Preferences</code> -&gt; <code>Android</code> -&gt; <code>Build</code> and ensure the option <code>Force error when external jars contain native libraries</code> is unchecked</p>
+<p>  <img src="images/android_setup_nativelib.png" alt="External jar contains native libraries"></p>
+</li>
+<li><p>Add the following permissions to your Manifest.xml</p>
+</li>
+</ul>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_GPS&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.location&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.compass&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:glEsVersion=&quot;0x00020000&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-sdk android:targetSdkVersion=&quot;16&quot; android:minSdkVersion=&quot;8&quot;/&gt;</code></pre>
+<ul>
+<li>The activity holding the AR-View (called <code>architectView</code> in the following) must have set <code>android:configChanges=&quot;screenSize|orientation&quot;</code> in the <code>AndroidManifest.xml</code>,
+for example this could look like:</li>
+</ul>
+<pre><code>&lt;activity android:name=&quot;com.yourcompany.yourapp.YourArActivity&quot;
+   android:configChanges=&quot;screenSize|orientation&quot;/&gt;</code></pre>
+<a name="ar-view-in-activity"></a><h3>AR View in Activity</h3>
+<p>Keep in mind that the Wikitude SDK is not a native Android SDK as you know from other SDK&#39;s. The basic concept is to add a so called <code>architectView</code> in your project and notify it about lifecycle events. The <code>architectView</code> creates a Camera-Surface and handles sensor events.
+The experience itself, named ARchitect World, is implemented in JavaScript and packaged in your application&#39;s asset-folder (as in this project) or on your own server.
+ARchitectWorlds are written in HTML/JavaScript and call methods in Wikitude&#39;s <code>AR</code>-namespace (e.g. <code>AR.GeoObject</code>). </p>
+<p>You must include </p>
+<pre><code> &lt;script src=&quot;architect://architect.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>in ARchitect World html files to use <code>AR</code> namespace and the <code>architectView</code> will handle them properly (To test an ARchitect World on a desktop browser, you must include <code>ade.js</code> tool instead to avoid JavaScript Errors and see a development console) </p>
+<p>It is recommended to handle augmented reality in a separate <a href="http://developer.android.com/reference/android/app/Activity.html">Activity</a>. 
+Declare the <code>architectView</code> inside a <a href="http://developer.android.com/guide/topics/ui/declaring-layout.html">layout XML</a>.
+E.g. Add this within <a href="http://developer.android.com/reference/android/widget/FrameLayout.html">FrameLayout</a>&#39;s parent-tags </p>
+<pre><code>&lt;com.wikitude.architect.ArchitectView android:id=&quot;@+id/architectView&quot;
+   android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;/&gt;</code></pre>
+<p>ArchitectView is creating a camera surface so ensure to properly <a href="http://developer.android.com/reference/android/hardware/Camera.html">release camera</a> in case you&#39;re using it somewhere else in your application. 
+Besides the rear-camera the ArchitectView also makes use of compass and accelerometer values, requires <a href="http://www.khronos.org/opengles/2_X/">OpenGL 2.0</a> and at least Android 2.2. 
+<code>ArchitectView.isDeviceSupported(Context context)</code> checks wether the current device has all required hard- and software in place or not.</p>
+<p><em>Note: Make AR-View only accessible to supported devices</em> </p>
+<p>It is very important to notify the <code>ArchitectView</code> about <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">life-cycle events</a> of the Activity.
+Call architectView&#39;s <code>onCreate(), onPostCreate(), onPause, onDestroy()</code> inside your Activity&#39;s lifecycle methods.
+Best practice is to define a member variable for the <code>architectView</code> in your Activity. Set it right after <code>setContentView</code>in Activity&#39;s <code>onCreate()</code>, and then access <code>architectView</code> via member-variable later on.</p>
+<pre><code>this.architectView = (ArchitectView)this.findViewById( R.id.architectView );
+final ArchitectConfig config = new ArchitectConfig( &quot;&quot; /* license key */ );
+this.architectView.onCreate( config );</code></pre>
+<p>Activity&#39;s <code>onPostCreate()</code> is the best place to load the AR-Experience.</p>
+<pre><code>this.architectView.onPostCreate();
+this.architectView.load( &quot;YOUR-AR-URL&quot; );</code></pre>
+<p>The <code>architectView.load()</code> argument is the path to the html file that defines your AR experience. It can be relative to the asset folder root or a web-url (starting with <code>http://</code> or <code>https://</code>).
+e.g. <code>architectView.load(&#39;arexperience.html&#39;)</code> opens the html in your project&#39;s <code>assets</code>-folder, whereat <code>architectView.load(&#39;http://your-server.com/arexperience.html&#39;)</code> loads the file from a server.</p>
+<p><em>Note: You can only pass arguments to the html file when loading it via url. <code>architectView.load(&#39;arexperience.html?myarg=1&#39;)</code> does not work.</em></p>
+<a name="location"></a><h3>Location</h3>
+<p>Management of the location is important in geo-based augmented reality applications. Depending on the use-case location is used via GPS or network and may be updated every second or once in a while.
+Although the SDKExamples- project provides a basic implementation of a <code>LocationProvider</code> this is by far not the best <a href="http://developer.android.com/guide/topics/location/strategies.html">location strategy</a> available for Android.</p>
+<p><strong>Please use your own advanced location strategy implementation in case you have special requirements</strong>.</p>
+<a name="supported-devices"></a><h3>Supported Devices</h3>
+<p>Wikitude SDK is working on devices fulfilling the following requirements:</p>
+<ul>
+<li>Android 2.2, SDK=8  (but running way faster on Android 4+ )</li>
+<li>Compass</li>
+<li>GPS and / or network positioning</li>
+<li>Accelerometer</li>
+<li><a href="http://developer.android.com/guide/practices/screens_support.html">High resolution devices (hdpi)</a> with at least dual core preferred (may lag on others)</li>
+<li>Rear-facing camera</li>
+<li><a href="http://developer.android.com/guide/topics/graphics/opengl.html">OpenGL 2.0</a></li>
+</ul>
+<p>You can use static method <code>ArchitectView.isDeviceSupported()</code>, to check whether a devices is support. The method returns <code>false</code> if the device is not supported. It is up to the developer to not launch ARView on unsupported devices and tell the user why AR is not enabled.</p>
+<p><strong>Note: Wikitude SDK is not working on
+HTC Desire X (missing compass), Google Nexus 7 (missing rear-facing cam) and some low-resolution devices that do not support openGL 2.0</strong></p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

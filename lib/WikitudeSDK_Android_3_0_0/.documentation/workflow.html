@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="development-workflow"></a><h1>Development Workflow</h1>
+<p>The following section describes a default development workflow for writing AR content using the ARchitect JavaScript API. It demonstrates the code test and debug cycle and provides
+useful tips for each step.</p>
+<a name="code-test-debug"></a><h2>Code, Test, Debug</h2>
+<ol>
+<li>Write your HTML, JavaScript and CSS using the text editor of your choice</li>
+<li>Test in your desktop browser</li>
+<li>Debug in your desktop browser using e.g. WebInspector</li>
+<li>Test on a physical device</li>
+<li>Debug on a physical device</li>
+<li>Rinse and repeat</li>
+</ol>
+<p>You can use any editor for writing the ARchitect World. We particularly like <a href="link_sublime">Sublime</a>, which has a great selection of plugins for web developers.</p>
+<p>The next step is to test it out in a desktop browser. To have the ARchitect JavaScript API available in the desktop browser you&#39;ll need to include the ARchitect Desktop Engine (ADE). See the chapter <a href="ADE.html">ARchitect Desktop Engine</a> for instructions on how to use it. While this is limited in visualizing the experience, it greatly helps in finding errors in the JavaScript code and reduces the time it takes to see effects of changes you have made to the HTML and CSS parts. Desktop browsers come with great debugging tools (e.g. <a href="https://developers.google.com/chrome-developer-tools/">Chrome&#39;s DevTools</a> ) that allow you to easily debug your JavaScript code and that you should make full use of when debugging ARchitect Worlds.</p>
+<p>Once you have verified the JavaScript is working properly you should test it on the device of your choice. Either start your application that loads the ARchitect World or run it inside the Wikitude World Browser app.</p>
+<a name="run-architect-world-in-the-wikitude-world-browser-on-android"></a><h3>Run ARchitect World in the Wikitude World Browser on Android</h3>
+<p>ARchitect Worlds on an Android device can be tested using the <a href="https://play.google.com/store/apps/details?id=com.wikitude">Wikitude World Browser for Android</a>. Download the Wikitude app from Google Play. Launch the application and press the menu button in the main screen to enter the settings. Press <code>ARchitect World</code> in the developer section and type in the URL of your World. Press <code>Open</code> to launch your World. You can also add a shortcut to your World on the favorites screen using the <code>Add to Home-Screen</code> checkbox.</p>
+<p><img src="images/android_dev_enter_url.png" alt="Enter ARchitect World url in Wikitude-Settings"></p>
+<a name="a-idon-device-debugging-aon-device-debugging"></a><h2><a id="on_device_debugging"></a>On-Device Debugging</h2>
+<p>Debugging an ARchitect World on an Android device involves downloading
+and installing NodeJS and the Weinre remote debugger and is therefore
+not as straight forward compared to on-device debugging on an iOS device.</p>
+<p>Note: Setting break points is not possible using Weinre on Android.</p>
+<a name="setup-steps"></a><h4>Setup steps</h4>
+<ol>
+<li>Download NodeJS <a href="http://nodejs.org/#download"><a href="http://nodejs.org/#download">http://nodejs.org/#download</a></a></li>
+<li><p>Open the console on your MacOS X or Linux desktop (or server) and enter the
+following command to start the installation of Weinre
+ <code>sudo npm -g install weinre</code></p>
+</li>
+<li><p>Connect the target device and the server in same WiFi network</p>
+</li>
+<li>Obtain your the IP address of your desktop PC (e.g. via <code>ifconfig</code> or <code>ipconfig</code> in the console)</li>
+<li><p>Enter  the following lines in desktop PC’s console to start a server on IP
+(e.g. 10.0.0.1)
+ <code>weinre --httpPort 8080 --boundHost 10.0.0.1</code>
+ (you must adjust the IP address accordingly and may have to adapt the port number)</p>
+</li>
+<li><p>Add the following script tag in the head section of the HTML file you want to debug</p>
+<p><code>&lt;script src=&quot;http://10.0.0.1:8080/target/target-script-min.js#anonymous&quot;/&gt;</code>
+ Modify IP address and port if necessary.</p>
+</li>
+<li><p>Start your application and load your ARchitect World on the Android device</p>
+</li>
+<li><p>Open your preferred web browser on your desktop PC and visit
+ <code>http://10.0.0.1:8080/client/#anonymous</code>
+ Modify IP address and port if necessary.</p>
+</li>
+<li><p>Start the debugging session by clicking the top level tabs</p>
+</li>
+</ol>
+<a name="helpful-links"></a><h4>Helpful Links:</h4>
+<ul>
+<li><a href="http://www.google.com/url?q=http%3A%2F%2Fcorlan.org%2F2012%2F01%2F10%2Fdebugging-web-pages-and-phonegap-apps-on-mobile-devices%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGEZ2-yo_N_dVbuaPn8NrRrBWS3Gw">Outdated install
+Guide</a></li>
+<li><a href="http://www.google.com/url?q=http%3A%2F%2Fpeople.apache.org%2F~pmuellr%2Fweinre%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGt0nhJGAmLfpC9iEHwiFVHvcfB2A">Official Weinre
+Website</a></li>
+<li><strong><a href="http://www.youtube.com/watch?v=gaAI29UkVCc">Weinre on YouTube</a></strong></li>
+</ul>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

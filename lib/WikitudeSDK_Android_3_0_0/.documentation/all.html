@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        <div id='content'><a name="getting-started"></a><h1>Getting started</h1>
+<p><img src="images/WT_HG_Developer_Overview_IMG.png" style="float:right;"/></p>
+<p>Welcome to the Wikitude SDK. This document is designed to help you from your very first steps with the Wikitude SDK all the way through to advanced concepts and examples for developing your augmented reality project. </p>
+<a name="recommended-usage-of-this-documentation"></a><h3>Recommended Usage of this Documentation</h3>
+<p>The documentation is arranged in a way to guide you through the various steps in your development process. We recommend  following each of the steps outlined below and reading the documentation in the order displayed.</p>
+<ol>
+<li><strong><a href="setupguideandroid.html">Setup of your project</a></strong> - in this section we describe the necessary steps to setup a project in a detailed guide.</li>
+<li><strong><a href="samples.html">View the samples</a></strong> - all of the included samples are complete augmented reality experiences which run in <code>SDKExamples</code> app. Browse through this section and get an idea of what the SDK is capable of. The relevant parts of the samples are described in more detail to highlight the applied concepts and patterns. These examples are designed to help you get off to a great start with the Wikitude SDK.</li>
+<li><strong><a href="workflow.html">Write your own Architect World</a></strong> - this section will introduce you to best practices for your development workflow once you write your own code for your augmented reality experience.</li>
+<li><strong><a href="tools.html">Get good at what you do</a></strong> - the Wikitude SDK comes with several tools which help you to develop more complex augmented reality experiences. This section covers how to use these tools and how they will assist you in your daily work.</li>
+</ol>
+<a name="the-wikitude-sdk-augmented-reality-for-your-own-app"></a><h3>The Wikitude SDK - Augmented Reality for your own app</h3>
+<p>The Wikitude SDK is a software library and framework for mobile apps used to create augmented reality experiences. The SDK supports any kind of geo-based use case as well as use cases which require image recognition and tracking technology. </p>
+<a name="how-to-code-for-the-wikitude-sdk"></a><h3>How to code for the Wikitude SDK</h3>
+<p>The Wikitude SDK builds heavily on web technologies (HTML, JavaScript, CSS) to allow developers to write cross platform augmented reality experiences. These augmented reality experiences are called ARchitect worlds and are basically ordinary HTML pages that can utilize the ARchitect API to create objects in augmented reality.</p>
+<p>Integrating the Wikitude SDK into your application is done by adding the platform specific view component called <code>ARchitectView</code> to your applications user interface. See the setup guide for how to setup a native project and load an ARchitect World.</p>
+<p>Get started with writing augmented reality experiences by viewing through the examples included in the SDK. Each example is explained in detail in this documentation. Additional information about the ARchitect API can be found in the included API specification.</p>
+<a name="the-wikitude-developer-portal"></a><h3>The Wikitude Developer Portal</h3>
+<p>The <a href="http://developer.wikitude.com">Wikitude Developer Portal</a> should be your first stop when you have specific development related questions. The portal hosts a very active <a href="http://developer.wikitude.com/developer-forum">Developer Community Forum</a> where Wikitude staff members are constantly assisting other developers with helpful tips and advice. A <a href="http://developer.wikitude.com/knowledge-base">Knowledge Base</a> helps with various questions.</p>
+<a name="feedback-and-contact"></a><h3>Feedback and Contact</h3>
+<p>We are always interested in your feedback and suggestions how we can improve this documentation. Please use the <a href="http://www.wikitude.com/contact">contact form</a> on www.wikitude.com or visit us on <a href="https://plus.google.com/103004921345651739447/">Google+</a> or <a href="http://www.facebook.com/WIKITUDE">Facebook</a></p>
+
+<a name="setup-guide-android"></a><h2>Setup Guide Android</h2>
+<p><img src="images/WT_HG_Developer_GetStarted_Android_IMG.png" /></p>
+<a name="project-setup"></a><h3>Project Setup</h3>
+<ul>
+<li>Create a new <a href="http://developer.android.com/tools/projects/projects-eclipse.html#CreatingAProject">Android Application Project</a> (There is also a working SampleProject bundled in this SDK, where all these steps are already made)</li>
+<li>Create a <code>libs</code> folders in your project root directory and copy <code>libs/wikitudesdk.jar</code></li>
+<li><p>In Eclipse enter <code>Preferences</code> -&gt; <code>Android</code> -&gt; <code>Build</code> and ensure the option <code>Force error when external jars contain native libraries</code> is unchecked</p>
+<p>  <img src="images/android_setup_nativelib.png" alt="External jar contains native libraries"></p>
+</li>
+<li><p>Add the following permissions to your Manifest.xml</p>
+</li>
+</ul>
+<pre><code class="lang-xml">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_GPS&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.location&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.compass&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-feature android:glEsVersion=&quot;0x00020000&quot; android:required=&quot;true&quot; /&gt;
+&lt;uses-sdk android:targetSdkVersion=&quot;16&quot; android:minSdkVersion=&quot;8&quot;/&gt;</code></pre>
+<ul>
+<li>The activity holding the AR-View (called <code>architectView</code> in the following) must have set <code>android:configChanges=&quot;screenSize|orientation&quot;</code> in the <code>AndroidManifest.xml</code>,
+for example this could look like:</li>
+</ul>
+<pre><code>&lt;activity android:name=&quot;com.yourcompany.yourapp.YourArActivity&quot;
+   android:configChanges=&quot;screenSize|orientation&quot;/&gt;</code></pre>
+<a name="ar-view-in-activity"></a><h3>AR View in Activity</h3>
+<p>Keep in mind that the Wikitude SDK is not a native Android SDK as you know from other SDK&#39;s. The basic concept is to add a so called <code>architectView</code> in your project and notify it about lifecycle events. The <code>architectView</code> creates a Camera-Surface and handles sensor events.
+The experience itself, named ARchitect World, is implemented in JavaScript and packaged in your application&#39;s asset-folder (as in this project) or on your own server.
+ARchitectWorlds are written in HTML/JavaScript and call methods in Wikitude&#39;s <code>AR</code>-namespace (e.g. <code>AR.GeoObject</code>). </p>
+<p>You must include </p>
+<pre><code> &lt;script src=&quot;architect://architect.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>in ARchitect World html files to use <code>AR</code> namespace and the <code>architectView</code> will handle them properly (To test an ARchitect World on a desktop browser, you must include <code>ade.js</code> tool instead to avoid JavaScript Errors and see a development console) </p>
+<p>It is recommended to handle augmented reality in a separate <a href="http://developer.android.com/reference/android/app/Activity.html">Activity</a>. 
+Declare the <code>architectView</code> inside a <a href="http://developer.android.com/guide/topics/ui/declaring-layout.html">layout XML</a>.
+E.g. Add this within <a href="http://developer.android.com/reference/android/widget/FrameLayout.html">FrameLayout</a>&#39;s parent-tags </p>
+<pre><code>&lt;com.wikitude.architect.ArchitectView android:id=&quot;@+id/architectView&quot;
+   android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;/&gt;</code></pre>
+<p>ArchitectView is creating a camera surface so ensure to properly <a href="http://developer.android.com/reference/android/hardware/Camera.html">release camera</a> in case you&#39;re using it somewhere else in your application. 
+Besides the rear-camera the ArchitectView also makes use of compass and accelerometer values, requires <a href="http://www.khronos.org/opengles/2_X/">OpenGL 2.0</a> and at least Android 2.2. 
+<code>ArchitectView.isDeviceSupported(Context context)</code> checks wether the current device has all required hard- and software in place or not.</p>
+<p><em>Note: Make AR-View only accessible to supported devices</em> </p>
+<p>It is very important to notify the <code>ArchitectView</code> about <a href="http://developer.android.com/reference/android/app/Activity.html#ActivityLifecycle">life-cycle events</a> of the Activity.
+Call architectView&#39;s <code>onCreate(), onPostCreate(), onPause, onDestroy()</code> inside your Activity&#39;s lifecycle methods.
+Best practice is to define a member variable for the <code>architectView</code> in your Activity. Set it right after <code>setContentView</code>in Activity&#39;s <code>onCreate()</code>, and then access <code>architectView</code> via member-variable later on.</p>
+<pre><code>this.architectView = (ArchitectView)this.findViewById( R.id.architectView );
+final ArchitectConfig config = new ArchitectConfig( &quot;&quot; /* license key */ );
+this.architectView.onCreate( config );</code></pre>
+<p>Activity&#39;s <code>onPostCreate()</code> is the best place to load the AR-Experience.</p>
+<pre><code>this.architectView.onPostCreate();
+this.architectView.load( &quot;YOUR-AR-URL&quot; );</code></pre>
+<p>The <code>architectView.load()</code> argument is the path to the html file that defines your AR experience. It can be relative to the asset folder root or a web-url (starting with <code>http://</code> or <code>https://</code>).
+e.g. <code>architectView.load(&#39;arexperience.html&#39;)</code> opens the html in your project&#39;s <code>assets</code>-folder, whereat <code>architectView.load(&#39;http://your-server.com/arexperience.html&#39;)</code> loads the file from a server.</p>
+<p><em>Note: You can only pass arguments to the html file when loading it via url. <code>architectView.load(&#39;arexperience.html?myarg=1&#39;)</code> does not work.</em></p>
+<a name="location"></a><h3>Location</h3>
+<p>Management of the location is important in geo-based augmented reality applications. Depending on the use-case location is used via GPS or network and may be updated every second or once in a while.
+Although the SDKExamples- project provides a basic implementation of a <code>LocationProvider</code> this is by far not the best <a href="http://developer.android.com/guide/topics/location/strategies.html">location strategy</a> available for Android.</p>
+<p><strong>Please use your own advanced location strategy implementation in case you have special requirements</strong>.</p>
+<a name="supported-devices"></a><h3>Supported Devices</h3>
+<p>Wikitude SDK is working on devices fulfilling the following requirements:</p>
+<ul>
+<li>Android 2.2, SDK=8  (but running way faster on Android 4+ )</li>
+<li>Compass</li>
+<li>GPS and / or network positioning</li>
+<li>Accelerometer</li>
+<li><a href="http://developer.android.com/guide/practices/screens_support.html">High resolution devices (hdpi)</a> with at least dual core preferred (may lag on others)</li>
+<li>Rear-facing camera</li>
+<li><a href="http://developer.android.com/guide/topics/graphics/opengl.html">OpenGL 2.0</a></li>
+</ul>
+<p>You can use static method <code>ArchitectView.isDeviceSupported()</code>, to check whether a devices is support. The method returns <code>false</code> if the device is not supported. It is up to the developer to not launch ARView on unsupported devices and tell the user why AR is not enabled.</p>
+<p><strong>Note: Wikitude SDK is not working on
+HTC Desire X (missing compass), Google Nexus 7 (missing rear-facing cam) and some low-resolution devices that do not support openGL 2.0</strong></p>
+
+<a name="examples"></a><h1>Examples</h1>
+<p>The following examples should give you an overview of the capabilities offered by the Wikitude SDK. Each ARchitect World is capable of operating without modifications on all supported platforms. </p>
+<p>Each of the included ARchitect World is structured as following:</p>
+<ul>
+<li><code>index.html</code>: entry point for the ARchitect World</li>
+<li><code>js/*</code>: includes the necessary JavaScript files</li>
+<li><code>css/*</code>: css style sheets required</li>
+<li><code>assets/*</code>: contains images, 3D models and tracker files</li>
+</ul>
+<p>Inside the <code>js/</code> folder the main JavaScript file is named like the example. (the example <em>Image Recognition</em> has its JavaScript code in the <code>js/imagerecognition.js</code> file). Code which is mentioned in the description of the examples can be found in this file, if not explicitly stated otherwise.</p>
+<a name="android-sdk-examples"></a><h3>Android SDK Examples</h3>
+<p>This section describes the <code>SDK Sample</code> project in detail and highlights the main features and use-cases of the Wikitude SDK.
+The project is part of the SDK bundle and is an Android Eclipse project, ready to run on any of the supported Android devices.</p>
+<p><em>Note: You cannot run Wikitude SDK project on Android Emulator due to OpenGL restrictions.</em></p>
+<p>Run through the setup guide, install the sample project on your device and scroll through the sample list.</p>
+<p>The project&#39;s <code>asset</code> folder contains implementation of the various ARchitect World&#39;s. 
+Implementation of the native Android activities is available in the <code>src</code> folder. </p>
+<a name="setup"></a><h3>Setup</h3>
+<ul>
+<li>Download latest <a href="http://developer.android.com/sdk/index.html">Android SDK</a></li>
+<li>Launch ADT, which is part of the Android SDK or <a href="http://www.eclipse.org/downloads/packages/eclipse-classic-422/junosr2">Eclipse</a> with installed <a href="http://developer.android.com/tools/sdk/eclipse-adt.html">Android Plugin</a></li>
+<li>From the main menu bar, select   <code>File</code> -&gt; <code>Import…</code> which will open the import wizard.</li>
+<li>Select <code>General</code> -&gt; <code>Existing Project into Workspace</code> and click <code>Next</code>.</li>
+<li>Choose <code>Select root directory</code>, click <code>Browse</code></li>
+<li>Navigate to the <code>SDKExamples</code> project folder in your filesystem.</li>
+<li>Click <code>Finish</code> to start the import.</li>
+<li>Right click the project folder, click <code>Preferences</code> and <code>Android</code></li>
+<li><p>Ensure you have very latest SDK (14+) checked in the Build Target list</p>
+<p><img src="images/android_sdk_version.png" alt="Project Build Targets"></p>
+</li>
+<li><p>Use an Android device that has all hard- and software requirements (should be similar to Samsung Galaxy S2) and <a href="http://support.google.com/coordinate/bin/answer.py?hl=en&amp;answer=2569281">enable your location services in system settings</a></p>
+</li>
+<li>Enter <code>Settings</code> -&gt; <code>Applications</code> -&gt; <code>Developer</code> -&gt; check <code>USB debugging</code></li>
+<li>Plug in the device via USB.</li>
+<li>Right click the project folder again select <code>Run as…</code> - <code>Android Application</code> and select the target device</li>
+<li>The sample application is then installed onto your device</li>
+</ul>
+<a name="native-javascript-communication"></a><h3>Native/JavaScript Communication</h3>
+<p>The samples mainly describe  how to launch an AR experience in your Android activity - anything relevant for AR is written in the provided HTML/JS file.</p>
+<p>Although it is highly recommended to implement logic in pure HTML and JavaScript at some point in time it makes sense to interact between native Android and the JavaScript of your AR experience.</p>
+<p>One may for instance pass data for points of interest (POI) from native Android to JavaScript. 
+Define a method named <code>newData(json)</code> in the JavaScript file and use <code>architectView.callJavascript(newData(&#39;&quot; + poiDataAsJson +&quot;)&#39;)</code> to call the method and pass over the values properly. <a href="http://www.json.org/">JSON Format</a> is the fastest way to pass bulk of information, like translations, metadata and POI information over to your JavaScript. 
+There are several ways to <a href="http://developer.android.com/reference/org/json/package-summary.html">create a JSON in Android</a>.</p>
+<p>Sometimes events like a click in your AR experience should cause a reaction in native Android, like launching another screen when clicking a placemark or image target. To achieve that you   need to register a <code>urlListener</code> using <code>architectView.registerUrlListener()</code> in the activity.
+Any <code>document.location</code> changes to <code>architectsdk://</code> will fire an event in your listener (e.g. <code>document.location = architectsdk://YOUR-INFO</code>). Listener is informed about the invoked url and can then react on.</p>
+<p><em>Note: Missing urlListener registration will cause an HTTP error when calling <code>document.location = architectsdk://YOUR-INFO</code></em></p>
+
+<p><a id="ImageRecognitionExample"></a></p>
+<a name="image-recognition"></a><h2>Image Recognition</h2>
+<p>This example shows how to recognize images in the viewfinder and overlay it with images. Furthermore it shows how to recognize multiple different images and how to react on user clicks on the overlaid elements.</p>
+<p>For a better understanding, here are some terms that will be used in the following and other section of this documentation related to image recognition (IR).</p>
+<ul>
+<li><p><strong>Target</strong>: A target image and its associated extracted data that is used by the tracker to recognize an image.</p>
+</li>
+<li><p><strong>Target collection</strong>: An archive storing a collection of targets that can be recognized by the tracker. A target collection can hold up to 1000 targets.</p>
+</li>
+<li><p><strong>Tracker</strong>: The tracker analyzes the live camera image and detects the targets stored in its associated target collection. Multiple trackers can be created, however only one tracker can be active for recognition at any given time.</p>
+</li>
+</ul>
+<a name="image-on-target-1-3"></a><h3>Image on Target (1/3)</h3>
+<p>With these terms in mind let&#39;s start by defining what actually should be recognized (target) and create a corresponding target collection that the tracker can use. In this case, the target collection includes the following single magazine page.</p>
+<p><img src="images/magazine_page_one.jpeg" alt="Page of a magazine that should be augmented." title="Page of a magazine that should be augmented."></p>
+<p>See <a href="targetmanagement.html">Target Management</a> for instructions  how to create target collections which can be used in the Wikitude SDK.</p>
+<p>This is the same process for every use of image recognition in ARchitect. You&#39;ll first need to define your targets and then create a target collection for it. Now let’s have a look at the JavaScript for enabling IR.</p>
+<pre><code class="lang-js">// Initialize Tracker
+this.tracker = new AR.Tracker(&quot;assets/magazine.wtc&quot;, {
+    onLoaded: this.worldLoaded
+});
+
+// Create overlay for page one
+var imgOne = new AR.ImageResource(&quot;assets/imageOne.png&quot;);
+var overlayOne = new AR.ImageDrawable(imgOne, 1, {
+    offsetX: -0.15,
+    offsetY: 0
+});
+var pageOne = new AR.Trackable2DObject(this.tracker, &quot;pageOne&quot;, {
+    drawables: {
+        cam: overlayOne
+    }
+});</code></pre>
+<p>First an <code>AR.Tracker</code> needs to be created in order to start the recognition engine. It is initialized with a URL specific to the target collection. Optional parameters are passed as object in the last argument. In this case a callback function for the <code>onLoaded</code> trigger is set. Once the tracker is fully loaded the function <code>worldLoaded()</code> is called.</p>
+<p>The next step is to create the augmentation. In this example an image resource is created and passed to the <code>AR.ImageDrawable</code>. A drawable is a visual component that can be connected to an IR target (<code>AR.Trackable2DObject</code>) or a geolocated object (<code>AR.GeoObject</code>). The <code>AR.ImageDrawable</code> is initialized by the image and its size. Optional parameters allow for position it relative to the recognized target.</p>
+<p>The last line combines everything together by creating an <code>AR.Trackable2DObject</code> with the previously created tracker, the name of the image target as defined in the target collection and the drawable that should augment the recognized image.</p>
+<a name="multiple-targets-2-3"></a><h3>Multiple Targets (2/3)</h3>
+<p>Adding multiple targets to a target collection is straightforward. Simply follow the guide at <a href="targetmanagement.html">Target Management</a>. Each target in the target collection is identified by its id. By using this id, it is possible to create an <code>AR.Trackable2DObject</code> for every target in the target collection.</p>
+<p><img src="images/magazine_page_two.jpeg" alt="Second page of a magazine that should be augmented." title="Second page of a magazine that should be augmented."></p>
+<pre><code class="lang-js">// Create overlay for page two
+var imgTwo = new AR.ImageResource(&quot;assets/imageTwo.png&quot;);
+var overlayTwo = new AR.ImageDrawable(imgTwo, 0.5, {
+    offsetX: 0.12,
+    offsetY: -0.01
+});
+var pageTwo = new AR.Trackable2DObject(this.tracker, &quot;pageTwo&quot;, {
+    drawables: {
+        cam: overlayTwo
+    }
+});</code></pre>
+<p>Similar to the first part, the image resource and the <code>AR.ImageDrawable</code> for the second overlay are created. The <code>AR.Trackable2DObject</code> for the second page uses the same tracker but with a different id.</p>
+<a name="interactivity-3-3"></a><h3>Interactivity (3/3)</h3>
+<p>The final step is to add interactivity to the image target. For this example a button is added to each target that opens a webpage.</p>
+<p>The button is created similar to the overlay feature. An <code>AR.ImageResource</code> defines the look of the button and is reused for both buttons.</p>
+<pre><code>this.imgButton = new AR.ImageResource(&quot;assets/wwwButton.png&quot;);</code></pre>
+<p>For each target an <code>AR.ImageDrawable</code> for the button is created by utilizing the helper function <code>createWwwButton(url, options)</code>. The returned drawable is then added to the <code>drawables.cam</code> array on creation of the <code>AR.Trackable2DObject</code>.</p>
+<pre><code class="lang-js">var pageOneButton = this.createWwwButton(&quot;http://www.wikitude.com/pageone&quot;, 0.1, {
+    offsetX: -0.25,
+    offsetY: -0.25
+});
+var pageOne = new AR.Trackable2DObject(this.tracker, &quot;pageOne&quot;, {
+    drawables: {
+        cam: [overlayOne, pageOneButton]
+    }
+});</code></pre>
+<p>As the button should be clickable the <code>onClick</code> trigger is defined in the options passed to the <code>AR.ImageDrawable</code>. In general each drawable can be made clickable by defining its <code>onClick</code> trigger.</p>
+<pre><code class="lang-js">createWwwButton: function createWwwButtonFn(url, size, options) {
+    options.onClick = function() {
+        AR.context.openInBrowser(url);
+    };
+    return new AR.ImageDrawable(this.imgButton, size, options);
+},</code></pre>
+<p>The function assigned to the click trigger calls <code>AR.context.openInBrowser</code> with the specified URL, which opens the URL in the browser.</p>
+<a name="bonus-sparkles"></a><h3>Bonus: Sparkles</h3>
+<p>This section adds a little bonus to the above example. Sprite sheet animations can be used to animate images similar to animated GIFs and are used in this example to add sparkles to the overlay.</p>
+<p>A sprite sheet is an image file that contains all key frame images required for the animation. The key frame image size (width and height) is passed at creation time and must be equal for all key frame images. Key frame images will be managed in an array, starting with entry 0. The key frame image array will be filled from left to right, row by row. Any partly filled key frames at the edge of the sprites sheet will be ignored.</p>
+<p><img src="images/imageSparkles.png" alt="Sprite sheet of sparkles for this example." title="Sprite sheet of sparkles for this example."></p>
+<p>First the image resource is created which is used for creating the <code>AR.AnimatedImageDrawable</code>. Since the width/height of the sprite sheet is 512 and it carries 16 key frames, the width and height of a single image is 128. So we set 128 as the width and height of the <code>AnimatedImageDrawable</code>.</p>
+<pre><code class="lang-js">// Sparkles
+var imgSparkles = new AR.ImageResource(&quot;assets/imageSparkles.png&quot;);
+var sparkles = new AR.AnimatedImageDrawable(imgSparkles, 0.25, 128, 128, {
+    offsetX: -0.2,
+    offsetY: 0.5,
+    rotation: 75
+});</code></pre>
+<p>To start the animation the order of the keyframes needs to be passed as array. Additionally the time each frame is displayed in ms and the loop count needs to be defined. In this case each image is displayed 100ms before it changes and a loop count of <code>-1</code> plays the animation in an infinite loop.</p>
+<pre><code class="lang-js">sparkles.animate([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 100, -1);</code></pre>
+<p>The last step is to add it as drawable to the <code>AR.Trackable2DObject</code> so it will be overlaid on the first page.</p>
+<pre><code class="lang-js">var pageOne = new AR.Trackable2DObject(this.tracker, &quot;pageOne&quot;, {
+    drawables: {
+        cam: [overlayOne, pageOneButton, sparkles]
+    }
+});</code></pre>
+
+<a name="image-recognition-and-3d"></a><h2>Image Recognition And 3D</h2>
+<p>This example shows how to combine 3D content and image recognition. It starts by displaying a 3D model on a target and advances by adding displayed animations and interactivity. If you are not yet familiar with how to use image recognition, please have a look at the previous example <a href="ImageRecognition.html">Image Recognition</a>.</p>
+<p>3D content within Wikitude can only be loaded from <em>Wikitude 3D Format</em> files (.wt3).  This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools ( Autodesk® Maya® or Blender) but you&#39;ll need to convert them into the wt3 file format. Wikitude offers a desktop application - the Wikitude 3D Encoder, which will encode your 3D source file.  The Encoder can handle Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.</p>
+<p>For more details on how to convert your 3D content please see the <a href="encoder.html">Wikitude 3D Encoder</a> section. In this example the .wt3 file has already been prepared and saved to assets/car.wt3.</p>
+<p><img src="images/car.jpg" alt="Rendering of Car Model" title="Rendering of the car model used in this example."></p>
+<p>As image target the following car ad is used.</p>
+<p><img src="images/carAd.jpg" alt="TV ad used as image target." title="Car ad used as image target."></p>
+<a name="3d-model-on-target-1-3"></a><h3>3D Model on Target (1/3)</h3>
+<p>First of all create an <code>AR.Model</code> and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling and positioning the model in the scene.</p>
+<pre><code class="lang-js">this.modelTv = new AR.Model(&quot;assets/car.wt3&quot;, {
+    onLoaded: this.loadingStep,
+    scale: {
+        x: 0.5,
+        y: 0.5,
+        z: 0.5
+    }
+});</code></pre>
+<p>In this example a function is attached to the <code>onLoaded</code> trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take a some time to completely load and it is recommended to inform the user about the loading time.</p>
+<p>Similar to 2D content the 3D model is added to the <code>drawables.cam</code> property of an <code>AR.Trackable2DObject</code>. </p>
+<pre><code class="lang-js">var trackable = new AR.Trackable2DObject(this.tracker, &quot;tvAd&quot;, {
+    drawables: {
+        cam: this.modelTv
+    }
+});
+},</code></pre>
+<p>This is everything that is needed to allow the 3D model appear on an image target. To adjust scaling and position of the model pass the scale and translate properties as options to the <code>AR.Model</code>.</p>
+<a name="appearing-animation-2-3"></a><h3>Appearing Animation (2/3)</h3>
+<p>As a next step, an appearing animation is added which scales up the 3D model once the target is inside the field of vision. Creating an animation on a single property of an object is done using an <code>AR.PropertyAnimation</code>. Since the car model needs to be scaled up on all three axis, three animations are needed. These animations are grouped together utilizing an <code>AR.AnimationGroup</code> that allows them to play them in parallel.</p>
+<pre><code class="lang-js">var sx = new AR.PropertyAnimation(model, &quot;scale.x&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+var sy = new AR.PropertyAnimation(model, &quot;scale.y&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+var sz = new AR.PropertyAnimation(model, &quot;scale.z&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+
+return new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [sx, sy, sz]);</code></pre>
+<p>Each <code>AR.PropertyAnimation</code> targets one of the three axis and scales the model from 0 to the value passed in the <code>scale</code> variable. An <code>EASE_OUT_QUAD</code> easing curve is used to create a more dynamic effect of the animation.</p>
+<p>To get a notification once the image target is inside the field of vision the <code>onEnterFieldOfVision</code> trigger of the <code>AR.Trackable2DObject</code> is used. In the example the function <code>appear()</code> is attached.</p>
+<pre><code class="lang-js">appear: function appearFn () {
+    World.appearingAnimation.start();
+}</code></pre>
+<p>Within the <code>appear</code> function the previously created <code>AR.AnimationGroup</code> is started by calling its <code>start()</code> function which plays the animation once.</p>
+<a name="interactivity-3-3"></a><h3>Interactivity (3/3)</h3>
+<p>To finish up the example, a rotating animation is added to the 3D model. It is started and paused by clicking on the button or on the 3D model.</p>
+<p>Additionally to the 3D model an image that will act as a button is added to the image target. This can be accomplished by loading an <code>AR.ImageResource</code> and creating a drawable from it.</p>
+<pre><code class="lang-js">var imgReset = new AR.ImageResource(&quot;assets/resetButton.png&quot;);
+var buttonReset = new AR.ImageDrawable(imgReset, 0.2, {
+    offsetX: 0.25,
+    offsetY: 0.4,
+    onClick: this.resetModel
+});</code></pre>
+<p>To add the <code>AR.ImageDrawable</code> to the image target together with the 3D model both drawables are supplied to the <code>AR.Trackable2DObject</code>.</p>
+<pre><code class="lang-js">var trackable = new AR.Trackable2DObject(this.tracker, &quot;tvAd&quot;, {
+    drawables: {
+        cam: [this.modelTv, buttonReset]
+    },
+    onEnterFieldOfVision: this.appear
+});</code></pre>
+<p>The rotation animation for the 3D model is created by defining an <code>AR.PropertyAnimation</code> for the <code>rotate.roll</code> property.</p>
+<pre><code class="lang-js">// Rotation Animation
+this.rotationAnimation = new AR.PropertyAnimation(this.modelTv, &quot;rotate.roll&quot;, 0, 360, 5000);</code></pre>
+<p>The drawables are made clickable by setting their <code>onClick</code> triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model <code>onClick: this.toggleAnimateModel</code> is set in the options it is then passed to the <code>AR.Model</code> constructor. Similar the button&#39;s <code>onClick: this.toggleAnimateModel</code> trigger is set in the options passed to the <code>AR.ImageDrawable</code> constructor. <code>toggleAnimateModel()</code> is therefore called when the 3D model or the button is clicked.</p>
+<p>Inside the <code>toggleAnimateModel()</code> function, it is checked if the animation is running and decided if it should be started, resumed or paused.</p>
+<pre><code class="lang-js">toggleAnimateModel: function toggleAnimateModelFn() {
+    if (!World.rotationAnimation.isRunning()) {
+        if (!World.rotating) {
+            World.rotationAnimation.start(-1);
+            World.rotating = true;
+        } else {
+            World.rotationAnimation.resume();
+        }
+    } else {
+        World.rotationAnimation.pause();
+    }
+
+    return false;
+}</code></pre>
+<p>Starting an animation with <code>.start(-1)</code> will loop it indefinitely.</p>
+
+<a name="point-of-interest-poi"></a><h2>Point Of Interest (POI)</h2>
+<p>The Point Of Interest (POI) example series will show how you can create a marker that is placed at a specific geolocation. The example is split into four different parts that depend on each other. You will have a complete and reusable marker at the end of the series which has a title, description, a selected and an idle state which animates smoothly from one to another.</p>
+<a name="poi-at-location-1-4"></a><h3>POI at Location (1/4)</h3>
+<p>The first part of the series will present an image at a geolocation. To do so, we will use the <code>AR.context.onLocationChanged()</code> callback to get the current location. After the location has been retrieved, we will use it to place an <code>AR.ImageDrawable</code> there.</p>
+<p>All JavaScript code is written in the <code>poiatlocation.js</code> file.</p>
+<p>The example <a href="imagerecognition.html#ImageRecognitionExample">Image Recognition</a> already explained how images are loaded and displayed in AR. This sample loads an <code>AR.ImageResource</code> when the <code>World</code> variable was defined. It will be reused for each marker that we will create afterwards.</p>
+<p>The <code>init</code> function is used to set a custom <code>AR.context.onLocationChanged</code> callback function.</p>
+<pre><code class="lang-js">init: function initFn() {
+
+    AR.context.onLocationChanged = World.onLocationChanged;
+}</code></pre>
+<p>The custom <code>World.onLocationChanged</code> function first removes the custom callback function. This way the world won&#39;t receive any new location updates. After we have disabled further location updates, a marker will be created using the <code>World.createMarkerAtLocation</code> function. </p>
+<pre><code class="lang-js">onLocationChanged: function onLocationChangedFn(latitude, longitude, altitude, accuracy) {
+
+    AR.context.onLocationChanged = null;
+
+    World.createMarkerAtLocation(latitude + 0.01, longitude - 0.0005, altitude - 0.06);
+}</code></pre>
+<p>The <code>createMarkerAtLocation</code> function creates a new marker object at the specified geolocation. To do this, an <code>AR.GeoLocation</code>, <code>AR.ImageDrawable</code> and <code>AR.GeoObject</code> will be used. 
+The <code>AR.GeoLocation</code> object will be initialized with latitude, longitude and altitude . It defines the geolocation where the marker should be drawn. To actually draw an image, the <code>AR.ImageDrawable</code> is used with the <code>AR.ImageResource</code>, defined in the <code>World</code> variable. An <code>AR.GeoObject</code> connects one or more <code>AR.GeoLocation</code> with multiple <code>AR.Drawables</code>. The <code>AR.Drawables</code> can be defined for multiple targets. A target can be the camera, the radar or a direction indicator. Both the radar and direction indicators will be covered in more detail in later examples.</p>
+<pre><code class="lang-js">createMarkerAtLocation: function createMarkerAtLocationFn(latitude, longitude, altitude) {
+
+    var markerLocation = new AR.GeoLocation(latitude, longitude, altitude);
+    var markerDrawable = new AR.ImageDrawable(World.markerDrawable, 3);
+    var markerObject = new AR.GeoObject(markerLocation, {
+        drawables: {
+            cam: markerDrawable
+        }
+    });
+}</code></pre>
+<a name="poi-with-label-2-4"></a><h3>POI with Label (2/4)</h3>
+<p>The second part adds a title and description label to our marker object and covers more drawable related options.</p>
+<p>All JavaScript changes are in <code>poiwithlabel.js</code>. Note that only the file is only renamed but its content is mostly identical to <code>poiatlocation.js</code>. All new code is labeled with a comment so that changes can easily be spotted.</p>
+<p>There are two major points that need to be considered while drawing multiple <code>AR.Drawables</code> at the same location. It has to be defined which one is before or behind another drawable and if they need a location offset. For both scenarios, ARchitect has some functionality to adjust the drawable behavior.</p>
+<p>To position the label in front of the background, the background drawable(<code>AR.ImageDrawable2D</code>) receives a zOrder of 0. Both labels have a zOrder of 1. This way, it is guaranteed that the labels will be drawn in front of the background drawable.</p>
+<p>Assuming both labels will be drawn on the same geolocation connected with the same geo object, they will overlap. To adjust their position, you can adjust the <code>offsetX</code> and <code>offsetY</code> property of an <code>AR.Drawable2D</code> object. The unit which are used to set an offset are SDUs. See the ARchitect reference for more information about SDUs.</p>
+<p>The following listings shows how both labels are initialized and positioned. Note that they are added to the screen similarly to an <code>AR.ImageDrawable</code>. </p>
+<pre><code class="lang-js">// New: The createMarkerAtLocation function now has two additional parameters, title and description text.
+createMarkerAtLocation: function createMarkerAtLocationFn(latitude, longitude, altitude, title, description) {
+
+    var markerLocation = new AR.GeoLocation(latitude, longitude, altitude);
+    var markerDrawable = new AR.ImageDrawable(World.markerDrawable, 5, {
+
+        // New: zOrder option
+        zOrder: 0
+    });
+
+    // New: Title label with options that defines rendering order and offsets
+    var titleLabel = new AR.Label(title, 1, {
+        zOrder: 1,
+        offsetX: -2,
+        offsetY: 0.5,
+        style: {
+            fontStyle: AR.CONST.FONT_STYLE.BOLD
+        }
+    });
+
+    // New: Description label (similar options as for the title label)
+    var descriptionLable = new AR.Label(description, 1, {
+        zOrder: 1,
+        offsetX: -2,
+        offsetY: -titleLabel.height * 0.5
+    });
+
+    var markerObject = new AR.GeoObject(markerLocation, {
+        drawables: {
+
+            // New: two more cam drawables: title and description label
+            cam: [markerDrawable, titleLabel, descriptionLable]
+        }
+    });
+}</code></pre>
+<a name="multiple-pois-3-4"></a><h3>Multiple POIs (3/4)</h3>
+<p>The third example is split into two parts. The first is all about refactoring existing code so that it can be reused in other ARchitect Worlds. The new structure is then used to create multiple markers at different locations. The second part deals with highlighting a marker drawable after the user taps on it.</p>
+<p>This example consists of two JavaScript files. The ARchitect World entry point is <code>multiplepois.js</code> and the marker definition can be found in <code>marker.js</code>. Inside <code>marker.js</code>, a custom function named <code>Marker</code> is defined. The only parameter is an object containing poiData in JSON format. The function contains all the code from the <code>createMarkerAtLocation</code> function of the previous example. Additional poiData and selection state will be saved in the variables.</p>
+<pre><code class="lang-js">function Marker(poiData) {
+
+    this.poiData = poiData;
+
+    this.isSelected = false;
+
+    // ...
+    // all the `createMarkerAtLocation` code
+    // ...
+
+    return this;
+}</code></pre>
+<p>In <code>multiplepois.js</code> the marker creation in <code>onLocationChanges</code> is now slightly different. Instead of creating all the ARchitect objects in a <code>World</code> function, the new <code>Marker</code> function is used. This way the code is much cleaner while creating multiple markers.</p>
+<p>To use the new <code>Marker</code> function, a object representing the poi data in JSON needs to be created and supplied as a parameter. The benefit of using JSON is that it is very easy to add additional parameters for the marker creation. The following snippet describes a JSON data object.</p>
+<pre><code class="lang-js">var poiData = {
+    &quot;latitude&quot;: latitude + 0.01,
+    &quot;longitude&quot;: longitude - 0.01,
+    &quot;altitude&quot;: altitude,
+    &quot;title&quot;: &quot;Marker 1&quot;,
+    &quot;description&quot;: &quot;This is marker 1&quot;
+};</code></pre>
+<p>To create a new marker object, the <code>new</code> keyword needs to be used.</p>
+<pre><code class="lang-js">var marker_one = new Marker(poiData);</code></pre>
+<p>To create multiple markers, <code>new Marker(poiData)</code> can be called multiple times with different locations, titles and descriptions as defined in the poiData object.</p>
+<p>The following describes how a marker object can be selected by changing the background drawable.A second <code>AR.ImageDrawable</code> is defined in <code>marker.js</code>.</p>
+<p>To react on user interaction, an <code>onClick</code> property can be set for each <code>AR.Drawable</code>. The property is a function which will be called each time the user taps on the drawable. The following snippet shows the adapted <code>AR.ImageDrawable</code> creation.</p>
+<pre><code class="lang-js">this.markerDrawable_idle = new AR.ImageDrawable(World.markerDrawable_idle, 2.5, {
+    zOrder: 0,
+    opacity: 1.0,
+    onClick: Marker.prototype.getOnClickTrigger(this)
+});</code></pre>
+<p>The function called on each tap is returned from the following helper function defined in <code>marker.js</code>. The function returns a function which checks the <code>selected-state</code> and executes appropriate function. The clicked marker is passed as an argument.</p>
+<pre><code class="lang-js">Marker.prototype.getOnClickTrigger = function(marker) {
+
+    return function() {
+
+        if (marker.isSelected) {
+
+            Marker.prototype.setDeselected(marker);
+
+        } else {
+
+            Marker.prototype.setSelected(marker);
+        }
+
+        return true;
+    };
+};</code></pre>
+<p>The <code>setSelected</code> and <code>setDeselected</code> functions are prototype <code>Marker</code> functions.</p>
+<p><a id="MultiplePOIs"></a>
+Both functions perform the same steps but only inverted. Because of this, only one function (<code>setSelected</code>) will be covered in detail. Three steps are done to select the marker. First, the state will be set appropriately. Second, the selected background drawable will be enabled and the standard background disabled. Third, the <code>onClick</code> function is only set for the background drawable of the selected marker.</p>
+<pre><code class="lang-js">Marker.prototype.setSelected = function(marker) {
+
+    marker.isSelected = true;
+
+    marker.markerDrawable_idle.enabled = false;
+    marker.markerDrawable_selected.enabled = true;
+
+    marker.markerDrawable_idle.onClick = null;
+    marker.markerDrawable_selected.onClick = Marker.prototype.getOnClickTrigger(marker);
+};</code></pre>
+<p>To be able to deselect a marker while the user taps on the empty screen, the <code>World</code> object has an array where each marker is added after its initialization.</p>
+<pre><code class="lang-js">World.markerList.push( new Marker(poiData) );</code></pre>
+<p>To detect clicks where no drawable was hit, you can set a custom function on <code>AR.context.onScreenClick</code>. In the custom function, each marker can be checked if it is selected. If so, the <code>setDeselected</code> function is called, supplying the marker object at the current index.</p>
+<pre><code class="lang-js">onScreenClick: function onScreenClickFn() {
+
+    for (var i = World.markerList.length - 1; i &gt;= 0; i--) {
+        if (World.markerList[i].isSelected) {
+            World.markerList[i].setDeselected(World.markerList[i]);
+        }
+    }
+}</code></pre>
+<a name="selecting-pois-4-4"></a><h3>Selecting POIs (4/4)</h3>
+<p>The last part describes the concepts behind <code>AR.PropertyAnimations</code> and <code>AR.AnimationGroups</code>. It also explains how direction indicators can be used to visualize selected objects that are currently not visible in the viewfinder.</p>
+<p>With <code>AR.PropertyAnimations</code> you&#39;re able to animate almost any property of ARchitect objects. This sample will animate the opacity of both background drawables so that one will fade out while the other one fades in. The scaling will alos be animated. Because the marker size changes over time, both labels need to be animated as well to stay at the same position relative to the background drawable. To synchronize all the animations, <code>AR.AnimationGroups</code> are used.</p>
+<p>In <code>marker.js</code> there are two new variables declared in the <code>Marker</code> function. They will hold a reference to an <code>AR.AnimationGroup</code> that is used to either start the select or deselect process.</p>
+<pre><code class="lang-js">this.animationGroup_idle = null;
+this.animationGroup_selected = null;</code></pre>
+<p>The next changes are done in the <code>setSelected</code> and <code>setDeselected</code> prototype functions in <code>marker.js</code>. <a href="#MultiplePOIs">Again</a> only the changes in <code>setSelected</code> will be explained. </p>
+<p>The animations will be created on demand, meaning, if the animation group is null, all the necessary animations will be created. Note that there are two types of <code>AR.AnimationGroups</code>. The first type is parallel, which means that all the animations are running at the same time. The other type is sequential. A sequential group will play one animation after another. This example uses a parallel <code>AR.AnimationGroup</code>.</p>
+<pre><code class="lang-js">if (marker.animationGroup_selected === null) {
+
+    var hideIdleDrawableAnimation = new AR.PropertyAnimation(marker.markerDrawable_idle, &quot;opacity&quot;, null, 0.0, kMarker_AnimationDuration_ChangeDrawable);
+    var showSelectedDrawableAnimation = new AR.PropertyAnimation(marker.markerDrawable_selected, &quot;opacity&quot;, null, 0.8, kMarker_AnimationDuration_ChangeDrawable);
+
+    // ** all required animations are created **
+
+    marker.animationGroup_selected = new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [hideIdleDrawableAnimation, showSelectedDrawableAnimation, idleDrawableResizeAnimation, selectedDrawableResizeAnimation, titleLabelResizeAnimation, descriptionLabelResizeAnimation]);
+}</code></pre>
+<p>After the <code>AR.PropertyAnimations</code> and <code>AR.AnimationGroup</code> are created, the <code>AR.AnimationGroup</code> can be started using the <code>start</code> function.</p>
+<pre><code class="lang-js">if (!marker.animationGroup_selected.isRunning()) {
+    marker.animationGroup_selected.start();
+}</code></pre>
+<p>To define a direction indicator you&#39;ll need to create an <code>AR.ImageResource</code> referencing the image that should be displayed. The next step is to create an <code>AR.ImageDrawable</code> using the <code>AR.ImageResource</code>. You can set options regarding the offset and anchor of the image so that it will be displayed correctly on the edge of the screen.</p>
+<pre><code class="lang-js">this.directionIndicatorDrawable = new AR.ImageDrawable(World.markerDrawable_directionIndicator, 0.5, {
+    enabled: false
+});</code></pre>
+<p>The last step is to define the <code>AR.ImageDrawable</code> as an <code>indicator</code> target on the marker geo object. ARchitect will show and hide the image drawable of the direction indicator . Note that all <code>AR.Drawable</code> subclasses can be used as direction indicator.</p>
+<pre><code class="lang-js">var markerObject = new AR.GeoObject(markerLocation, {
+    drawables: {
+        cam: [this.markerDrawable_idle, this.markerDrawable_selected, this.titleLabel, this.descriptionLabel],
+        indicator: this.directionIndicatorDrawable
+    }
+});</code></pre>
+
+<a name="retrieving-poi-data"></a><h2>Retrieving POI Data</h2>
+<p>There are several ways to request and work with POI detail information in an ARchitect World.
+Depending on your application and use case, one might fit better than the other.</p>
+<a name="from-a-webservice-1-3"></a><h3>From a Webservice (1/3)</h3>
+<p><a href="http://jquery.com/">JQuery</a> provides a number of tools to load data from a remote origin. It is highly recommended to use the JSON format for POI detail information. Requesting and parsing is done in a few lines of JavaScript code.</p>
+<p>In this sample, POI information is requested after the very first location update.
+Use e.g. <code>AR.context.onLocationChanged = World.locationChanged;</code> to define the method invoked on location updates.</p>
+<p>It is recommended to store server information separately in your code, use the following snippet</p>
+<pre><code>// holds server information
+var ServerInformation = {
+    // sample service returning dummy POIs
+    POIDATA_SERVER: &quot;http://example.wikitude.com/GetSamplePois/&quot;,
+    POIDATA_SERVER_ARG_LAT: &quot;lat&quot;,
+    POIDATA_SERVER_ARG_LON: &quot;lon&quot;,
+    POIDATA_SERVER_ARG_NR_POIS: &quot;nrPois&quot;
+};</code></pre>
+<p>Ensure that the server returns valid JSON and it is escaped properly (e.g. special characters in POI name…)  </p>
+<p>The Server response is passed over to <code>World.loadPoisFromJsonData(poiData)</code>, where the creation of markers and their camera representation is defined.</p>
+<pre><code>var World = {
+[…]
+
+// location updates
+locationChanged: function locationChangedFn(lat, lon, alt, acc) {
+    World.userLocation = {
+        &#39;latitude&#39;: lat,
+        &#39;longitude&#39;: lon,
+        &#39;altitude&#39;: alt,
+        &#39;accuracy&#39;: acc
+    };
+
+    /* Request data from server only once*/
+    if (!World.alreadyRequestedData) {
+        World.requestDataFromServer(lat, lon);
+        World.alreadyRequestedData = true;
+    }
+},
+
+// request POI data
+requestDataFromServer: function requestDataFromServerFn(lat, lon) {
+    var serverUrl = ServerInformation.POIDATA_SERVER + &quot;?&quot; + ServerInformation.POIDATA_SERVER_ARG_LAT + &quot;=&quot; + lat + &quot;&amp;&quot; + ServerInformation.POIDATA_SERVER_ARG_LON + &quot;=&quot; + lon + &quot;&amp;&quot; + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + &quot;=20&quot;;
+    var jqxhr = $.getJSON(serverUrl, function(data) {
+        World.loadPoisFromJsonData(data);
+    })
+        .error(function() {
+        alert(&quot;JSON error occurred!&quot;);
+    })
+        .complete(function() {});
+}
+
+[…]
+}</code></pre>
+<a name="from-a-local-resource-2-3"></a><h3>From a Local Resource (2/3)</h3>
+<p>In the case where the data of your ARchitect World data is static, its content should be stored within the application.
+Create a JavaScript file (e.g. <code>myJsonData.js</code>) and define a globally accessible <code>var myJsonData = …[YOUR-JSON-DATA]</code>. Include the JavaScript in the ARchitect Worlds HTML by adding <code>&lt;script src=&quot;js/myJsonData.js&quot;/&gt;</code>. POI information is then available anywhere in your JavaScript and can be processed similarly to the previous web service sample.</p>
+<pre><code>var World = {
+
+[…]
+
+// request POI data
+requestDataFromLocal: function requestDataFromLocalFn(lat, lon) {
+    World.loadPoisFromJsonData(poisNearby);
+}
+
+[…]
+}</code></pre>
+<p><em>Note: This sample uses static POI data and overwrites latitude and longitude values using <code>Helper.bringPlacesToUser</code>, you must remove this line to avoid this.</em></p>
+<a name="from-application-model-3-3"></a><h3>From Application Model (3/3)</h3>
+<p>Besides loading data from assets you can also load data from a database, or create them in native code. Use the platform common method to create JSON Objects out of your data and use <code>architectView.callJavaScript()</code> to pass the JSON data to ARchitect World&#39;s JavaScript.</p>
+
+<a name="browsing-pois"></a><h2>Browsing POIs</h2>
+<p>Displaying numerous POIs in the camera has some challenges. How many POIs should be provided? How to deal with POIs in same direction and what is the maximum range to show POIs?
+The following examples cover frequently asked questions related to the POI browser use case.</p>
+<a name="presenting-poi-details-1-4"></a><h3>Presenting POI Details (1/4)</h3>
+<p>POIs usually have at least a name and a sometimes a quite long description associated with them. Depending on your content type you may use a marker with the POI name.</p>
+<p>When starting this World the POI information is inserted from native code using the <code>callJavaScript()</code> function of the <code>architectView</code>.  POIs are displayed in the camera around the user as markers. </p>
+<p>The <code>World.onMarkerSelected</code> function is called when a marker is clicked.</p>
+<pre><code>    onMarkerSelected: function onMarkerSelectedFn(marker) {
+        // notify native environment
+        document.location = &quot;architectsdk://markerselected?id=&quot; + marker.poiData.id;
+    }</code></pre>
+<p>The <code>document.location = architectsdk://...</code> call is handled in native code&#39;s <code>urlListener</code>, where the passed id is used to call the right POI detail page.</p>
+<a name="poi-ar-radar-2-4"></a><h3>POI/AR Radar (2/4)</h3>
+<p>It is recommended to give the user a hint where places are located in his/her vicinity. The easiest way to provide orientation assistance is by adding an <code>AR.Radar</code> element. Every <code>AR.GeoObject</code> (e.g. a marker) can have a radar representation, usually indicated by a small dot.</p>
+<p>Radar representation of an <code>AR.GeoObject</code> is defined in the drawables set. Define an array of drawables (e.g. array holding one <code>AR.Circle</code>) and set it as <code>drawables.radar</code>, compare <strong>marker.js</strong>:</p>
+<pre><code>this.radarCircle = new AR.Circle(0.03, {
+    horizontalAnchor: AR.CONST.HORIZONTAL_ANCHOR.CENTER,
+    opacity: 0.8,
+    style: {
+        fillColor: &quot;#ffffff&quot;
+    }
+});
+
+this.radardrawables = [this.radarCircle];</code></pre>
+<p>Any <code>AR.GeoObject</code> can have a radar-representation, add the <code>radar</code> key in the drawable set and you&#39;re done.</p>
+<pre><code>    var markerObject = new AR.GeoObject(markerLocation, {
+    drawables: {
+        cam: [this.markerDrawable_idle, this.markerDrawable_selected, this.titleLabel, this.descriptionLabel],
+        indicator: this.directionIndicatorDrawable,
+        radar: this.radardrawables
+    }
+});</code></pre>
+<p>The radar itself can be customized and should be implemented as a separate component in your JavaScript code (compare <strong>radar.js</strong>)</p>
+<pre><code>var PoiRadar = {
+
+    show: function showFn() {
+        AR.radar.enabled = true;
+    },
+
+    hide: function hideFn() {
+        AR.radar.enabled = false;
+    },
+
+    init: function initFn() {
+        // set the back-ground image for the radar
+        AR.radar.background = new AR.ImageResource(&quot;img/radar_bg.png&quot;);
+
+        // set the north-indicator image for the radar (not necessary if you don&#39;t want to display a north-indicator)
+        AR.radar.northIndicator.image = new AR.ImageResource(&quot;img/radar_north.png&quot;);
+        AR.radar.positionX = 0.04;
+        AR.radar.positionY = 0.06;
+        AR.radar.width = 0.3;
+        AR.radar.centerX = 0.5;
+        AR.radar.centerY = 0.5;
+        AR.radar.radius = 0.3;
+        AR.radar.northIndicator.radius = 0.0;
+        AR.radar.enabled = false;
+
+        // set the onClick-trigger for the radar.
+        AR.radar.onClick = PoiRadar.clickedRadar;
+    },
+
+    // you may define some custom action when user pressed radar, e.g. display distance, custom filtering etc.
+    clickedRadar: function clickedRadarFn() {
+        alert(&quot;Radar Clicked&quot;);
+    }
+};
+
+// init radar to start loading required assets upfront. That way SimpleRadar.show() is way more responsive and displays radar almost immediately (all assets are already in place)
+PoiRadar.init();</code></pre>
+<a name="limiting-visible-pois-3-4"></a><h3>Limiting Visible POIs (3/4)</h3>
+<p>Sometimes there are too many POIs in a direction which causes overlapping of placemarks. Reducing the radius of interest (culling distance) is an easy way to hide objects outside a specific area.
+You can also update <code>AR.Radar</code>&#39;s maxDistance so visible markers and radar representation are in sync.</p>
+<p>In this example a query mobile sample for a slider is used to modify <code>AR.Radar</code>&#39;s maxDistance and <code>AR.context.scene.cullingDistance</code>.</p>
+<p>In the <code>refresh</code> function of <strong>slider.js</strong> <code>World.onSliderChanged</code> is called. The implementation of this function is in <strong>limitingVisiblePois.js</strong>:</p>
+<pre><code>var World = {
+
+    […]    
+
+    onSliderChanged: function onSliderChangedFn(value) {
+         if (value &gt; 0) {
+            var valueMeters = value * 1000;
+            PoiRadar.setMaxDistance(valueMeters);
+            AR.context.scene.cullingDistance = valueMeters;
+        }
+    }
+
+    […]
+}</code></pre>
+<p>Besides the ARchitect related JavaScript files this sample also requires JQuery and JQuery-mobile JavaScritp and CSS files.</p>
+<p>Due to the fact, that JQuery modifies the HTML structure and defines the background colors of divs it is not only necessary to include <code>jquery-mobile-transparent-ui-overlay.css</code> (after query mobiles CSS) but also add the custom style in the div that contains the JQuery slider (compare <strong>index.html</strong>).</p>
+<pre><code>    &lt;div id=&quot;slider-div&quot; data-role=&quot;page&quot; style=&quot;background: none;&quot;&gt;
+        &lt;input type=&quot;range&quot; name=&quot;slider-distance&quot; id=&quot;slider-distance&quot; 
+            min=&quot;1&quot; max=&quot;50&quot; value=&quot;50&quot; data-show-value=&quot;true&quot; data-popup
+            enabled=&quot;true&quot; &gt;
+    &lt;/div&gt;</code></pre>
+<a name="reloading-poi-data-4-4"></a><h3>Reloading POI Data (4/4)</h3>
+<p>You may want to reload POI information because of user movements or manually for various reasons.
+In this example, POIs are reloaded when user presses the refresh button. The button in <strong>index.html</strong> calls <code>World.clickedReload()</code> when the user clicks it. </p>
+<pre><code>&lt;div id=&quot;refresh-div&quot;&gt;
+        &lt;input id=&quot;refresh-button&quot; type=&quot;button&quot; 
+            value=&quot;Reload POIs&quot; onclick=&quot;World.clickedReload();&quot;&gt;
+&lt;/div&gt;</code></pre>
+<p>Th implementation of <code>World.clickedReload()</code> is part of the ARchitect World (<strong>reloadingPois.js</strong>) and executes <code>document.location = architectsdk://...</code>. 
+The urlListener in native code is informed about this event and uses
+<code>architectView.callJavaSript()</code> to inject new POI information into the ARchitect World.</p>
+<pre><code>var World = {
+[…]
+
+/* called when user presses reload button */
+clickedReload: function clickedReloadFn() {
+    document.location = &quot;architectsdk://button?type=refresh&quot;;
+}
+[…]
+}</code></pre>
+<p><em>Note: you must use &#39;document.location = &quot;architectsdk://...&#39; to pass information from JavaScript to native. This will cause HTTP error if you didn&#39;t register a urlListener in architectView.</em></p>
+
+<a name="image-recognition-and-geo"></a><h2>Image Recognition And Geo</h2>
+<p>The Wikitude SDK allows you to combine geobased AR with image recognition to
+create a seamless experience for users. This tutorial will show you how
+to accomplish this and will provide you with additional advices.</p>
+<p>Let’s start by creating the <code>AR.Tracker</code> for recognizing a logo and a
+<code>AR.Trackable2dObject</code></p>
+<pre><code class="lang-js">// Create the tracker to recognize a store logo
+var trackerDataSetPath = &quot;assets/ShopLogo.wtc&quot;;
+IrAndGeo.tracker = new AR.Tracker(trackerDataSetPath, {
+    onLoaded: IrAndGeo.loadingStepDone,
+    onError: IrAndGeo.errorLoading
+});
+
+// Create drawables to display on the recognized image
+var logo = new AR.ImageDrawable(IrAndGeo.res.logo, 1.0, {
+    zOrder: -1
+});
+
+// ...
+
+IrAndGeo.menuDrawables = [logo, buttonDeal, buttonWeb, buttonStores];
+IrAndGeo.dealDrawable = new AR.ImageDrawable(IrAndGeo.res.deal, 1.0, {
+    enabled: false,
+    onClick: IrAndGeo.hideDeal
+});
+
+// Create the object by defining the tracker, target name and its drawables
+var trackable2DObject = new AR.Trackable2DObject(IrAndGeo.tracker, &quot;ShopLogo&quot;, {
+    drawables: {
+        cam: [logo, buttonDeal, buttonWeb, buttonStores, IrAndGeo.dealDrawable, IrAndGeo.model]
+    },
+   // ...
+});</code></pre>
+<p><img src="images/irangeo_screenshot.jpeg" alt="Finally result of overlaid images on top of shop logo." title="Finally result of overlaid images on top of shop logo."></p>
+<p>This is all it takes to display drawables on top of a recognized image.
+The geo based AR part can be accomplished similarly to any other
+ARchitect World.</p>
+<pre><code class="lang-js">IrAndGeo.createMarker = function(lat, lon, name) {
+    var loc = new AR.GeoLocation(lat, lon);
+    var imageDrawable = new AR.ImageDrawable(IrAndGeo.res.marker, 2, {
+        scale: 0.0,
+        onClick: function() {
+            alert(&quot;clicked&quot;);
+        }
+    });
+
+    IrAndGeo.markerAnimations.push(new AR.PropertyAnimation(imageDrawable, &#39;scale&#39;, 0.0, 1.0, 1000, {
+        type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_BOUNCE
+    }));
+    IrAndGeo.stores.push(new AR.GeoObject(loc, {
+        drawables: {
+            cam: imageDrawable
+        },
+        enabled: false
+    }));
+};</code></pre>
+<p>The method above creates a marker at the passed latitude and longitude.
+As with any other <code>AR.GeoObject</code> the visual representation can be composed of
+various Drawables. The <code>AR.GeoObject</code> is created with the value <code>enabled</code> set to <code>false</code>
+so it won’t be initially visible. To make it visible, the created
+GeoObjects can be set to `enabled when an element on the image target is
+clicked.</p>
+<p><img src="images/irgeo4_s.jpg" alt="Shop location visualized." title="Shop location visualized.">  </p>
+<pre><code class="lang-js">IrAndGeo.showStores = function() {
+    // enable all GeoObjects
+    IrAndGeo.stores.forEach(function(x, idx) {
+        x.enabled = true;
+    });
+
+    // ...
+};</code></pre>
+<p>Combining IR and geo based AR is easy and straightforward. However, you should keep in mind that image recognition requires additional computing power (and thus battery power). Therefore, you should only create a <code>AR.Tracker</code> when it is actually needed. If it is no longer needed destroy it by calling <code>AR.Tracker.destroy()</code>.</p>
+
+<a name="solar-system-ir"></a><h2>Solar System (IR)</h2>
+<p>In this demo we combined image recognition capabilities with 3D models to visualize our solar system in a unique way. The example allows viewers to look at several planets of the solar system and  receive basic information for each planet.</p>
+<p><img src="images/demo_solar_ir_1.jpg" alt="Screenshot of the complete demo." title="Screenshot of the complete demo."></p>
+<p>The augmentation consists of a backdrop that is used to darken the overlaid image and the planets of our solar system (still including Pluto). Each planet is loaded as a separate 3D model to allow it to be animated independently from each other.</p>
+<p><img src="images/demo_solar_ir_jupiter.png" alt="3D model of the planet Jupiter." title="3D model of the planet Jupiter."></p>
+<p>Looking at the code of the example there are a few components worth noting. The detail information for each planet is stored in the <code>planetsInfo</code> array which is then used to create the <code>AR.Model</code> object for each planet. Depending on the size and distance from the sun each planet is placed on the target using the <code>translate</code> and <code>scale</code> properties.</p>
+<p>The backdrop is a simple <code>AR.ImageDrawable</code> that is added together with the planets to the <code>AR.Trackable2DObject</code> drawables.</p>
+<p>Animating the planets on a circle around the sun is accomplished by the utilizing multiple <code>AR.PropertyAnimation</code>s which are combined in <code>AR.AnimationGroup</code>s. The function <code>createOrbitAnimation(planet, info)</code> creates the necessary animations for this action. The circle is divided in 4 quadrants which require different animations for the x and y axis. Animations for the x and y axis are combined in a parallel animation and are played sequentially  in order to achieve the desired circular movement.</p>
+<p>Initially the planets are static and don&#39;t move. Once the user clicks the animate button the <code>toggleAnimatePlanets()</code> function is called. It checks the current state of the animations and starts, pauses, or resumes the animations accordingly.</p>
+<p>Another part of the demo is the selection of planets and the displaying of a selected planet&#39;s information. Each planets <code>AR.Model</code> has an <code>onClick</code> trigger set which calls the <code>planetClicked()</code> function. This call displays a selected planet&#39;s information on the HUD. Helper functions <code>selectPlanet()</code> and <code>screenClicked()</code> activate and deactivate the selected animations and reset a previously selected planets <code>scale</code> property.</p>
+
+<a name="solar-system-geo"></a><h2>Solar System (Geo)</h2>
+<p>Similar to the <a href="solarsystemir.html">Solar System (IR) demo</a> this demo displays our solar system, but positions it in the user&#39;s vicinity using a geobased approach.</p>
+<p><img src="images/demo_solar_geo_1.jpg" alt="Screenshot of the complete demo." title="Screenshot of the complete demo."></p>
+<p>The detail information of each planet is defined in the <code>init()</code> function. Factors are defined to scale the planets to a reasonable size and all planets are combined in the <code>planetsInfo</code> array.</p>
+<p>Planets are represented by an <code>AR.GeoObject</code> that features the planets image and name indicated as drawables. The <code>AR.GeoObject</code> of each planet is positioned using a <code>AR.RelativeLocation</code> that allows to placement of objects relative to the user&#39;s location. Therefore it is possible to position the solar system in northerly direction regardless of the actual longitude and latitude of the user&#39;s current position.</p>
+<p>An indicator is added to the suns <code>AR.GeoObject</code> so the user is continually guided to look in the &quot;right&quot; direction.</p>
+<p>Animation of the planets is done similarly to the image recognition based demo where the circular movement is composed of multiple <code>AR.PropertyAnimation</code>s that are combined using <code>AR.AnimationGroup</code>s. The <code>animate(planet)</code> function is responsible for creating these animations for a moving planet.</p>
+<p>Again similar to the image recognition demo the <code>planetClicked()</code> function which is assigned to the `onClick`` trigger displays the planets information on the HUD.</p>
+
+<a name="development-workflow"></a><h1>Development Workflow</h1>
+<p>The following section describes a default development workflow for writing AR content using the ARchitect JavaScript API. It demonstrates the code test and debug cycle and provides
+useful tips for each step.</p>
+<a name="code-test-debug"></a><h2>Code, Test, Debug</h2>
+<ol>
+<li>Write your HTML, JavaScript and CSS using the text editor of your choice</li>
+<li>Test in your desktop browser</li>
+<li>Debug in your desktop browser using e.g. WebInspector</li>
+<li>Test on a physical device</li>
+<li>Debug on a physical device</li>
+<li>Rinse and repeat</li>
+</ol>
+<p>You can use any editor for writing the ARchitect World. We particularly like <a href="link_sublime">Sublime</a>, which has a great selection of plugins for web developers.</p>
+<p>The next step is to test it out in a desktop browser. To have the ARchitect JavaScript API available in the desktop browser you&#39;ll need to include the ARchitect Desktop Engine (ADE). See the chapter <a href="ADE.html">ARchitect Desktop Engine</a> for instructions on how to use it. While this is limited in visualizing the experience, it greatly helps in finding errors in the JavaScript code and reduces the time it takes to see effects of changes you have made to the HTML and CSS parts. Desktop browsers come with great debugging tools (e.g. <a href="https://developers.google.com/chrome-developer-tools/">Chrome&#39;s DevTools</a> ) that allow you to easily debug your JavaScript code and that you should make full use of when debugging ARchitect Worlds.</p>
+<p>Once you have verified the JavaScript is working properly you should test it on the device of your choice. Either start your application that loads the ARchitect World or run it inside the Wikitude World Browser app.</p>
+<a name="run-architect-world-in-the-wikitude-world-browser-on-android"></a><h3>Run ARchitect World in the Wikitude World Browser on Android</h3>
+<p>ARchitect Worlds on an Android device can be tested using the <a href="https://play.google.com/store/apps/details?id=com.wikitude">Wikitude World Browser for Android</a>. Download the Wikitude app from Google Play. Launch the application and press the menu button in the main screen to enter the settings. Press <code>ARchitect World</code> in the developer section and type in the URL of your World. Press <code>Open</code> to launch your World. You can also add a shortcut to your World on the favorites screen using the <code>Add to Home-Screen</code> checkbox.</p>
+<p><img src="images/android_dev_enter_url.png" alt="Enter ARchitect World url in Wikitude-Settings"></p>
+<a name="a-idon-device-debugging-aon-device-debugging"></a><h2><a id="on_device_debugging"></a>On-Device Debugging</h2>
+<p>Debugging an ARchitect World on an Android device involves downloading
+and installing NodeJS and the Weinre remote debugger and is therefore
+not as straight forward compared to on-device debugging on an iOS device.</p>
+<p>Note: Setting break points is not possible using Weinre on Android.</p>
+<a name="setup-steps"></a><h4>Setup steps</h4>
+<ol>
+<li>Download NodeJS <a href="http://nodejs.org/#download"><a href="http://nodejs.org/#download">http://nodejs.org/#download</a></a></li>
+<li><p>Open the console on your MacOS X or Linux desktop (or server) and enter the
+following command to start the installation of Weinre
+ <code>sudo npm -g install weinre</code></p>
+</li>
+<li><p>Connect the target device and the server in same WiFi network</p>
+</li>
+<li>Obtain your the IP address of your desktop PC (e.g. via <code>ifconfig</code> or <code>ipconfig</code> in the console)</li>
+<li><p>Enter  the following lines in desktop PC’s console to start a server on IP
+(e.g. 10.0.0.1)
+ <code>weinre --httpPort 8080 --boundHost 10.0.0.1</code>
+ (you must adjust the IP address accordingly and may have to adapt the port number)</p>
+</li>
+<li><p>Add the following script tag in the head section of the HTML file you want to debug</p>
+<p><code>&lt;script src=&quot;http://10.0.0.1:8080/target/target-script-min.js#anonymous&quot;/&gt;</code>
+ Modify IP address and port if necessary.</p>
+</li>
+<li><p>Start your application and load your ARchitect World on the Android device</p>
+</li>
+<li><p>Open your preferred web browser on your desktop PC and visit
+ <code>http://10.0.0.1:8080/client/#anonymous</code>
+ Modify IP address and port if necessary.</p>
+</li>
+<li><p>Start the debugging session by clicking the top level tabs</p>
+</li>
+</ol>
+<a name="helpful-links"></a><h4>Helpful Links:</h4>
+<ul>
+<li><a href="http://www.google.com/url?q=http%3A%2F%2Fcorlan.org%2F2012%2F01%2F10%2Fdebugging-web-pages-and-phonegap-apps-on-mobile-devices%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGEZ2-yo_N_dVbuaPn8NrRrBWS3Gw">Outdated install
+Guide</a></li>
+<li><a href="http://www.google.com/url?q=http%3A%2F%2Fpeople.apache.org%2F~pmuellr%2Fweinre%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGt0nhJGAmLfpC9iEHwiFVHvcfB2A">Official Weinre
+Website</a></li>
+<li><strong><a href="http://www.youtube.com/watch?v=gaAI29UkVCc">Weinre on YouTube</a></strong></li>
+</ul>
+
+<a name="3d-assets-workflow"></a><h2>3D Assets Workflow</h2>
+<a name="prerequisites"></a><h4>Prerequisites</h4>
+<ul>
+<li>A 3D model in FBX (.fbx) or Collada (.dae) file format</li>
+<li>Wikitude 3D Encoder for Windows or MacOS X</li>
+</ul>
+<p>3D content within Wikitude can only be loaded from so-called <em>Wikitude 3D Format</em> files (.wt3).  This is a compressed binary format for describing 3D content, which is optimized for fast loading and handling of 3D content on a mobile devices. You still can use 3D models from your favorite 3D modeling tools (like Autodesk® Maya® or Blender) but need to convert them into wt3 file format. Wikitude offers a desktop application called Wikitude 3D Encoder, which takes over the task of encoding your 3D source file.  The Encoder can handle Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.</p>
+<p>This section should give an overview on how to choose the right 3D models for displaying it in Wikitude&#39;s augmented reality SDK. As Wikitude is basing 3D support on a converted file format (.wt3) it is good to follow the best practices below.</p>
+<a name="input-format"></a><h3>Input format</h3>
+<a name="supported-3d-model-files-for-encoding-it-into-wt3-files-are"></a><h4>Supported 3D model files for encoding it into wt3 files are:</h4>
+<ul>
+<li>FBX (.fbx)</li>
+<li>Collada (.dae)</li>
+</ul>
+<p>We recommend using FBX wherever possible as tools support for FBX is
+widely available. Furthermore Collada allows to include customized
+attributes that might not be understood by the Wikitude 3D Encoder.</p>
+<a name="features-you-can-use-in-your-3d-model-source-files"></a><h4>Features you can use in your 3D model source files:</h4>
+<ul>
+<li>Static model (made-up of triangles)   </li>
+<li><strong><a href="#working-with-3d-animations">Animations</a></strong><ul>
+<li>Transformation Animations</li>
+<li>Skinning</li>
+</ul>
+</li>
+<li>Materials<ul>
+<li>Phong, Lambert, Blinn</li>
+<li>Transparency</li>
+</ul>
+</li>
+<li>NURBS (will be tessellated on import)</li>
+</ul>
+<a name="features-that-are-not-yet-supported"></a><h4>Features that are not (yet) supported</h4>
+<ul>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+</ul>
+<a name="good-practice"></a><h3>Good practice</h3>
+<a name="use-png-textures"></a><h4>Use png textures</h4>
+<p>Textures are stored in png format within wt3 files. While Wikitude 3D Encoder takes care of automatically converting textures to png, it is good practice to use png textures in the source 3D Model file.</p>
+<a name="use-power-of-2-textures"></a><h4>Use power of 2 textures</h4>
+<p>The current rendering hardware on mobile devices requires certain
+texture attributes if the texture is not a power of 2 textures. This can
+result in unexpectedly textured models. Additionally using power of 2
+textures yields to a better performance when running on the device. A
+power of 2 textures has a width and height of 2^x - like. 64x64,
+128x128, and so on.</p>
+<a name="validate-texture-paths"></a><h4>Validate texture paths</h4>
+<p>If your opened model appears without textures, very often the texture
+paths are not set correctly. Make sure your texture paths are valid and
+accessible. For example check that they reference the texture files in a
+relative way and that all required textures exist and are accessible.</p>
+<a name="keep-texture-size-as-low-as-possible"></a><h4>Keep texture size as low as possible</h4>
+<p>Keeping texture sizes as low as possible, while maintaining the required
+details has several benefits. The exported .wt3 file will be smaller and
+therefore quicker to load over the network or from the application
+bundle. Additionally it will take up less graphics memory thus freeing
+up space for additional models or content.</p>
+<a name="use-only-one-light"></a><h4>Use only one light</h4>
+<p>To maintain a good rendering performance each part of your model (node)
+is only affected by a single light source. You may use multiple lights
+in the source file but at render time only a single node is selected to
+affect a mesh part. We make a best guess, utilizing the scene graph to
+assign a light to the node.
+If lighting is not required simply remove the lights from your source
+3D model file and/or set the corresponding material properties. This
+helps to speed up rendering.</p>
+<a name="resolving-problems"></a><h3>Resolving problems</h3>
+<a name="3d-model-shows-up-correctly-in-wikitude-3d-encoder-but-does-not-show-on-the-device"></a><h4>3D Model shows up correctly in Wikitude 3D Encoder but does not show on the device.</h4>
+<p>Check that your textures have a reasonable size. Limiting the textures to the lowest size that maintains the required details is recommended.</p>
+<a name="textures-are-missing"></a><h4>Textures are missing</h4>
+<p>Check the error/warning dialog during the import process of the model it
+will give you detailed information on which textures are problematic.
+Make sure the texture paths are valid and accessible.</p>
+<p><a id="working-with-3d-animations"></a></p>
+<a name="working-with-3d-animations"></a><h2>Working with 3D Animations</h2>
+<a name="quick-start"></a><h4>Quick start</h4>
+<p>Export a model that contains one or more animations from your preferred 3D modeling tool to a DAE or FBX file. After you load the 3D model into the Wikitude 3D Encoder the animations are displayed in a list on the right side of your application window.</p>
+<p><img src="images/encoder_animation_01.png" alt="Animation listed in Wikitude 3D Encoder"></p>
+<p>Each row of the list contains the ID of the animation, a control button and the time that passed after you started the animation. Clicking the play button  will start the animation  from the beginning and play back the animation in the 3D view of the application. The stop button will stop animation and displays the frame, that was drawn last.</p>
+<p>Check if your model looks and animates as expected and export it to a wt3 file. You need the  IDs of the animations you want to use in your application. The IDs are displayed next to the animation control button (on the screenshot the animation ID is <em>butterfly_animation</em>). In your code you start an animation like this.</p>
+<pre><code class="lang-js">// instantiate the model object
+var model = new AR.Model(&quot;butterfly.wt3&quot;);
+
+// instantiate the model animation with the animation id
+var animation = new AR.ModelAnimation(model, &quot;butterfly_animation&quot;);
+
+// start the animation
+animation.start();</code></pre>
+<a name="export-animations"></a><h4>Export Animations</h4>
+<p>The Wikitude 3D Encoder supports animation of joints and transformation animations. This includes transformation animations along motion paths.</p>
+<p>When exporting the model from the 3D modeling tool you have to <strong>bake</strong> your animations. As an example Maya bakes all unsupported constraints, including Maya-supported and FBX constraints, into animation curves.</p>
+<a name="grouping-animations"></a><h4>Grouping Animations</h4>
+<p>Animations will be grouped automatically to a top level node. In order to create two separate animations you need to group them in your modeling tool accordingly.</p>
+<p>To illustrate that let&#39;s create an example with 3 spheres and 3 cylinders with different translation animations. In the scene graph this example looks like the following:</p>
+<pre><code>• sphere1
+• sphere2
+• sphere3
+• cylinder1
+• cylinder2
+• cylinder3</code></pre>
+<p>Once the example is exported into a DAE or FBX file and imported into the Wikitude 3D Encoder  six separate animations, one for each object, will be generated.</p>
+<p>Let&#39;s assume we want to group all sphere animations into one animation and all cylinders into a second animation. This can achieved by creating two separate groups. One group containing all spheres and another one containing all cylinders. In the scene graph this is going to look like this:</p>
+<pre><code>• all_spheres_group
+  • sphere1
+  • sphere2
+  • sphere3
+• all_cylinders_group
+  • cylinder1
+  • cylinder2
+  • cylinder3</code></pre>
+<p>Once we export this into a DAE or an FBX file and import it into the Wikitude 3D Encoder we would get the desired result: one animation that animates all spheres and another animation animating all cylinders.</p>
+<p><em>Note: Do not group joints, especially when they were already skinned to a mesh.</em></p>
+<a name="known-issues"></a><h4>Known Issues</h4>
+<ul>
+<li>Baking animations doesn’t work in Blender as of version 2.66a and 2.67a when exporting the 3D model as DAE file.</br></br>
+<em>Reason: Blender 2.66a does not offer a baking option. There is a new option in Blender 2.67a when exporting to Collada DAE files among the Collada Options which is called &quot;Transformation Type&quot;. You can bake transformations to one transformation matrix but for some reason the channel is still referring to the separate matrices (translation, rotation, scale)  instead of the baked matrix. For this reason the animations will not be encoded on import to the Wikitude 3D Encoder.</em>
+</br></br></li>
+<li>In Blender avoid transformations on bones before you skin them to a mesh and export it to an FBX file.</li>
+<li>Exporting a model (with animations) as FBX from Blender creates additional animations for camera, lights or motion paths. These can be safely ignored.</li>
+</ul>
+
+<a name="tools"></a><h1>Tools</h1>
+
+<a name="ade"></a><h2>ADE</h2>
+<p>The ARchitect Desktop Environment (ADE) allows you to simulate the
+behavior of your ARchitect file on an ordinary web browser, and observe the
+properties of your AR objects and simulate user interaction and events.</p>
+<a name="how-can-i-enable-the-ade-for-my-architect-file"></a><h3>How can I enable the ADE for my ARchitect file?</h3>
+<p>To enable ADE functionality, simply add the ade.js file included in the
+ARchitect Tools to the list of imported scripts in the header-section of
+your ARchitect file:</p>
+<pre><code class="lang-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src=&quot;architect://architect.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;[your_path_to_the_ade_file]/ade.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    ...
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Next, open the ARchitect file in an ordinary web browser. Your browser will immediately render the HTML content specified in your ARchitect file, as well as starting to execute the provided JavaScript functionality.</p>
+<p>When the file was successfully loaded, you will see your specified HTML content at top of the page. Immediately below your HTML content, you will see the list of ARchitect objects that you have  created (if you did not yet create any ARchitect objects, you will only see the
+automatically generated &quot;context&quot; object). This list represents all ARchitect objects known to the system, and the list will be automatically updated as soon as new objects are created or existing ones are modified.</p>
+<p>The list will always specify the type of the ARchitect object (for example <code>GeoLocation</code>) and the id of the object, which is stored in the immutable <code>__id</code> property.</p>
+<p><img src="images/image05.png" alt="An example of an ADE tree" title="Example of ADE tree"></p>
+<p>For instance, the second line in the list represents a GeoLocation with the <code>__id</code> property set to <code>a_0</code>.</p>
+<a name="how-can-i-use-the-ade"></a><h3>How can I use the ADE?</h3>
+<p>As soon as you create new ARchitect objects, they will appear in the list. Click on the &#39;+&#39; symbol next to the object&#39;s description to expand it and observe the values of the object&#39;s properties defined in the ARchitect specification.</p>
+<p><img src="images/image04.png" alt="Example of ADE tree with an expanded object" title="Example of ADE tree with expanded object"></p>
+<p>Blue color-coding of a property indicates that the trigger or function is defined and can be executed; black color-coding indicates that the trigger or function is undefined and thus can not be executed. In the example above, we have defined an onExitFieldOfVision trigger. Clicking on the trigger will execute the specified function. If your trigger
+changes a certain property of the GeoObject, you will immediately see the change in the above list of properties.</p>
+<p>Additionally, you can simulate other events occurring in regards to certain objects. For a GeoObject, you can simulate that the GeoObject is in, or outside of the field of vision, of the user. Clicking on <code>Toggle Visibility</code> will simulate that the GeoObject is
+coming into the field of vision, or is leaving the field of vision
+respectively. Associated triggers will automatically be triggered (just as they are triggered on the mobile device), and the artificial property
+`visible changes its value. Artificial properties are properties that
+do not exist on a mobile device; they are solely used in the ADE to
+simulate the status of the ARchitect object.</p>
+<p>ARchitect objects, triggers and events will behave in the exact same way
+in the ADE as they would on a mobile device. The only exception is the
+PropertyAnimation object, which will not change the value over time and
+according to the specified EasingCurve in the ADE, PropertyAnimations
+will change the value only once at the end of the Animation, rather than
+continuously.</p>
+
+<a name="logger"></a><h2>Logger</h2>
+<p>ARchitect Tools come equipped with a logging console that is shared by the system and the developer. </p>
+<p>On start up of each world, the ARchitect library creates a singleton <code>AR.logger</code> instance, which can be used by the developer to log messages.</p>
+<p>To see the log messages, you need to call the JavaScript function <code>AR.logger.activateDebugMode()</code>. For example in the `body.onLoad trigger:</p>
+<pre><code class="lang-html">&lt;html&gt;
+&lt;body onLoad=&quot;javascript:AR.logger.activateDebugMode();&quot;&gt;
+    &lt;!-- your body content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>When <code>activateDebugMode()</code> is called, it automatically creates a button at the bottom of your display, which allows you to open the Logging console. When you click the button, the logging window
+appears. Within this window, you can select the log-levels you would like to see, as well as
+ close the logging console again.</p>
+<p>Bear in mind that the system itself will also use the logging framework
+to log messages, thus allowing you to debug if anything unexpected
+happens.</p>
+<p>Please remember to deactivate the logging framework before you actually
+publish your world by removing the call to <code>AR.logger.activateDebugMode()</code>.
+Otherwise, the users of your ARchitect world will always see the button
+at the bottom of the page, and would be able to follow debug messages.</p>
+
+<a name="target-management"></a><h2>Target Management</h2>
+<p>This guide gives you an overview of how to create a target collection that you can use to detect and track images within your ARchitect World.</p>
+<a name="add-a-new-project"></a><h3>Add a new project</h3>
+<ul>
+<li>Open <a href="http://developer.wikitude.com/tools/target-manager"><a href="http://developer.wikitude.com/tools/target-manager">http://developer.wikitude.com/tools/target-manager</a></a> and login with your Wikitude Developer account</li>
+<li>Add a new project to your project collection</li>
+</ul>
+<p><img src="images/tmt_CreateProject.png" alt="Add new project"></p>
+<a name="add-target-images-to-your-project"></a><h3>Add target images to your project</h3>
+<ul>
+<li>Enter the newly created project </li>
+<li>Add new target images to the project either by clicking on <em>Add images</em> or drag  &amp; drop them on the gray area. Supported file formats include PNG and JPEG. If you are using PNG images, please make sure that it does not contain any transparent pixels, only solid colored images are supported.</li>
+</ul>
+<p><img src="images/tmt_Targets.png" alt="Target images">    </p>
+<ul>
+<li>The file name will be set as the target name that will later be used to reference a particular target in your ARchitect World. If the target name is not completely visible, hover over it to reveal the full name.</li>
+<li>The target management tool will take a couple of seconds to calculate how suitable the provided target images are for detection and tracking purposes and generate a 3-star rating for each of them. Hover over the star rating to get additional information.</li>
+</ul>
+<a name="star-rating-explained"></a><h3>Star rating explained</h3>
+<ul>
+<li><strong>0 stars:</strong> Not suitable for tracking. This target image cannot be tracked because it lacks textured features with high local contrast. Please consider choosing another target image.</li>
+<li><strong>1 star:</strong>  Limited tracking ability. This target image provides basic tracking performance in good lightning conditions. Please consider improving the image</li>
+<li><strong>2 stars:</strong> Good tracking ability. This target image will track well in most conditions.</li>
+<li><strong>3 stars:</strong> Very good tracking ability. This target image will track very well in most conditions.</li>
+</ul>
+<p>General advice for reference images</p>
+<ul>
+<li>Good image characteristics:<ul>
+<li>Diversely textured image with high local contrast</li>
+</ul>
+</li>
+<li>Bad image characteristics:<ul>
+<li>Large areas with solid color or smooth color transitions</li>
+<li>Repetitive patterns</li>
+<li>Logos, signs        </li>
+</ul>
+</li>
+</ul>
+<a name="create-a-target-collection"></a><h3>Create a target collection</h3>
+<ul>
+<li>Select all desired targets you want to recognize/track, enter a name for the target collection and click on <em>Generate target collection</em>. Depending on the number of selected targets, it can take a moment to generate the target collection.</li>
+</ul>
+<p><img src="images/tmt_CreateTargetCollection.png" alt="Target images"></p>
+<ul>
+<li>After the target collection has been generated, it will be listed in the target collections page. Here you can review all target collections you&#39;ve created. Use the provided download link to load the target collection directly from the Wikitude server or download it to package it together with your application for offline usage.</li>
+</ul>
+<p><img src="images/tmt_TargetCollections.png" alt="Target images"> </p>
+<a name="use-the-target-collection-in-your-architect-world"></a><h3>Use the target collection in your ARchitect World</h3>
+<p>Look at one of the image recognition <a href="imagerecognition.html">examples</a> or refer to the ARchitect API reference of <code>AR.Tracker</code> for instructions on how to use the created target collection for augmentations in your ARchitect Worlds.</p>
+<a name="a-idmigrate-targets-a-migrating-your-targets-from-previous-versions"></a><h3><a id="migrate_targets"></a> Migrating your targets from previous versions</h3>
+<p>If you have been using a dataset from the Qualcomm Vuforia target management, please follow these steps to convert your ARchitect World to the new approach:</p>
+<ol>
+<li>Create a new project with the Wikitude target management tool and upload your targets (see instructions above)</li>
+<li>Create a target collection and store it in the same location as the previously used <em>dataset</em></li>
+<li>In your ARchitect World, update the <code>AR.Tracker</code> initialization to point to the URL of your new target collection</li>
+</ol>
+
+<a name="wikitude-3d-encoder"></a><h2>Wikitude 3D Encoder</h2>
+<a name="wikitude-3d-encoder-getting-started-with-3d-models-in-wikitude"></a><h3>Wikitude 3D Encoder - Getting Started with 3D models in Wikitude</h3>
+<p>Prerequisites</p>
+<ul>
+<li>A 3D model in FBX (.fbx) or Collada (.dae) file format</li>
+<li>The Wikitude 3D Encoder for Windows or MacOS X</li>
+</ul>
+<a name="general-workflow"></a><h4>General Workflow</h4>
+<p>3D content within Wikitude can only be loaded from so-called <em>Wikitude
+3D Format</em> files (.wt3).  This is a compressed binary format for
+describing 3D content, which is optimized for fast loading and handling
+of 3D content on a mobile devices. You still can use 3D models from your
+favorite 3D modeling tools (such as Autodesk® Maya® or Blender) but you&#39;ll need
+to convert them to the wt3 file format. Wikitude offers a desktop
+application called the Wikitude 3D Encoder, which handles the task of
+encoding your 3D source file.  The Encoder is compatible with Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for
+encoding to .wt3.</p>
+<p>Each step for getting a .wt3 file from your 3D content is explained in
+more detail below.</p>
+<ol>
+<li>How to install the Wikitude 3D Encoder</li>
+<li>Supported 3D Models</li>
+<li>The Wikitude 3D Encoder user interface</li>
+<li>First Steps Using the Wikitude 3D Encoder</li>
+<li>Export files to .wt3</li>
+</ol>
+<a name="how-to-install-wikitude-3d-encoder"></a><h4>How to install Wikitude 3D Encoder</h4>
+<a name="install-wikitude-3d-encoder-on-windows-xp-windows-7-windows-8"></a><h5>Install Wikitude 3D Encoder on Windows XP/ Windows 7/ Windows 8</h5>
+<ul>
+<li>Download the Encoder from
+<a href="http://developer.wikitude.com/download">developer.wikitude.com/download</a></li>
+<li>Run the setup.exe installation file and follow the installation
+wizard</li>
+</ul>
+<a name="install-wikitude-3d-encoder-on-mac-os-x"></a><h5>Install Wikitude 3D Encoder on Mac OS X</h5>
+<ul>
+<li>Download the Encoder from
+<a href="http://developer.wikitude.com/download">devleoper.wikitude.com/download</a></li>
+<li>Open the .dmg installation image and drag the Wikitude 3D Encoder
+application to your Applications folder.</li>
+</ul>
+<a name="supported-3d-models"></a><h5>Supported 3D Models</h5>
+<p>The Encoder can import Autodesk® FBX® and Collada files. FBX is the
+preferred way as Collada&#39;s open standard allows for customized tags that
+might not be supported.</p>
+<p>Features you can use in your 3D model source files:</p>
+<ul>
+<li>Static model (composed of triangles)</li>
+<li>Materials (Phong, Lambert, Blinn)</li>
+</ul>
+<p>Features that are not (yet) supported</p>
+<ul>
+<li>Animations</li>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+<li>NURBS</li>
+</ul>
+<p>If you are not sure whether the 3D model at hand fits the requirements,
+try to encode it. You will receive a list of warnings and/or errors that
+tell you if the 3D content will work within Wikitude and/or uses unsupported
+features.</p>
+<a name="the-wikitude-3d-encoder-user-interface"></a><h5>The Wikitude 3D Encoder user interface</h5>
+<p>On startup you are presented with the following interface.</p>
+<ol>
+<li>Toolbar for frequently used functions</li>
+<li>3D working area to view your 3D content.</li>
+<li>Scene graph that lists all 3D content in a tree view</li>
+<li>A properties area that shows details about a selected node from the
+scene graph</li>
+<li>Status bar</li>
+</ol>
+<p><img src="images/Wikitude3DEncoderInterface.png" alt="Wikitude 3D Encoder Interface"></p>
+<a name="first-steps-using-the-wikitude-3d-encoder"></a><h5>First steps using the Wikitude 3D Encoder</h5>
+<p>Start by opening a supported 3D model file (.fbx, .dae). Select <code>Open</code>
+from the toolbar or drag and drop a supported file onto the 3D working
+area. Depending on the size of the file this can take a while. Once
+finished, the 3D content will be shown in the 3D working area.</p>
+<p>In case the Wikitude 3D Encoder encounters features not supported in
+your file, it will present a list of errors or warnings in a dialog box. The
+popup window summarizes the issues found during the import process. You
+can bring up this information again at a later time via <code>Window -&gt; Show
+Logging Window</code>. Check the message and details carefully to identify
+areas that need to be altered in your 3D model file, ensuring that it can be
+encoded properly.</p>
+<p>The 3D working area shows your encoded 3D model file in the exact way as
+it would show in Wikitude. Drag, pan and zoom to verify that your model
+looks ok.  If you need to check specific properties (e.g. materials
+or lights) select the corresponding node in the scene graph. The details
+of a selected node are displayed in the properties view.</p>
+<a name="export-files-to-wt3"></a><h5>Export files to .wt3</h5>
+<p>Once you are satisfied with the encoded file, choose <code>Export from the
+toolbar. Then choose the location where the exported file should be
+saved. Exported .wt3 files can be used directly in an augmented reality
+experience using Wikitude. If you want to view a .wt3 file on the
+desktop, simply choose</code>Open` or drag and drop it into the
+Wikitude 3D Encoder.</p>
+<a name="wikitude-3d-encoder-tips-and-tricks"></a><h3>Wikitude 3D Encoder - Tips and Tricks</h3>
+<a name="choosing-the-right-3d-model-for-wikitude"></a><h4>Choosing the right 3D Model for Wikitude</h4>
+<p>This guide should give an overview on how to choose the right 3D models
+for displaying it in Wikitude&#39;s augmented reality SDK. As Wikitude is
+basing 3D support on a converted file format (.wt3) it is good to follow
+the best practices below.</p>
+<a name="input-format"></a><h4>Input format</h4>
+<a name="supported-3d-model-files-for-encoding-it-into-wt3-files-are"></a><h4>Supported 3D model files for encoding it into wt3 files are:</h4>
+<ul>
+<li>FBX (.fbx)</li>
+<li>Collada (.dae)</li>
+</ul>
+<p>We recommend using FBX wherever possible as tools support for FBX is
+widely available. Furthermore Collada allows you to include customized
+attributes that might not be understood by the Wikitude 3D Encoder.</p>
+<a name="features-you-can-use-in-your-3d-model-source-files"></a><h5>Features you can use in your 3D model source files:</h5>
+<ul>
+<li>Static model (made-up of triangles)</li>
+<li>Materials (Phong, Lambert, Blinn)</li>
+</ul>
+<a name="features-that-are-not-yet-supported"></a><h5>Features that are not (yet) supported</h5>
+<ul>
+<li>Animations</li>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+<li>NURBS</li>
+</ul>
+<a name="good-practice"></a><h4>Good practice</h4>
+<a name="use-png-textures"></a><h5>Use png textures</h5>
+<p>Textures are stored in png format within wt3 files. While the Wikitude 3D
+Encoder takes care of automatically converting textures to png, it is
+good practice to use png textures in the source 3D Model file.</p>
+<a name="use-power-of-2-textures"></a><h5>Use power of 2 textures</h5>
+<p>The current rendering hardware on mobile devices requires certain
+texture attributes if the texture is not a power of 2 textures. This can
+result in unexpectedly textured models. Using power of 2
+textures yields a better performance when running on the device. A
+power of 2 textures has a width and height of 2^x - e.g. 64x64,
+128x128, and so on.</p>
+<a name="validate-texture-paths"></a><h5>Validate Texture paths</h5>
+<p>If your opened model appears without textures, very often the texture
+paths are not set correctly. Make sure your texture paths are valid and
+accessible. For example, check that they reference the texture files in a
+relative way and that all required textures exist and are accessible.</p>
+<a name="keep-texture-size-as-low-as-possible"></a><h5>Keep texture size as low as possible</h5>
+<p>Keeping texture sizes as low as possible, while maintaining the required
+details, has several benefits. The exported .wt3 file will be smaller and
+therefore quicker to load over the network or from the application
+bundle. Additionally, it will take up less graphics memory thus freeing
+up space for additional models or content.</p>
+<a name="use-only-one-light"></a><h5>Use only one light</h5>
+<p>To maintain a good rendering performance, each part of your model (node)
+is only affected by a single light source. You may use multiple lights
+in the source file but at render time only a single node is selected to
+affect a mesh part. We make a best guess, utilizing the scene graph to
+assign a light to the node.
+If lighting is not required, simply remove the lights from your source
+3D model file and/or set the corresponding material properties. This
+helps to speed up rendering.</p>
+<a name="resolving-problems"></a><h4>Resolving problems</h4>
+<a name="3d-model-displays-correctly-in-the-wikitude-3d-encoder-but-does-not-show-on-the-device"></a><h5>3D Model displays correctly in the Wikitude 3D Encoder but does not show on the device.</h5>
+<p>Check that your textures have a reasonable size. Limiting the textures
+to the lowest size that maintains the required details is recommended.</p>
+<a name="textures-are-missing"></a><h5>Textures are missing</h5>
+<p>Check the error/warning dialog during the import process of the model. It
+will give you detailed information on which textures are problematic.
+Make sure the texture paths are valid and accessible.</p>
+
+<a name="architect-api-reference"></a><h1>ARchitect API Reference</h1>
+<p>Goto <a href="../Reference/JavaScript%20Reference/index.html">ARchitect API Reference</a> for a complete reference of all ARchitect API objects and functions.</p>
+
+<a name="migration"></a><h1>Migration</h1>
+<a name="migrate-from-20-to-30"></a><h2>Migrate from 2.0 to 3.0</h2>
+<p>Wikitude SDK version 3.0 introduces Wikitude&#39;s own image recognition and tracking solution and removes support for the Vuforia Plugin. </p>
+<p>If you are not using image recognition features in your app you only need to update the jar file and are good to go.</p>
+<p>In case you are making use of image recognition features and want to switch from 2.0 to 3.0+ version remove any Qualcomm/Vuforia related assets (QCAR.so, QCAR.lib) from your project.
+Also the <code>READ_PHONE_STATE</code> permission is no longer required in your AndroidManifest.xml.</p>
+<p>Find a step-by-step guide about how to convert your existing target collection from Vuforia to Wikitude <a href="targetmanagement.html#migrate_targets">here</a>.</p>
+
+</div>
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

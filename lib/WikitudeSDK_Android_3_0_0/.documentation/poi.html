@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="point-of-interest-poi"></a><h2>Point Of Interest (POI)</h2>
+<p>The Point Of Interest (POI) example series will show how you can create a marker that is placed at a specific geolocation. The example is split into four different parts that depend on each other. You will have a complete and reusable marker at the end of the series which has a title, description, a selected and an idle state which animates smoothly from one to another.</p>
+<a name="poi-at-location-1-4"></a><h3>POI at Location (1/4)</h3>
+<p>The first part of the series will present an image at a geolocation. To do so, we will use the <code>AR.context.onLocationChanged()</code> callback to get the current location. After the location has been retrieved, we will use it to place an <code>AR.ImageDrawable</code> there.</p>
+<p>All JavaScript code is written in the <code>poiatlocation.js</code> file.</p>
+<p>The example <a href="imagerecognition.html#ImageRecognitionExample">Image Recognition</a> already explained how images are loaded and displayed in AR. This sample loads an <code>AR.ImageResource</code> when the <code>World</code> variable was defined. It will be reused for each marker that we will create afterwards.</p>
+<p>The <code>init</code> function is used to set a custom <code>AR.context.onLocationChanged</code> callback function.</p>
+<pre><code class="lang-js">init: function initFn() {
+
+    AR.context.onLocationChanged = World.onLocationChanged;
+}</code></pre>
+<p>The custom <code>World.onLocationChanged</code> function first removes the custom callback function. This way the world won&#39;t receive any new location updates. After we have disabled further location updates, a marker will be created using the <code>World.createMarkerAtLocation</code> function. </p>
+<pre><code class="lang-js">onLocationChanged: function onLocationChangedFn(latitude, longitude, altitude, accuracy) {
+
+    AR.context.onLocationChanged = null;
+
+    World.createMarkerAtLocation(latitude + 0.01, longitude - 0.0005, altitude - 0.06);
+}</code></pre>
+<p>The <code>createMarkerAtLocation</code> function creates a new marker object at the specified geolocation. To do this, an <code>AR.GeoLocation</code>, <code>AR.ImageDrawable</code> and <code>AR.GeoObject</code> will be used. 
+The <code>AR.GeoLocation</code> object will be initialized with latitude, longitude and altitude . It defines the geolocation where the marker should be drawn. To actually draw an image, the <code>AR.ImageDrawable</code> is used with the <code>AR.ImageResource</code>, defined in the <code>World</code> variable. An <code>AR.GeoObject</code> connects one or more <code>AR.GeoLocation</code> with multiple <code>AR.Drawables</code>. The <code>AR.Drawables</code> can be defined for multiple targets. A target can be the camera, the radar or a direction indicator. Both the radar and direction indicators will be covered in more detail in later examples.</p>
+<pre><code class="lang-js">createMarkerAtLocation: function createMarkerAtLocationFn(latitude, longitude, altitude) {
+
+    var markerLocation = new AR.GeoLocation(latitude, longitude, altitude);
+    var markerDrawable = new AR.ImageDrawable(World.markerDrawable, 3);
+    var markerObject = new AR.GeoObject(markerLocation, {
+        drawables: {
+            cam: markerDrawable
+        }
+    });
+}</code></pre>
+<a name="poi-with-label-2-4"></a><h3>POI with Label (2/4)</h3>
+<p>The second part adds a title and description label to our marker object and covers more drawable related options.</p>
+<p>All JavaScript changes are in <code>poiwithlabel.js</code>. Note that only the file is only renamed but its content is mostly identical to <code>poiatlocation.js</code>. All new code is labeled with a comment so that changes can easily be spotted.</p>
+<p>There are two major points that need to be considered while drawing multiple <code>AR.Drawables</code> at the same location. It has to be defined which one is before or behind another drawable and if they need a location offset. For both scenarios, ARchitect has some functionality to adjust the drawable behavior.</p>
+<p>To position the label in front of the background, the background drawable(<code>AR.ImageDrawable2D</code>) receives a zOrder of 0. Both labels have a zOrder of 1. This way, it is guaranteed that the labels will be drawn in front of the background drawable.</p>
+<p>Assuming both labels will be drawn on the same geolocation connected with the same geo object, they will overlap. To adjust their position, you can adjust the <code>offsetX</code> and <code>offsetY</code> property of an <code>AR.Drawable2D</code> object. The unit which are used to set an offset are SDUs. See the ARchitect reference for more information about SDUs.</p>
+<p>The following listings shows how both labels are initialized and positioned. Note that they are added to the screen similarly to an <code>AR.ImageDrawable</code>. </p>
+<pre><code class="lang-js">// New: The createMarkerAtLocation function now has two additional parameters, title and description text.
+createMarkerAtLocation: function createMarkerAtLocationFn(latitude, longitude, altitude, title, description) {
+
+    var markerLocation = new AR.GeoLocation(latitude, longitude, altitude);
+    var markerDrawable = new AR.ImageDrawable(World.markerDrawable, 5, {
+
+        // New: zOrder option
+        zOrder: 0
+    });
+
+    // New: Title label with options that defines rendering order and offsets
+    var titleLabel = new AR.Label(title, 1, {
+        zOrder: 1,
+        offsetX: -2,
+        offsetY: 0.5,
+        style: {
+            fontStyle: AR.CONST.FONT_STYLE.BOLD
+        }
+    });
+
+    // New: Description label (similar options as for the title label)
+    var descriptionLable = new AR.Label(description, 1, {
+        zOrder: 1,
+        offsetX: -2,
+        offsetY: -titleLabel.height * 0.5
+    });
+
+    var markerObject = new AR.GeoObject(markerLocation, {
+        drawables: {
+
+            // New: two more cam drawables: title and description label
+            cam: [markerDrawable, titleLabel, descriptionLable]
+        }
+    });
+}</code></pre>
+<a name="multiple-pois-3-4"></a><h3>Multiple POIs (3/4)</h3>
+<p>The third example is split into two parts. The first is all about refactoring existing code so that it can be reused in other ARchitect Worlds. The new structure is then used to create multiple markers at different locations. The second part deals with highlighting a marker drawable after the user taps on it.</p>
+<p>This example consists of two JavaScript files. The ARchitect World entry point is <code>multiplepois.js</code> and the marker definition can be found in <code>marker.js</code>. Inside <code>marker.js</code>, a custom function named <code>Marker</code> is defined. The only parameter is an object containing poiData in JSON format. The function contains all the code from the <code>createMarkerAtLocation</code> function of the previous example. Additional poiData and selection state will be saved in the variables.</p>
+<pre><code class="lang-js">function Marker(poiData) {
+
+    this.poiData = poiData;
+
+    this.isSelected = false;
+
+    // ...
+    // all the `createMarkerAtLocation` code
+    // ...
+
+    return this;
+}</code></pre>
+<p>In <code>multiplepois.js</code> the marker creation in <code>onLocationChanges</code> is now slightly different. Instead of creating all the ARchitect objects in a <code>World</code> function, the new <code>Marker</code> function is used. This way the code is much cleaner while creating multiple markers.</p>
+<p>To use the new <code>Marker</code> function, a object representing the poi data in JSON needs to be created and supplied as a parameter. The benefit of using JSON is that it is very easy to add additional parameters for the marker creation. The following snippet describes a JSON data object.</p>
+<pre><code class="lang-js">var poiData = {
+    &quot;latitude&quot;: latitude + 0.01,
+    &quot;longitude&quot;: longitude - 0.01,
+    &quot;altitude&quot;: altitude,
+    &quot;title&quot;: &quot;Marker 1&quot;,
+    &quot;description&quot;: &quot;This is marker 1&quot;
+};</code></pre>
+<p>To create a new marker object, the <code>new</code> keyword needs to be used.</p>
+<pre><code class="lang-js">var marker_one = new Marker(poiData);</code></pre>
+<p>To create multiple markers, <code>new Marker(poiData)</code> can be called multiple times with different locations, titles and descriptions as defined in the poiData object.</p>
+<p>The following describes how a marker object can be selected by changing the background drawable.A second <code>AR.ImageDrawable</code> is defined in <code>marker.js</code>.</p>
+<p>To react on user interaction, an <code>onClick</code> property can be set for each <code>AR.Drawable</code>. The property is a function which will be called each time the user taps on the drawable. The following snippet shows the adapted <code>AR.ImageDrawable</code> creation.</p>
+<pre><code class="lang-js">this.markerDrawable_idle = new AR.ImageDrawable(World.markerDrawable_idle, 2.5, {
+    zOrder: 0,
+    opacity: 1.0,
+    onClick: Marker.prototype.getOnClickTrigger(this)
+});</code></pre>
+<p>The function called on each tap is returned from the following helper function defined in <code>marker.js</code>. The function returns a function which checks the <code>selected-state</code> and executes appropriate function. The clicked marker is passed as an argument.</p>
+<pre><code class="lang-js">Marker.prototype.getOnClickTrigger = function(marker) {
+
+    return function() {
+
+        if (marker.isSelected) {
+
+            Marker.prototype.setDeselected(marker);
+
+        } else {
+
+            Marker.prototype.setSelected(marker);
+        }
+
+        return true;
+    };
+};</code></pre>
+<p>The <code>setSelected</code> and <code>setDeselected</code> functions are prototype <code>Marker</code> functions.</p>
+<p><a id="MultiplePOIs"></a>
+Both functions perform the same steps but only inverted. Because of this, only one function (<code>setSelected</code>) will be covered in detail. Three steps are done to select the marker. First, the state will be set appropriately. Second, the selected background drawable will be enabled and the standard background disabled. Third, the <code>onClick</code> function is only set for the background drawable of the selected marker.</p>
+<pre><code class="lang-js">Marker.prototype.setSelected = function(marker) {
+
+    marker.isSelected = true;
+
+    marker.markerDrawable_idle.enabled = false;
+    marker.markerDrawable_selected.enabled = true;
+
+    marker.markerDrawable_idle.onClick = null;
+    marker.markerDrawable_selected.onClick = Marker.prototype.getOnClickTrigger(marker);
+};</code></pre>
+<p>To be able to deselect a marker while the user taps on the empty screen, the <code>World</code> object has an array where each marker is added after its initialization.</p>
+<pre><code class="lang-js">World.markerList.push( new Marker(poiData) );</code></pre>
+<p>To detect clicks where no drawable was hit, you can set a custom function on <code>AR.context.onScreenClick</code>. In the custom function, each marker can be checked if it is selected. If so, the <code>setDeselected</code> function is called, supplying the marker object at the current index.</p>
+<pre><code class="lang-js">onScreenClick: function onScreenClickFn() {
+
+    for (var i = World.markerList.length - 1; i &gt;= 0; i--) {
+        if (World.markerList[i].isSelected) {
+            World.markerList[i].setDeselected(World.markerList[i]);
+        }
+    }
+}</code></pre>
+<a name="selecting-pois-4-4"></a><h3>Selecting POIs (4/4)</h3>
+<p>The last part describes the concepts behind <code>AR.PropertyAnimations</code> and <code>AR.AnimationGroups</code>. It also explains how direction indicators can be used to visualize selected objects that are currently not visible in the viewfinder.</p>
+<p>With <code>AR.PropertyAnimations</code> you&#39;re able to animate almost any property of ARchitect objects. This sample will animate the opacity of both background drawables so that one will fade out while the other one fades in. The scaling will alos be animated. Because the marker size changes over time, both labels need to be animated as well to stay at the same position relative to the background drawable. To synchronize all the animations, <code>AR.AnimationGroups</code> are used.</p>
+<p>In <code>marker.js</code> there are two new variables declared in the <code>Marker</code> function. They will hold a reference to an <code>AR.AnimationGroup</code> that is used to either start the select or deselect process.</p>
+<pre><code class="lang-js">this.animationGroup_idle = null;
+this.animationGroup_selected = null;</code></pre>
+<p>The next changes are done in the <code>setSelected</code> and <code>setDeselected</code> prototype functions in <code>marker.js</code>. <a href="#MultiplePOIs">Again</a> only the changes in <code>setSelected</code> will be explained. </p>
+<p>The animations will be created on demand, meaning, if the animation group is null, all the necessary animations will be created. Note that there are two types of <code>AR.AnimationGroups</code>. The first type is parallel, which means that all the animations are running at the same time. The other type is sequential. A sequential group will play one animation after another. This example uses a parallel <code>AR.AnimationGroup</code>.</p>
+<pre><code class="lang-js">if (marker.animationGroup_selected === null) {
+
+    var hideIdleDrawableAnimation = new AR.PropertyAnimation(marker.markerDrawable_idle, &quot;opacity&quot;, null, 0.0, kMarker_AnimationDuration_ChangeDrawable);
+    var showSelectedDrawableAnimation = new AR.PropertyAnimation(marker.markerDrawable_selected, &quot;opacity&quot;, null, 0.8, kMarker_AnimationDuration_ChangeDrawable);
+
+    // ** all required animations are created **
+
+    marker.animationGroup_selected = new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [hideIdleDrawableAnimation, showSelectedDrawableAnimation, idleDrawableResizeAnimation, selectedDrawableResizeAnimation, titleLabelResizeAnimation, descriptionLabelResizeAnimation]);
+}</code></pre>
+<p>After the <code>AR.PropertyAnimations</code> and <code>AR.AnimationGroup</code> are created, the <code>AR.AnimationGroup</code> can be started using the <code>start</code> function.</p>
+<pre><code class="lang-js">if (!marker.animationGroup_selected.isRunning()) {
+    marker.animationGroup_selected.start();
+}</code></pre>
+<p>To define a direction indicator you&#39;ll need to create an <code>AR.ImageResource</code> referencing the image that should be displayed. The next step is to create an <code>AR.ImageDrawable</code> using the <code>AR.ImageResource</code>. You can set options regarding the offset and anchor of the image so that it will be displayed correctly on the edge of the screen.</p>
+<pre><code class="lang-js">this.directionIndicatorDrawable = new AR.ImageDrawable(World.markerDrawable_directionIndicator, 0.5, {
+    enabled: false
+});</code></pre>
+<p>The last step is to define the <code>AR.ImageDrawable</code> as an <code>indicator</code> target on the marker geo object. ARchitect will show and hide the image drawable of the direction indicator . Note that all <code>AR.Drawable</code> subclasses can be used as direction indicator.</p>
+<pre><code class="lang-js">var markerObject = new AR.GeoObject(markerLocation, {
+    drawables: {
+        cam: [this.markerDrawable_idle, this.markerDrawable_selected, this.titleLabel, this.descriptionLabel],
+        indicator: this.directionIndicatorDrawable
+    }
+});</code></pre>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

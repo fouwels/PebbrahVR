@@ -1,0 +1,336 @@
+<!--
+This documentation has been created by using YUI Doc: Copyright © 2011 Yahoo! Inc. All rights reserved.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+The syntax highlighting capability has been created by using gallery-prettify: Copyright (C) 2006 Google Inc. 
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>ARchitect API Documentation  - Location  </title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1371109929.53" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1371109929.53" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1371109929.53"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1371109929.53"></script>
+    
+    <script type="text/javascript" src="assets/yui.js"></script>
+    <script type="text/javascript">
+        YUI({
+            modules: {
+                'gallery-prettify': {
+                    fullpath: 'assets/gallery-prettify.js'
+                }
+            }
+        }).use('gallery-prettify', function(Y) {
+            // It's loaded, now make everything pretty!
+            Y.prettyPrint();
+        });
+    </script>
+    <link type="text/css" rel="stylesheet" href="assets/gallery-prettify.css">
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://architect.wikitude.com" title="Wikitude ARchitect">Wikitude ARchitect v3.0 API Documentation</a></h1>
+        <!--<h3>AR</h3>-->
+        <b>
+        <a href="./index.html" title="Wikitude ARchitect"><u>Wikitude ARchitect</u></a> 
+            &gt; <a href="./module_AR.html" title="AR"><u>AR</u></a>
+                 &gt; Location 
+        </b>
+        <!--<form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>-->
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <!--<span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>-->
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">Location</b>
+                        <span class="extends">
+                           - extends <a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                        <dl class="subclasses" rel="yui:subclasses">
+                            <dt>Known Subclasses:</dt>
+                            <dd>
+                                    <span rel="yui:subclass" resource="GeoLocation.html">
+                                    <a href="GeoLocation.html" property="yui:name" title="GeoLocation">GeoLocation</a>
+                                    </span>
+                                    <span rel="yui:subclass" resource="RelativeLocation.html">
+                                    <a href="RelativeLocation.html" property="yui:name" title="RelativeLocation">RelativeLocation</a>
+                                    </span>
+                            </dd>
+                       </dl>
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        Location is an abstract class which describes a general
+location of a POI in the augmented scene.<br/><br/>
+It should never be instantiated directly.
+                    </div>
+
+                    
+                    <div rel="yui:properties" resource="#properties">
+
+                        <div rel="yui:inheritance">
+                        <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                            <h4>Properties inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="ARchitectObject.html#property_destroyed">
+                                        <a class="" href="ARchitectObject.html#property_destroyed" property="yui:name" title="destroyed">destroyed</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:method" resource="#method_distanceTo">
+                                    <h4>
+                                        <a name="method_distanceTo">distanceTo</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        float
+                                            <strong property="yui:name">distanceTo</strong>
+                                           (
+                                                
+                                                        
+                                                         location
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Returns the shortest distance ("as the crow flies")
+to the Location passed as an argument, ignoring any altitude property.<br/><br/>
+<div class="paragraph">Example:</div>
+<pre class="prettyprint">
+var location1 = new AR.GeoLocation(47.77317, 13.069929);
+var location2 = new AR.GeoLocation(47.77317, 13.069929, 320.);
+var location3 = new AR.GeoLocation(47.77317, 14.069929, 640.);
+var dist = location2.distanceTo(location1); //dist = 0.
+dist = location2.distanceTo(location3); //dist = 74730.
+</pre>
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">location</span>
+                                                        &lt;<span property="yui:type">Location</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> The Location the distance should be
+calculated for.</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        float
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">The numeric distance in meters.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_distanceToUser">
+                                    <h4>
+                                        <a name="method_distanceToUser">distanceToUser</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        float
+                                            <strong property="yui:name">distanceToUser</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Returns the shortest distance ("as the crow flies")
+to the current location of the user, ignoring any altitude property.<br/><br/>
+If the current position of the user cannot be determined, undefined will be returned.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        float
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">The numeric distance in meters.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">                    
+                            <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                                <h4>Methods inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="ARchitectObject.html#method_destroy">                                        
+                                            <a class="" href="ARchitectObject.html#method_destroy" property="yui:name" title="destroy">destroy</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_AR.html" title="AR">AR</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="ActionArea.html" title="ActionArea">ActionArea</a></li>
+                                <li class=""><a href="ActionRange.html" title="ActionRange">ActionRange</a></li>
+                                <li class=""><a href="AnimatedImageDrawable.html" title="AnimatedImageDrawable">AnimatedImageDrawable</a></li>
+                                <li class=""><a href="Animation.html" title="Animation">Animation</a></li>
+                                <li class=""><a href="AnimationGroup.html" title="AnimationGroup">AnimationGroup</a></li>
+                                <li class=""><a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a></li>
+                                <li class=""><a href="ARObject.html" title="ARObject">ARObject</a></li>
+                                <li class=""><a href="BoundingRectangle.html" title="BoundingRectangle">BoundingRectangle</a></li>
+                                <li class=""><a href="Circle.html" title="Circle">Circle</a></li>
+                                <li class=""><a href="CONST.html" title="CONST">CONST</a></li>
+                                <li class=""><a href="context.html" title="context">context</a></li>
+                                <li class=""><a href="Drawable.html" title="Drawable">Drawable</a></li>
+                                <li class=""><a href="Drawable2D.html" title="Drawable2D">Drawable2D</a></li>
+                                <li class=""><a href="GeoLocation.html" title="GeoLocation">GeoLocation</a></li>
+                                <li class=""><a href="GeoObject.html" title="GeoObject">GeoObject</a></li>
+                                <li class=""><a href="HtmlDrawable.html" title="HtmlDrawable">HtmlDrawable</a></li>
+                                <li class=""><a href="ImageDrawable.html" title="ImageDrawable">ImageDrawable</a></li>
+                                <li class=""><a href="ImageResource.html" title="ImageResource">ImageResource</a></li>
+                                <li class=""><a href="Label.html" title="Label">Label</a></li>
+                                <li class="selected"><a href="Location.html" title="Location">Location</a></li>
+                                <li class=""><a href="logger.html" title="logger">logger</a></li>
+                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+                                <li class=""><a href="ModelAnimation.html" title="ModelAnimation">ModelAnimation</a></li>
+                                <li class=""><a href="PropertyAnimation.html" title="PropertyAnimation">PropertyAnimation</a></li>
+                                <li class=""><a href="radar.html" title="radar">radar</a></li>
+                                <li class=""><a href="RelativeLocation.html" title="RelativeLocation">RelativeLocation</a></li>
+                                <li class=""><a href="Sound.html" title="Sound">Sound</a></li>
+                                <li class=""><a href="Style.html" title="Style">Style</a></li>
+                                <li class=""><a href="Trackable2DObject.html" title="Trackable2DObject">Trackable2DObject</a></li>
+                                <li class=""><a href="Tracker.html" title="Tracker">Tracker</a></li>
+                        </ul>
+                    </div>
+
+                    <!--<div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="architect_generated.js.html" title="architect_generated.js">architect_generated.js</a></li>
+                        </ul>
+                    </div>-->
+
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#method_distanceTo" title="distanceTo">distanceTo</a></li>
+                                <li class=""><a href="#method_distanceToUser" title="distanceToUser">distanceToUser</a></li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2013 Wikitude GmbH. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "HtmlDrawable.html#property_allowDocumentLocationChanges", "access": "", "host": "HtmlDrawable", "type": "property", "name": "allowDocumentLocationChanges"}, {"url": "AnimatedImageDrawable.html#method_animate", "access": "", "host": "AnimatedImageDrawable", "type": "method", "name": "animate"}, {"url": "HtmlDrawable.html#property_backgroundColor", "access": "", "host": "HtmlDrawable", "type": "property", "name": "backgroundColor"}, {"url": "HtmlDrawable.html#property_clickThroughEnabled", "access": "", "host": "HtmlDrawable", "type": "property", "name": "clickThroughEnabled"}, {"url": "ARchitectObject.html#method_destroy", "access": "", "host": "ARchitectObject", "type": "method", "name": "destroy"}, {"url": "ARchitectObject.html#property_destroyed", "access": "", "host": "ARchitectObject", "type": "property", "name": "destroyed"}, {"url": "Location.html#method_distanceTo", "access": "", "host": "Location", "type": "method", "name": "distanceTo"}, {"url": "Location.html#method_distanceToUser", "access": "", "host": "Location", "type": "method", "name": "distanceToUser"}, {"url": "ARObject.html#method_drawables.addCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.addCamDrawable"}, {"url": "ARObject.html#property_drawables.cam", "access": "", "host": "ARObject", "type": "property", "name": "drawables.cam"}, {"url": "ARObject.html#method_drawables.removeCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.removeCamDrawable"}, {"url": "ARObject.html#property_enabled", "access": "", "host": "ARObject", "type": "property", "name": "enabled"}, {"url": "Drawable.html#property_enabled", "access": "", "host": "Drawable", "type": "property", "name": "enabled"}, {"url": "HtmlDrawable.html#method_evalJavaScript", "access": "", "host": "HtmlDrawable", "type": "method", "name": "evalJavaScript"}, {"url": "Drawable2D.html#method_getBoundingRectangle", "access": "", "host": "Drawable2D", "type": "method", "name": "getBoundingRectangle"}, {"url": "Drawable.html#property_heading", "access": "", "host": "Drawable", "type": "property", "name": "heading"}, {"url": "Label.html#property_height", "access": "", "host": "Label", "type": "property", "name": "height"}, {"url": "ImageDrawable.html#property_height", "access": "", "host": "ImageDrawable", "type": "property", "name": "height"}, {"url": "Drawable2D.html#property_horizontalAnchor", "access": "", "host": "Drawable2D", "type": "property", "name": "horizontalAnchor"}, {"url": "HtmlDrawable.html#property_html", "access": "", "host": "HtmlDrawable", "type": "property", "name": "html"}, {"url": "ImageDrawable.html#property_imageResource", "access": "", "host": "ImageDrawable", "type": "property", "name": "imageResource"}, {"url": "Model.html#method_isLoaded", "access": "", "host": "Model", "type": "method", "name": "isLoaded"}, {"url": "ARObject.html#method_isVisible", "access": "", "host": "ARObject", "type": "method", "name": "isVisible"}, {"url": "Drawable2D.html#property_offsetX", "access": "", "host": "Drawable2D", "type": "property", "name": "offsetX"}, {"url": "Drawable2D.html#property_offsetY", "access": "", "host": "Drawable2D", "type": "property", "name": "offsetY"}, {"url": "ARObject.html#method_onClick", "access": "", "host": "ARObject", "type": "method", "name": "onClick"}, {"url": "Drawable.html#method_onClick", "access": "", "host": "Drawable", "type": "method", "name": "onClick"}, {"url": "HtmlDrawable.html#method_onDocumentLocationChanged", "access": "", "host": "HtmlDrawable", "type": "method", "name": "onDocumentLocationChanged"}, {"url": "ARObject.html#method_onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onEnterFieldOfVision"}, {"url": "Model.html#method_onError", "access": "", "host": "Model", "type": "method", "name": "onError"}, {"url": "HtmlDrawable.html#method_onError", "access": "", "host": "HtmlDrawable", "type": "method", "name": "onError"}, {"url": "ARObject.html#method_onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onExitFieldOfVision"}, {"url": "AnimatedImageDrawable.html#method_onFinish", "access": "", "host": "AnimatedImageDrawable", "type": "method", "name": "onFinish"}, {"url": "Model.html#method_onLoaded", "access": "", "host": "Model", "type": "method", "name": "onLoaded"}, {"url": "HtmlDrawable.html#method_onLoaded", "access": "", "host": "HtmlDrawable", "type": "method", "name": "onLoaded"}, {"url": "Drawable2D.html#property_opacity", "access": "", "host": "Drawable2D", "type": "property", "name": "opacity"}, {"url": "Circle.html#property_radius", "access": "", "host": "Circle", "type": "property", "name": "radius"}, {"url": "ARObject.html#property_renderingOrder", "access": "", "host": "ARObject", "type": "property", "name": "renderingOrder"}, {"url": "Drawable.html#property_roll", "access": "", "host": "Drawable", "type": "property", "name": "roll"}, {"url": "Drawable.html#property_rotate.heading", "access": "", "host": "Drawable", "type": "property", "name": "rotate.heading"}, {"url": "Drawable.html#property_rotate.roll", "access": "", "host": "Drawable", "type": "property", "name": "rotate.roll"}, {"url": "Drawable.html#property_rotate.tilt", "access": "", "host": "Drawable", "type": "property", "name": "rotate.tilt"}, {"url": "Drawable2D.html#property_rotation", "access": "", "host": "Drawable2D", "type": "property", "name": "rotation"}, {"url": "Drawable2D.html#property_scale", "access": "", "host": "Drawable2D", "type": "property", "name": "scale"}, {"url": "Model.html#property_scale.x", "access": "", "host": "Model", "type": "property", "name": "scale.x"}, {"url": "Model.html#property_scale.y", "access": "", "host": "Model", "type": "property", "name": "scale.y"}, {"url": "Model.html#property_scale.z", "access": "", "host": "Model", "type": "property", "name": "scale.z"}, {"url": "Drawable2D.html#property_scaling", "access": "", "host": "Drawable2D", "type": "property", "name": "scaling"}, {"url": "AnimatedImageDrawable.html#method_setKeyFrame", "access": "", "host": "AnimatedImageDrawable", "type": "method", "name": "setKeyFrame"}, {"url": "Label.html#property_style", "access": "", "host": "Label", "type": "property", "name": "style"}, {"url": "Circle.html#property_style", "access": "", "host": "Circle", "type": "property", "name": "style"}, {"url": "Label.html#property_text", "access": "", "host": "Label", "type": "property", "name": "text"}, {"url": "Drawable.html#property_tilt", "access": "", "host": "Drawable", "type": "property", "name": "tilt"}, {"url": "Model.html#property_translate.x", "access": "", "host": "Model", "type": "property", "name": "translate.x"}, {"url": "Model.html#property_translate.y", "access": "", "host": "Model", "type": "property", "name": "translate.y"}, {"url": "Model.html#property_translate.z", "access": "", "host": "Model", "type": "property", "name": "translate.z"}, {"url": "Drawable.html#method_triggers.onClick", "access": "", "host": "Drawable", "type": "method", "name": "triggers.onClick"}, {"url": "ARObject.html#method_triggers.onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onEnterFieldOfVision"}, {"url": "ARObject.html#method_triggers.onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onExitFieldOfVision"}, {"url": "HtmlDrawable.html#property_updateRate", "access": "", "host": "HtmlDrawable", "type": "property", "name": "updateRate"}, {"url": "Model.html#property_uri", "access": "", "host": "Model", "type": "property", "name": "uri"}, {"url": "HtmlDrawable.html#property_uri", "access": "", "host": "HtmlDrawable", "type": "property", "name": "uri"}, {"url": "Drawable2D.html#property_verticalAnchor", "access": "", "host": "Drawable2D", "type": "property", "name": "verticalAnchor"}, {"url": "HtmlDrawable.html#property_viewportWidth", "access": "", "host": "HtmlDrawable", "type": "property", "name": "viewportWidth"}, {"url": "HtmlDrawable.html#property_width", "access": "", "host": "HtmlDrawable", "type": "property", "name": "width"}, {"url": "Drawable2D.html#property_zOrder", "access": "", "host": "Drawable2D", "type": "property", "name": "zOrder"}];
+</script>
+</body>
+</html>

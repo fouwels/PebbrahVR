@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="browsing-pois"></a><h2>Browsing POIs</h2>
+<p>Displaying numerous POIs in the camera has some challenges. How many POIs should be provided? How to deal with POIs in same direction and what is the maximum range to show POIs?
+The following examples cover frequently asked questions related to the POI browser use case.</p>
+<a name="presenting-poi-details-1-4"></a><h3>Presenting POI Details (1/4)</h3>
+<p>POIs usually have at least a name and a sometimes a quite long description associated with them. Depending on your content type you may use a marker with the POI name.</p>
+<p>When starting this World the POI information is inserted from native code using the <code>callJavaScript()</code> function of the <code>architectView</code>.  POIs are displayed in the camera around the user as markers. </p>
+<p>The <code>World.onMarkerSelected</code> function is called when a marker is clicked.</p>
+<pre><code>    onMarkerSelected: function onMarkerSelectedFn(marker) {
+        // notify native environment
+        document.location = &quot;architectsdk://markerselected?id=&quot; + marker.poiData.id;
+    }</code></pre>
+<p>The <code>document.location = architectsdk://...</code> call is handled in native code&#39;s <code>urlListener</code>, where the passed id is used to call the right POI detail page.</p>
+<a name="poi-ar-radar-2-4"></a><h3>POI/AR Radar (2/4)</h3>
+<p>It is recommended to give the user a hint where places are located in his/her vicinity. The easiest way to provide orientation assistance is by adding an <code>AR.Radar</code> element. Every <code>AR.GeoObject</code> (e.g. a marker) can have a radar representation, usually indicated by a small dot.</p>
+<p>Radar representation of an <code>AR.GeoObject</code> is defined in the drawables set. Define an array of drawables (e.g. array holding one <code>AR.Circle</code>) and set it as <code>drawables.radar</code>, compare <strong>marker.js</strong>:</p>
+<pre><code>this.radarCircle = new AR.Circle(0.03, {
+    horizontalAnchor: AR.CONST.HORIZONTAL_ANCHOR.CENTER,
+    opacity: 0.8,
+    style: {
+        fillColor: &quot;#ffffff&quot;
+    }
+});
+
+this.radardrawables = [this.radarCircle];</code></pre>
+<p>Any <code>AR.GeoObject</code> can have a radar-representation, add the <code>radar</code> key in the drawable set and you&#39;re done.</p>
+<pre><code>    var markerObject = new AR.GeoObject(markerLocation, {
+    drawables: {
+        cam: [this.markerDrawable_idle, this.markerDrawable_selected, this.titleLabel, this.descriptionLabel],
+        indicator: this.directionIndicatorDrawable,
+        radar: this.radardrawables
+    }
+});</code></pre>
+<p>The radar itself can be customized and should be implemented as a separate component in your JavaScript code (compare <strong>radar.js</strong>)</p>
+<pre><code>var PoiRadar = {
+
+    show: function showFn() {
+        AR.radar.enabled = true;
+    },
+
+    hide: function hideFn() {
+        AR.radar.enabled = false;
+    },
+
+    init: function initFn() {
+        // set the back-ground image for the radar
+        AR.radar.background = new AR.ImageResource(&quot;img/radar_bg.png&quot;);
+
+        // set the north-indicator image for the radar (not necessary if you don&#39;t want to display a north-indicator)
+        AR.radar.northIndicator.image = new AR.ImageResource(&quot;img/radar_north.png&quot;);
+        AR.radar.positionX = 0.04;
+        AR.radar.positionY = 0.06;
+        AR.radar.width = 0.3;
+        AR.radar.centerX = 0.5;
+        AR.radar.centerY = 0.5;
+        AR.radar.radius = 0.3;
+        AR.radar.northIndicator.radius = 0.0;
+        AR.radar.enabled = false;
+
+        // set the onClick-trigger for the radar.
+        AR.radar.onClick = PoiRadar.clickedRadar;
+    },
+
+    // you may define some custom action when user pressed radar, e.g. display distance, custom filtering etc.
+    clickedRadar: function clickedRadarFn() {
+        alert(&quot;Radar Clicked&quot;);
+    }
+};
+
+// init radar to start loading required assets upfront. That way SimpleRadar.show() is way more responsive and displays radar almost immediately (all assets are already in place)
+PoiRadar.init();</code></pre>
+<a name="limiting-visible-pois-3-4"></a><h3>Limiting Visible POIs (3/4)</h3>
+<p>Sometimes there are too many POIs in a direction which causes overlapping of placemarks. Reducing the radius of interest (culling distance) is an easy way to hide objects outside a specific area.
+You can also update <code>AR.Radar</code>&#39;s maxDistance so visible markers and radar representation are in sync.</p>
+<p>In this example a query mobile sample for a slider is used to modify <code>AR.Radar</code>&#39;s maxDistance and <code>AR.context.scene.cullingDistance</code>.</p>
+<p>In the <code>refresh</code> function of <strong>slider.js</strong> <code>World.onSliderChanged</code> is called. The implementation of this function is in <strong>limitingVisiblePois.js</strong>:</p>
+<pre><code>var World = {
+
+    […]    
+
+    onSliderChanged: function onSliderChangedFn(value) {
+         if (value &gt; 0) {
+            var valueMeters = value * 1000;
+            PoiRadar.setMaxDistance(valueMeters);
+            AR.context.scene.cullingDistance = valueMeters;
+        }
+    }
+
+    […]
+}</code></pre>
+<p>Besides the ARchitect related JavaScript files this sample also requires JQuery and JQuery-mobile JavaScritp and CSS files.</p>
+<p>Due to the fact, that JQuery modifies the HTML structure and defines the background colors of divs it is not only necessary to include <code>jquery-mobile-transparent-ui-overlay.css</code> (after query mobiles CSS) but also add the custom style in the div that contains the JQuery slider (compare <strong>index.html</strong>).</p>
+<pre><code>    &lt;div id=&quot;slider-div&quot; data-role=&quot;page&quot; style=&quot;background: none;&quot;&gt;
+        &lt;input type=&quot;range&quot; name=&quot;slider-distance&quot; id=&quot;slider-distance&quot; 
+            min=&quot;1&quot; max=&quot;50&quot; value=&quot;50&quot; data-show-value=&quot;true&quot; data-popup
+            enabled=&quot;true&quot; &gt;
+    &lt;/div&gt;</code></pre>
+<a name="reloading-poi-data-4-4"></a><h3>Reloading POI Data (4/4)</h3>
+<p>You may want to reload POI information because of user movements or manually for various reasons.
+In this example, POIs are reloaded when user presses the refresh button. The button in <strong>index.html</strong> calls <code>World.clickedReload()</code> when the user clicks it. </p>
+<pre><code>&lt;div id=&quot;refresh-div&quot;&gt;
+        &lt;input id=&quot;refresh-button&quot; type=&quot;button&quot; 
+            value=&quot;Reload POIs&quot; onclick=&quot;World.clickedReload();&quot;&gt;
+&lt;/div&gt;</code></pre>
+<p>Th implementation of <code>World.clickedReload()</code> is part of the ARchitect World (<strong>reloadingPois.js</strong>) and executes <code>document.location = architectsdk://...</code>. 
+The urlListener in native code is informed about this event and uses
+<code>architectView.callJavaSript()</code> to inject new POI information into the ARchitect World.</p>
+<pre><code>var World = {
+[…]
+
+/* called when user presses reload button */
+clickedReload: function clickedReloadFn() {
+    document.location = &quot;architectsdk://button?type=refresh&quot;;
+}
+[…]
+}</code></pre>
+<p><em>Note: you must use &#39;document.location = &quot;architectsdk://...&#39; to pass information from JavaScript to native. This will cause HTTP error if you didn&#39;t register a urlListener in architectView.</em></p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

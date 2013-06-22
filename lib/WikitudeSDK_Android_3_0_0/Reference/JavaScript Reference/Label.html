@@ -1,0 +1,465 @@
+<!--
+This documentation has been created by using YUI Doc: Copyright © 2011 Yahoo! Inc. All rights reserved.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+The syntax highlighting capability has been created by using gallery-prettify: Copyright (C) 2006 Google Inc. 
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>ARchitect API Documentation  - Label  </title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1371109929.53" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1371109929.53" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1371109929.53"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1371109929.53"></script>
+    
+    <script type="text/javascript" src="assets/yui.js"></script>
+    <script type="text/javascript">
+        YUI({
+            modules: {
+                'gallery-prettify': {
+                    fullpath: 'assets/gallery-prettify.js'
+                }
+            }
+        }).use('gallery-prettify', function(Y) {
+            // It's loaded, now make everything pretty!
+            Y.prettyPrint();
+        });
+    </script>
+    <link type="text/css" rel="stylesheet" href="assets/gallery-prettify.css">
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://architect.wikitude.com" title="Wikitude ARchitect">Wikitude ARchitect v3.0 API Documentation</a></h1>
+        <!--<h3>AR</h3>-->
+        <b>
+        <a href="./index.html" title="Wikitude ARchitect"><u>Wikitude ARchitect</u></a> 
+            &gt; <a href="./module_AR.html" title="AR"><u>AR</u></a>
+                 &gt; Label 
+        </b>
+        <!--<form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>-->
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <!--<span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>-->
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">Label</b>
+                        <span class="extends">
+                           - extends <a href="Drawable2D.html" title="Drawable2D">Drawable2D</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        A Label drawable represents an ARObject as text.<br/><br/>
+The default anchor settings for a Label are as follows:
+<ul>
+<li>horizontal anchor: AR.CONST.HORIZONTAL_ANCHOR.CENTER</li>
+<li>vertical anchor: AR.CONST.VERTICAL_ANCHOR.MIDDLE</li>
+</ul>
+On creation, setup parameters can be passed to customize the properties of
+the Label.<br/><br/>
+<div class="paragraph">Example:</div>
+<pre class="prettyprint">
+//create a new label and pass some setup parameters
+var label = new AR.Label(&quot;&quot;, 20, {
+&nbsp;&nbsp;offsetY : 1,
+&nbsp;&nbsp;onClick : function() {
+&nbsp;&nbsp;&nbsp;&nbsp;label.text += &quot;CLICK &quot;
+&nbsp;&nbsp;},
+&nbsp;&nbsp;verticalAnchor : AR.CONST.VERTICAL_ANCHOR.TOP,
+&nbsp;&nbsp;opacity : 0.1
+});
+</pre>
+                    </div>
+
+                        <div class="section constructor details" rel="yui:constructor" resource="#constructor">
+                        <h3 id="constructor">Constructor</h3>
+                        <div class="content">
+                            <div class="detail">
+                                <strong property="yui:name">Label</strong>
+                                <code>
+                                    (
+  
+                                        
+                                                
+                                                text
+
+                                                , 
+                                                height
+
+                                                , 
+                                                options
+                                    )
+                                </code>
+                                <div class="description">
+                                        <dl rel="yui:parameters">
+                                            <dt>Parameters:</dt>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">text</span>
+                                                    &lt;<span property="yui:type">string</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> The text to be displayed on the Label.</span>
+                                                </dd>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">height</span>
+                                                    &lt;<span property="yui:type">float</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> The height of the Label, in <a href="./module_AR.html">SDUs</a></span>
+                                                </dd>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">options</span>
+                                                    &lt;<span property="yui:type">object</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> Setup-Parameters to customize additional object
+properties.
+<br/><br/>
+Accepted options-properties are
+<ul>
+<li>enabled</li>
+<li>horizontalAnchor</li>
+<li>verticalAnchor</li>
+<li>offsetX</li>
+<li>offsetY</li>
+<li>zOrder</li>
+<li>rotation</li>
+<li>scale</li>
+<li>opacity</li>
+<li>onClick</li>
+<li>style.backgroundColor</li>
+<li>style.textColor</li>
+<li>style.fontStyle</li>
+<li>roll</li>
+<li>tilt</li>
+<li>heading</li>
+</ul></span>
+                                                </dd>
+                                        </dl>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div rel="yui:properties" resource="#properties">
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:property" resource="#property_height">
+                                    <h4><a name="property_height" property="yui:name">height</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            The height of the Label, in <a href="./module_AR.html">SDUs</a>. Effectively, this will
+define the size of the Label.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_style">
+                                    <h4><a name="property_style" property="yui:name">style</a>
+                                        - <code><span property="yui:type">{object}</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            The Style to be passed. Valid values are:
+<ul>
+<li>backgroundColor</li>
+<li>textColor</li>
+<li>fontStyle</li>
+</ul>
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_text">
+                                    <h4><a name="property_text" property="yui:name">text</a>
+                                        - <code><span property="yui:type">string</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            The text of the label.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">
+                        <div class="section field inheritance" rel="yui:superclass"  resource="Drawable2D.html">
+                            <h4>Properties inherited from <a href="Drawable2D.html" property="yui:name" title="Drawable2D">Drawable2D</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_horizontalAnchor">
+                                        <a class="" href="Drawable2D.html#property_horizontalAnchor" property="yui:name" title="horizontalAnchor">horizontalAnchor</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_offsetX">
+                                        <a class="" href="Drawable2D.html#property_offsetX" property="yui:name" title="offsetX">offsetX</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_offsetY">
+                                        <a class="" href="Drawable2D.html#property_offsetY" property="yui:name" title="offsetY">offsetY</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_opacity">
+                                        <a class="" href="Drawable2D.html#property_opacity" property="yui:name" title="opacity">opacity</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_rotation">
+                                        <a class="" href="Drawable2D.html#property_rotation" property="yui:name" title="rotation">rotation</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_scale">
+                                        <a class="" href="Drawable2D.html#property_scale" property="yui:name" title="scale">scale</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_scaling">
+                                        <a class=" deprecated" href="Drawable2D.html#property_scaling" property="yui:name" title="scaling">scaling</a><span class=" deprecated">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_verticalAnchor">
+                                        <a class="" href="Drawable2D.html#property_verticalAnchor" property="yui:name" title="verticalAnchor">verticalAnchor</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable2D.html#property_zOrder">
+                                        <a class="" href="Drawable2D.html#property_zOrder" property="yui:name" title="zOrder">zOrder</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                            <h4>Properties inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="ARchitectObject.html#property_destroyed">
+                                        <a class="" href="ARchitectObject.html#property_destroyed" property="yui:name" title="destroyed">destroyed</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        <div class="section field inheritance" rel="yui:superclass"  resource="Drawable.html">
+                            <h4>Properties inherited from <a href="Drawable.html" property="yui:name" title="Drawable">Drawable</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_enabled">
+                                        <a class="" href="Drawable.html#property_enabled" property="yui:name" title="enabled">enabled</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_heading">
+                                        <a class=" deprecated" href="Drawable.html#property_heading" property="yui:name" title="heading">heading</a><span class=" deprecated">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_roll">
+                                        <a class=" deprecated" href="Drawable.html#property_roll" property="yui:name" title="roll">roll</a><span class=" deprecated">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_rotate.heading">
+                                        <a class="" href="Drawable.html#property_rotate.heading" property="yui:name" title="rotate.heading">rotate.heading</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_rotate.roll">
+                                        <a class="" href="Drawable.html#property_rotate.roll" property="yui:name" title="rotate.roll">rotate.roll</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_rotate.tilt">
+                                        <a class="" href="Drawable.html#property_rotate.tilt" property="yui:name" title="rotate.tilt">rotate.tilt</a><span class="">,</span>
+                                        </span>
+                                    
+                                        <span rel="yui:property" resource="Drawable.html#property_tilt">
+                                        <a class=" deprecated" href="Drawable.html#property_tilt" property="yui:name" title="tilt">tilt</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+
+                        <div rel="yui:inheritance">                    
+                            <div class="section field inheritance" rel="yui:superclass"  resource="Drawable2D.html">
+                                <h4>Methods inherited from <a href="Drawable2D.html" property="yui:name" title="Drawable2D">Drawable2D</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="Drawable2D.html#method_getBoundingRectangle">                                        
+                                            <a class="" href="Drawable2D.html#method_getBoundingRectangle" property="yui:name" title="getBoundingRectangle">getBoundingRectangle</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                                <h4>Methods inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="ARchitectObject.html#method_destroy">                                        
+                                            <a class="" href="ARchitectObject.html#method_destroy" property="yui:name" title="destroy">destroy</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance" rel="yui:superclass"  resource="Drawable.html">
+                                <h4>Methods inherited from <a href="Drawable.html" property="yui:name" title="Drawable">Drawable</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="Drawable.html#method_onClick">                                        
+                                            <a class="" href="Drawable.html#method_onClick" property="yui:name" title="onClick">onClick</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="Drawable.html#method_triggers.onClick">                                        
+                                            <a class=" deprecated" href="Drawable.html#method_triggers.onClick" property="yui:name" title="triggers.onClick">triggers.onClick</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_AR.html" title="AR">AR</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="ActionArea.html" title="ActionArea">ActionArea</a></li>
+                                <li class=""><a href="ActionRange.html" title="ActionRange">ActionRange</a></li>
+                                <li class=""><a href="AnimatedImageDrawable.html" title="AnimatedImageDrawable">AnimatedImageDrawable</a></li>
+                                <li class=""><a href="Animation.html" title="Animation">Animation</a></li>
+                                <li class=""><a href="AnimationGroup.html" title="AnimationGroup">AnimationGroup</a></li>
+                                <li class=""><a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a></li>
+                                <li class=""><a href="ARObject.html" title="ARObject">ARObject</a></li>
+                                <li class=""><a href="BoundingRectangle.html" title="BoundingRectangle">BoundingRectangle</a></li>
+                                <li class=""><a href="Circle.html" title="Circle">Circle</a></li>
+                                <li class=""><a href="CONST.html" title="CONST">CONST</a></li>
+                                <li class=""><a href="context.html" title="context">context</a></li>
+                                <li class=""><a href="Drawable.html" title="Drawable">Drawable</a></li>
+                                <li class=""><a href="Drawable2D.html" title="Drawable2D">Drawable2D</a></li>
+                                <li class=""><a href="GeoLocation.html" title="GeoLocation">GeoLocation</a></li>
+                                <li class=""><a href="GeoObject.html" title="GeoObject">GeoObject</a></li>
+                                <li class=""><a href="HtmlDrawable.html" title="HtmlDrawable">HtmlDrawable</a></li>
+                                <li class=""><a href="ImageDrawable.html" title="ImageDrawable">ImageDrawable</a></li>
+                                <li class=""><a href="ImageResource.html" title="ImageResource">ImageResource</a></li>
+                                <li class="selected"><a href="Label.html" title="Label">Label</a></li>
+                                <li class=""><a href="Location.html" title="Location">Location</a></li>
+                                <li class=""><a href="logger.html" title="logger">logger</a></li>
+                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+                                <li class=""><a href="ModelAnimation.html" title="ModelAnimation">ModelAnimation</a></li>
+                                <li class=""><a href="PropertyAnimation.html" title="PropertyAnimation">PropertyAnimation</a></li>
+                                <li class=""><a href="radar.html" title="radar">radar</a></li>
+                                <li class=""><a href="RelativeLocation.html" title="RelativeLocation">RelativeLocation</a></li>
+                                <li class=""><a href="Sound.html" title="Sound">Sound</a></li>
+                                <li class=""><a href="Style.html" title="Style">Style</a></li>
+                                <li class=""><a href="Trackable2DObject.html" title="Trackable2DObject">Trackable2DObject</a></li>
+                                <li class=""><a href="Tracker.html" title="Tracker">Tracker</a></li>
+                        </ul>
+                    </div>
+
+                    <!--<div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="architect_generated.js.html" title="architect_generated.js">architect_generated.js</a></li>
+                        </ul>
+                    </div>-->
+
+                    <div id="propertyList" class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#property_height" title="height">height</a></li>
+                                <li class=""><a href="#property_style" title="style">style</a></li>
+                                <li class=""><a href="#property_text" title="text">text</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2013 Wikitude GmbH. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "ARchitectObject.html#method_destroy", "access": "", "host": "ARchitectObject", "type": "method", "name": "destroy"}, {"url": "ARchitectObject.html#property_destroyed", "access": "", "host": "ARchitectObject", "type": "property", "name": "destroyed"}, {"url": "ARObject.html#method_drawables.addCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.addCamDrawable"}, {"url": "ARObject.html#property_drawables.cam", "access": "", "host": "ARObject", "type": "property", "name": "drawables.cam"}, {"url": "ARObject.html#method_drawables.removeCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.removeCamDrawable"}, {"url": "ARObject.html#property_enabled", "access": "", "host": "ARObject", "type": "property", "name": "enabled"}, {"url": "Drawable.html#property_enabled", "access": "", "host": "Drawable", "type": "property", "name": "enabled"}, {"url": "Drawable2D.html#method_getBoundingRectangle", "access": "", "host": "Drawable2D", "type": "method", "name": "getBoundingRectangle"}, {"url": "Drawable.html#property_heading", "access": "", "host": "Drawable", "type": "property", "name": "heading"}, {"url": "Label.html#property_height", "access": "", "host": "Label", "type": "property", "name": "height"}, {"url": "Drawable2D.html#property_horizontalAnchor", "access": "", "host": "Drawable2D", "type": "property", "name": "horizontalAnchor"}, {"url": "ARObject.html#method_isVisible", "access": "", "host": "ARObject", "type": "method", "name": "isVisible"}, {"url": "Drawable2D.html#property_offsetX", "access": "", "host": "Drawable2D", "type": "property", "name": "offsetX"}, {"url": "Drawable2D.html#property_offsetY", "access": "", "host": "Drawable2D", "type": "property", "name": "offsetY"}, {"url": "ARObject.html#method_onClick", "access": "", "host": "ARObject", "type": "method", "name": "onClick"}, {"url": "Drawable.html#method_onClick", "access": "", "host": "Drawable", "type": "method", "name": "onClick"}, {"url": "ARObject.html#method_onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onEnterFieldOfVision"}, {"url": "ARObject.html#method_onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onExitFieldOfVision"}, {"url": "Drawable2D.html#property_opacity", "access": "", "host": "Drawable2D", "type": "property", "name": "opacity"}, {"url": "ARObject.html#property_renderingOrder", "access": "", "host": "ARObject", "type": "property", "name": "renderingOrder"}, {"url": "Drawable.html#property_roll", "access": "", "host": "Drawable", "type": "property", "name": "roll"}, {"url": "Drawable.html#property_rotate.heading", "access": "", "host": "Drawable", "type": "property", "name": "rotate.heading"}, {"url": "Drawable.html#property_rotate.roll", "access": "", "host": "Drawable", "type": "property", "name": "rotate.roll"}, {"url": "Drawable.html#property_rotate.tilt", "access": "", "host": "Drawable", "type": "property", "name": "rotate.tilt"}, {"url": "Drawable2D.html#property_rotation", "access": "", "host": "Drawable2D", "type": "property", "name": "rotation"}, {"url": "Drawable2D.html#property_scale", "access": "", "host": "Drawable2D", "type": "property", "name": "scale"}, {"url": "Drawable2D.html#property_scaling", "access": "", "host": "Drawable2D", "type": "property", "name": "scaling"}, {"url": "Label.html#property_style", "access": "", "host": "Label", "type": "property", "name": "style"}, {"url": "Label.html#property_text", "access": "", "host": "Label", "type": "property", "name": "text"}, {"url": "Drawable.html#property_tilt", "access": "", "host": "Drawable", "type": "property", "name": "tilt"}, {"url": "Drawable.html#method_triggers.onClick", "access": "", "host": "Drawable", "type": "method", "name": "triggers.onClick"}, {"url": "ARObject.html#method_triggers.onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onEnterFieldOfVision"}, {"url": "ARObject.html#method_triggers.onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onExitFieldOfVision"}, {"url": "Drawable2D.html#property_verticalAnchor", "access": "", "host": "Drawable2D", "type": "property", "name": "verticalAnchor"}, {"url": "Drawable2D.html#property_zOrder", "access": "", "host": "Drawable2D", "type": "property", "name": "zOrder"}];
+</script>
+</body>
+</html>

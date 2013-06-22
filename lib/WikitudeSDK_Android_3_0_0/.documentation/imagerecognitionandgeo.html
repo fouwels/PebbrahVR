@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="image-recognition-and-geo"></a><h2>Image Recognition And Geo</h2>
+<p>The Wikitude SDK allows you to combine geobased AR with image recognition to
+create a seamless experience for users. This tutorial will show you how
+to accomplish this and will provide you with additional advices.</p>
+<p>Let’s start by creating the <code>AR.Tracker</code> for recognizing a logo and a
+<code>AR.Trackable2dObject</code></p>
+<pre><code class="lang-js">// Create the tracker to recognize a store logo
+var trackerDataSetPath = &quot;assets/ShopLogo.wtc&quot;;
+IrAndGeo.tracker = new AR.Tracker(trackerDataSetPath, {
+    onLoaded: IrAndGeo.loadingStepDone,
+    onError: IrAndGeo.errorLoading
+});
+
+// Create drawables to display on the recognized image
+var logo = new AR.ImageDrawable(IrAndGeo.res.logo, 1.0, {
+    zOrder: -1
+});
+
+// ...
+
+IrAndGeo.menuDrawables = [logo, buttonDeal, buttonWeb, buttonStores];
+IrAndGeo.dealDrawable = new AR.ImageDrawable(IrAndGeo.res.deal, 1.0, {
+    enabled: false,
+    onClick: IrAndGeo.hideDeal
+});
+
+// Create the object by defining the tracker, target name and its drawables
+var trackable2DObject = new AR.Trackable2DObject(IrAndGeo.tracker, &quot;ShopLogo&quot;, {
+    drawables: {
+        cam: [logo, buttonDeal, buttonWeb, buttonStores, IrAndGeo.dealDrawable, IrAndGeo.model]
+    },
+   // ...
+});</code></pre>
+<p><img src="images/irangeo_screenshot.jpeg" alt="Finally result of overlaid images on top of shop logo." title="Finally result of overlaid images on top of shop logo."></p>
+<p>This is all it takes to display drawables on top of a recognized image.
+The geo based AR part can be accomplished similarly to any other
+ARchitect World.</p>
+<pre><code class="lang-js">IrAndGeo.createMarker = function(lat, lon, name) {
+    var loc = new AR.GeoLocation(lat, lon);
+    var imageDrawable = new AR.ImageDrawable(IrAndGeo.res.marker, 2, {
+        scale: 0.0,
+        onClick: function() {
+            alert(&quot;clicked&quot;);
+        }
+    });
+
+    IrAndGeo.markerAnimations.push(new AR.PropertyAnimation(imageDrawable, &#39;scale&#39;, 0.0, 1.0, 1000, {
+        type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_BOUNCE
+    }));
+    IrAndGeo.stores.push(new AR.GeoObject(loc, {
+        drawables: {
+            cam: imageDrawable
+        },
+        enabled: false
+    }));
+};</code></pre>
+<p>The method above creates a marker at the passed latitude and longitude.
+As with any other <code>AR.GeoObject</code> the visual representation can be composed of
+various Drawables. The <code>AR.GeoObject</code> is created with the value <code>enabled</code> set to <code>false</code>
+so it won’t be initially visible. To make it visible, the created
+GeoObjects can be set to `enabled when an element on the image target is
+clicked.</p>
+<p><img src="images/irgeo4_s.jpg" alt="Shop location visualized." title="Shop location visualized.">  </p>
+<pre><code class="lang-js">IrAndGeo.showStores = function() {
+    // enable all GeoObjects
+    IrAndGeo.stores.forEach(function(x, idx) {
+        x.enabled = true;
+    });
+
+    // ...
+};</code></pre>
+<p>Combining IR and geo based AR is easy and straightforward. However, you should keep in mind that image recognition requires additional computing power (and thus battery power). Therefore, you should only create a <code>AR.Tracker</code> when it is actually needed. If it is no longer needed destroy it by calling <code>AR.Tracker.destroy()</code>.</p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="retrieving-poi-data"></a><h2>Retrieving POI Data</h2>
+<p>There are several ways to request and work with POI detail information in an ARchitect World.
+Depending on your application and use case, one might fit better than the other.</p>
+<a name="from-a-webservice-1-3"></a><h3>From a Webservice (1/3)</h3>
+<p><a href="http://jquery.com/">JQuery</a> provides a number of tools to load data from a remote origin. It is highly recommended to use the JSON format for POI detail information. Requesting and parsing is done in a few lines of JavaScript code.</p>
+<p>In this sample, POI information is requested after the very first location update.
+Use e.g. <code>AR.context.onLocationChanged = World.locationChanged;</code> to define the method invoked on location updates.</p>
+<p>It is recommended to store server information separately in your code, use the following snippet</p>
+<pre><code>// holds server information
+var ServerInformation = {
+    // sample service returning dummy POIs
+    POIDATA_SERVER: &quot;http://example.wikitude.com/GetSamplePois/&quot;,
+    POIDATA_SERVER_ARG_LAT: &quot;lat&quot;,
+    POIDATA_SERVER_ARG_LON: &quot;lon&quot;,
+    POIDATA_SERVER_ARG_NR_POIS: &quot;nrPois&quot;
+};</code></pre>
+<p>Ensure that the server returns valid JSON and it is escaped properly (e.g. special characters in POI name…)  </p>
+<p>The Server response is passed over to <code>World.loadPoisFromJsonData(poiData)</code>, where the creation of markers and their camera representation is defined.</p>
+<pre><code>var World = {
+[…]
+
+// location updates
+locationChanged: function locationChangedFn(lat, lon, alt, acc) {
+    World.userLocation = {
+        &#39;latitude&#39;: lat,
+        &#39;longitude&#39;: lon,
+        &#39;altitude&#39;: alt,
+        &#39;accuracy&#39;: acc
+    };
+
+    /* Request data from server only once*/
+    if (!World.alreadyRequestedData) {
+        World.requestDataFromServer(lat, lon);
+        World.alreadyRequestedData = true;
+    }
+},
+
+// request POI data
+requestDataFromServer: function requestDataFromServerFn(lat, lon) {
+    var serverUrl = ServerInformation.POIDATA_SERVER + &quot;?&quot; + ServerInformation.POIDATA_SERVER_ARG_LAT + &quot;=&quot; + lat + &quot;&amp;&quot; + ServerInformation.POIDATA_SERVER_ARG_LON + &quot;=&quot; + lon + &quot;&amp;&quot; + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + &quot;=20&quot;;
+    var jqxhr = $.getJSON(serverUrl, function(data) {
+        World.loadPoisFromJsonData(data);
+    })
+        .error(function() {
+        alert(&quot;JSON error occurred!&quot;);
+    })
+        .complete(function() {});
+}
+
+[…]
+}</code></pre>
+<a name="from-a-local-resource-2-3"></a><h3>From a Local Resource (2/3)</h3>
+<p>In the case where the data of your ARchitect World data is static, its content should be stored within the application.
+Create a JavaScript file (e.g. <code>myJsonData.js</code>) and define a globally accessible <code>var myJsonData = …[YOUR-JSON-DATA]</code>. Include the JavaScript in the ARchitect Worlds HTML by adding <code>&lt;script src=&quot;js/myJsonData.js&quot;/&gt;</code>. POI information is then available anywhere in your JavaScript and can be processed similarly to the previous web service sample.</p>
+<pre><code>var World = {
+
+[…]
+
+// request POI data
+requestDataFromLocal: function requestDataFromLocalFn(lat, lon) {
+    World.loadPoisFromJsonData(poisNearby);
+}
+
+[…]
+}</code></pre>
+<p><em>Note: This sample uses static POI data and overwrites latitude and longitude values using <code>Helper.bringPlacesToUser</code>, you must remove this line to avoid this.</em></p>
+<a name="from-application-model-3-3"></a><h3>From Application Model (3/3)</h3>
+<p>Besides loading data from assets you can also load data from a database, or create them in native code. Use the platform common method to create JSON Objects out of your data and use <code>architectView.callJavaScript()</code> to pass the JSON data to ARchitect World&#39;s JavaScript.</p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="image-recognition-and-3d"></a><h2>Image Recognition And 3D</h2>
+<p>This example shows how to combine 3D content and image recognition. It starts by displaying a 3D model on a target and advances by adding displayed animations and interactivity. If you are not yet familiar with how to use image recognition, please have a look at the previous example <a href="ImageRecognition.html">Image Recognition</a>.</p>
+<p>3D content within Wikitude can only be loaded from <em>Wikitude 3D Format</em> files (.wt3).  This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools ( Autodesk® Maya® or Blender) but you&#39;ll need to convert them into the wt3 file format. Wikitude offers a desktop application - the Wikitude 3D Encoder, which will encode your 3D source file.  The Encoder can handle Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.</p>
+<p>For more details on how to convert your 3D content please see the <a href="encoder.html">Wikitude 3D Encoder</a> section. In this example the .wt3 file has already been prepared and saved to assets/car.wt3.</p>
+<p><img src="images/car.jpg" alt="Rendering of Car Model" title="Rendering of the car model used in this example."></p>
+<p>As image target the following car ad is used.</p>
+<p><img src="images/carAd.jpg" alt="TV ad used as image target." title="Car ad used as image target."></p>
+<a name="3d-model-on-target-1-3"></a><h3>3D Model on Target (1/3)</h3>
+<p>First of all create an <code>AR.Model</code> and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling and positioning the model in the scene.</p>
+<pre><code class="lang-js">this.modelTv = new AR.Model(&quot;assets/car.wt3&quot;, {
+    onLoaded: this.loadingStep,
+    scale: {
+        x: 0.5,
+        y: 0.5,
+        z: 0.5
+    }
+});</code></pre>
+<p>In this example a function is attached to the <code>onLoaded</code> trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take a some time to completely load and it is recommended to inform the user about the loading time.</p>
+<p>Similar to 2D content the 3D model is added to the <code>drawables.cam</code> property of an <code>AR.Trackable2DObject</code>. </p>
+<pre><code class="lang-js">var trackable = new AR.Trackable2DObject(this.tracker, &quot;tvAd&quot;, {
+    drawables: {
+        cam: this.modelTv
+    }
+});
+},</code></pre>
+<p>This is everything that is needed to allow the 3D model appear on an image target. To adjust scaling and position of the model pass the scale and translate properties as options to the <code>AR.Model</code>.</p>
+<a name="appearing-animation-2-3"></a><h3>Appearing Animation (2/3)</h3>
+<p>As a next step, an appearing animation is added which scales up the 3D model once the target is inside the field of vision. Creating an animation on a single property of an object is done using an <code>AR.PropertyAnimation</code>. Since the car model needs to be scaled up on all three axis, three animations are needed. These animations are grouped together utilizing an <code>AR.AnimationGroup</code> that allows them to play them in parallel.</p>
+<pre><code class="lang-js">var sx = new AR.PropertyAnimation(model, &quot;scale.x&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+var sy = new AR.PropertyAnimation(model, &quot;scale.y&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+var sz = new AR.PropertyAnimation(model, &quot;scale.z&quot;, 0, scale, 1500, {
+    type: AR.CONST.EASING_CURVE_TYPE.EASE_OUT_QUAD
+});
+
+return new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [sx, sy, sz]);</code></pre>
+<p>Each <code>AR.PropertyAnimation</code> targets one of the three axis and scales the model from 0 to the value passed in the <code>scale</code> variable. An <code>EASE_OUT_QUAD</code> easing curve is used to create a more dynamic effect of the animation.</p>
+<p>To get a notification once the image target is inside the field of vision the <code>onEnterFieldOfVision</code> trigger of the <code>AR.Trackable2DObject</code> is used. In the example the function <code>appear()</code> is attached.</p>
+<pre><code class="lang-js">appear: function appearFn () {
+    World.appearingAnimation.start();
+}</code></pre>
+<p>Within the <code>appear</code> function the previously created <code>AR.AnimationGroup</code> is started by calling its <code>start()</code> function which plays the animation once.</p>
+<a name="interactivity-3-3"></a><h3>Interactivity (3/3)</h3>
+<p>To finish up the example, a rotating animation is added to the 3D model. It is started and paused by clicking on the button or on the 3D model.</p>
+<p>Additionally to the 3D model an image that will act as a button is added to the image target. This can be accomplished by loading an <code>AR.ImageResource</code> and creating a drawable from it.</p>
+<pre><code class="lang-js">var imgReset = new AR.ImageResource(&quot;assets/resetButton.png&quot;);
+var buttonReset = new AR.ImageDrawable(imgReset, 0.2, {
+    offsetX: 0.25,
+    offsetY: 0.4,
+    onClick: this.resetModel
+});</code></pre>
+<p>To add the <code>AR.ImageDrawable</code> to the image target together with the 3D model both drawables are supplied to the <code>AR.Trackable2DObject</code>.</p>
+<pre><code class="lang-js">var trackable = new AR.Trackable2DObject(this.tracker, &quot;tvAd&quot;, {
+    drawables: {
+        cam: [this.modelTv, buttonReset]
+    },
+    onEnterFieldOfVision: this.appear
+});</code></pre>
+<p>The rotation animation for the 3D model is created by defining an <code>AR.PropertyAnimation</code> for the <code>rotate.roll</code> property.</p>
+<pre><code class="lang-js">// Rotation Animation
+this.rotationAnimation = new AR.PropertyAnimation(this.modelTv, &quot;rotate.roll&quot;, 0, 360, 5000);</code></pre>
+<p>The drawables are made clickable by setting their <code>onClick</code> triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model <code>onClick: this.toggleAnimateModel</code> is set in the options it is then passed to the <code>AR.Model</code> constructor. Similar the button&#39;s <code>onClick: this.toggleAnimateModel</code> trigger is set in the options passed to the <code>AR.ImageDrawable</code> constructor. <code>toggleAnimateModel()</code> is therefore called when the 3D model or the button is clicked.</p>
+<p>Inside the <code>toggleAnimateModel()</code> function, it is checked if the animation is running and decided if it should be started, resumed or paused.</p>
+<pre><code class="lang-js">toggleAnimateModel: function toggleAnimateModelFn() {
+    if (!World.rotationAnimation.isRunning()) {
+        if (!World.rotating) {
+            World.rotationAnimation.start(-1);
+            World.rotating = true;
+        } else {
+            World.rotationAnimation.resume();
+        }
+    } else {
+        World.rotationAnimation.pause();
+    }
+
+    return false;
+}</code></pre>
+<p>Starting an animation with <code>.start(-1)</code> will loop it indefinitely.</p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

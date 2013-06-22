@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="3d-assets-workflow"></a><h2>3D Assets Workflow</h2>
+<a name="prerequisites"></a><h4>Prerequisites</h4>
+<ul>
+<li>A 3D model in FBX (.fbx) or Collada (.dae) file format</li>
+<li>Wikitude 3D Encoder for Windows or MacOS X</li>
+</ul>
+<p>3D content within Wikitude can only be loaded from so-called <em>Wikitude 3D Format</em> files (.wt3).  This is a compressed binary format for describing 3D content, which is optimized for fast loading and handling of 3D content on a mobile devices. You still can use 3D models from your favorite 3D modeling tools (like Autodesk® Maya® or Blender) but need to convert them into wt3 file format. Wikitude offers a desktop application called Wikitude 3D Encoder, which takes over the task of encoding your 3D source file.  The Encoder can handle Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.</p>
+<p>This section should give an overview on how to choose the right 3D models for displaying it in Wikitude&#39;s augmented reality SDK. As Wikitude is basing 3D support on a converted file format (.wt3) it is good to follow the best practices below.</p>
+<a name="input-format"></a><h3>Input format</h3>
+<a name="supported-3d-model-files-for-encoding-it-into-wt3-files-are"></a><h4>Supported 3D model files for encoding it into wt3 files are:</h4>
+<ul>
+<li>FBX (.fbx)</li>
+<li>Collada (.dae)</li>
+</ul>
+<p>We recommend using FBX wherever possible as tools support for FBX is
+widely available. Furthermore Collada allows to include customized
+attributes that might not be understood by the Wikitude 3D Encoder.</p>
+<a name="features-you-can-use-in-your-3d-model-source-files"></a><h4>Features you can use in your 3D model source files:</h4>
+<ul>
+<li>Static model (made-up of triangles)   </li>
+<li><strong><a href="#working-with-3d-animations">Animations</a></strong><ul>
+<li>Transformation Animations</li>
+<li>Skinning</li>
+</ul>
+</li>
+<li>Materials<ul>
+<li>Phong, Lambert, Blinn</li>
+<li>Transparency</li>
+</ul>
+</li>
+<li>NURBS (will be tessellated on import)</li>
+</ul>
+<a name="features-that-are-not-yet-supported"></a><h4>Features that are not (yet) supported</h4>
+<ul>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+</ul>
+<a name="good-practice"></a><h3>Good practice</h3>
+<a name="use-png-textures"></a><h4>Use png textures</h4>
+<p>Textures are stored in png format within wt3 files. While Wikitude 3D Encoder takes care of automatically converting textures to png, it is good practice to use png textures in the source 3D Model file.</p>
+<a name="use-power-of-2-textures"></a><h4>Use power of 2 textures</h4>
+<p>The current rendering hardware on mobile devices requires certain
+texture attributes if the texture is not a power of 2 textures. This can
+result in unexpectedly textured models. Additionally using power of 2
+textures yields to a better performance when running on the device. A
+power of 2 textures has a width and height of 2^x - like. 64x64,
+128x128, and so on.</p>
+<a name="validate-texture-paths"></a><h4>Validate texture paths</h4>
+<p>If your opened model appears without textures, very often the texture
+paths are not set correctly. Make sure your texture paths are valid and
+accessible. For example check that they reference the texture files in a
+relative way and that all required textures exist and are accessible.</p>
+<a name="keep-texture-size-as-low-as-possible"></a><h4>Keep texture size as low as possible</h4>
+<p>Keeping texture sizes as low as possible, while maintaining the required
+details has several benefits. The exported .wt3 file will be smaller and
+therefore quicker to load over the network or from the application
+bundle. Additionally it will take up less graphics memory thus freeing
+up space for additional models or content.</p>
+<a name="use-only-one-light"></a><h4>Use only one light</h4>
+<p>To maintain a good rendering performance each part of your model (node)
+is only affected by a single light source. You may use multiple lights
+in the source file but at render time only a single node is selected to
+affect a mesh part. We make a best guess, utilizing the scene graph to
+assign a light to the node.
+If lighting is not required simply remove the lights from your source
+3D model file and/or set the corresponding material properties. This
+helps to speed up rendering.</p>
+<a name="resolving-problems"></a><h3>Resolving problems</h3>
+<a name="3d-model-shows-up-correctly-in-wikitude-3d-encoder-but-does-not-show-on-the-device"></a><h4>3D Model shows up correctly in Wikitude 3D Encoder but does not show on the device.</h4>
+<p>Check that your textures have a reasonable size. Limiting the textures to the lowest size that maintains the required details is recommended.</p>
+<a name="textures-are-missing"></a><h4>Textures are missing</h4>
+<p>Check the error/warning dialog during the import process of the model it
+will give you detailed information on which textures are problematic.
+Make sure the texture paths are valid and accessible.</p>
+<p><a id="working-with-3d-animations"></a></p>
+<a name="working-with-3d-animations"></a><h2>Working with 3D Animations</h2>
+<a name="quick-start"></a><h4>Quick start</h4>
+<p>Export a model that contains one or more animations from your preferred 3D modeling tool to a DAE or FBX file. After you load the 3D model into the Wikitude 3D Encoder the animations are displayed in a list on the right side of your application window.</p>
+<p><img src="images/encoder_animation_01.png" alt="Animation listed in Wikitude 3D Encoder"></p>
+<p>Each row of the list contains the ID of the animation, a control button and the time that passed after you started the animation. Clicking the play button  will start the animation  from the beginning and play back the animation in the 3D view of the application. The stop button will stop animation and displays the frame, that was drawn last.</p>
+<p>Check if your model looks and animates as expected and export it to a wt3 file. You need the  IDs of the animations you want to use in your application. The IDs are displayed next to the animation control button (on the screenshot the animation ID is <em>butterfly_animation</em>). In your code you start an animation like this.</p>
+<pre><code class="lang-js">// instantiate the model object
+var model = new AR.Model(&quot;butterfly.wt3&quot;);
+
+// instantiate the model animation with the animation id
+var animation = new AR.ModelAnimation(model, &quot;butterfly_animation&quot;);
+
+// start the animation
+animation.start();</code></pre>
+<a name="export-animations"></a><h4>Export Animations</h4>
+<p>The Wikitude 3D Encoder supports animation of joints and transformation animations. This includes transformation animations along motion paths.</p>
+<p>When exporting the model from the 3D modeling tool you have to <strong>bake</strong> your animations. As an example Maya bakes all unsupported constraints, including Maya-supported and FBX constraints, into animation curves.</p>
+<a name="grouping-animations"></a><h4>Grouping Animations</h4>
+<p>Animations will be grouped automatically to a top level node. In order to create two separate animations you need to group them in your modeling tool accordingly.</p>
+<p>To illustrate that let&#39;s create an example with 3 spheres and 3 cylinders with different translation animations. In the scene graph this example looks like the following:</p>
+<pre><code>• sphere1
+• sphere2
+• sphere3
+• cylinder1
+• cylinder2
+• cylinder3</code></pre>
+<p>Once the example is exported into a DAE or FBX file and imported into the Wikitude 3D Encoder  six separate animations, one for each object, will be generated.</p>
+<p>Let&#39;s assume we want to group all sphere animations into one animation and all cylinders into a second animation. This can achieved by creating two separate groups. One group containing all spheres and another one containing all cylinders. In the scene graph this is going to look like this:</p>
+<pre><code>• all_spheres_group
+  • sphere1
+  • sphere2
+  • sphere3
+• all_cylinders_group
+  • cylinder1
+  • cylinder2
+  • cylinder3</code></pre>
+<p>Once we export this into a DAE or an FBX file and import it into the Wikitude 3D Encoder we would get the desired result: one animation that animates all spheres and another animation animating all cylinders.</p>
+<p><em>Note: Do not group joints, especially when they were already skinned to a mesh.</em></p>
+<a name="known-issues"></a><h4>Known Issues</h4>
+<ul>
+<li>Baking animations doesn’t work in Blender as of version 2.66a and 2.67a when exporting the 3D model as DAE file.</br></br>
+<em>Reason: Blender 2.66a does not offer a baking option. There is a new option in Blender 2.67a when exporting to Collada DAE files among the Collada Options which is called &quot;Transformation Type&quot;. You can bake transformations to one transformation matrix but for some reason the channel is still referring to the separate matrices (translation, rotation, scale)  instead of the baked matrix. For this reason the animations will not be encoded on import to the Wikitude 3D Encoder.</em>
+</br></br></li>
+<li>In Blender avoid transformations on bones before you skin them to a mesh and export it to an FBX file.</li>
+<li>Exporting a model (with animations) as FBX from Blender creates additional animations for camera, lights or motion paths. These can be safely ignored.</li>
+</ul>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

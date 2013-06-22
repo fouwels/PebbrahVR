@@ -1,0 +1,703 @@
+<!--
+This documentation has been created by using YUI Doc: Copyright © 2011 Yahoo! Inc. All rights reserved.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+The syntax highlighting capability has been created by using gallery-prettify: Copyright (C) 2006 Google Inc. 
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>ARchitect API Documentation  - ARObject  </title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1371109929.53" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1371109929.53" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1371109929.53"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1371109929.53"></script>
+    
+    <script type="text/javascript" src="assets/yui.js"></script>
+    <script type="text/javascript">
+        YUI({
+            modules: {
+                'gallery-prettify': {
+                    fullpath: 'assets/gallery-prettify.js'
+                }
+            }
+        }).use('gallery-prettify', function(Y) {
+            // It's loaded, now make everything pretty!
+            Y.prettyPrint();
+        });
+    </script>
+    <link type="text/css" rel="stylesheet" href="assets/gallery-prettify.css">
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://architect.wikitude.com" title="Wikitude ARchitect">Wikitude ARchitect v3.0 API Documentation</a></h1>
+        <!--<h3>AR</h3>-->
+        <b>
+        <a href="./index.html" title="Wikitude ARchitect"><u>Wikitude ARchitect</u></a> 
+            &gt; <a href="./module_AR.html" title="AR"><u>AR</u></a>
+                 &gt; ARObject 
+        </b>
+        <!--<form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>-->
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <!--<span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>-->
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">ARObject</b>
+                        <span class="extends">
+                           - extends <a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                        <dl class="subclasses" rel="yui:subclasses">
+                            <dt>Known Subclasses:</dt>
+                            <dd>
+                                    <span rel="yui:subclass" resource="GeoObject.html">
+                                    <a href="GeoObject.html" property="yui:name" title="GeoObject">GeoObject</a>
+                                    </span>
+                                    <span rel="yui:subclass" resource="Trackable2DObject.html">
+                                    <a href="Trackable2DObject.html" property="yui:name" title="Trackable2DObject">Trackable2DObject</a>
+                                    </span>
+                            </dd>
+                       </dl>
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        An ARObject is an abstract class which must not be instantiated directly.
+It provides basic methods and properties required for the objects rendered in the AR scene.<br/><br/>
+ARObjects are somehow registered in the real world, either with geo coordinates (GeoObject) or with
+visual trackable objects (Trackable2DObject). They also have Drawables attached to it, which are used
+to represent the ARObject on the screen.
+                    </div>
+
+                    
+                    <div rel="yui:properties" resource="#properties">
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:property" resource="#property_drawables.cam">
+                                    <h4><a name="property_drawables.cam" property="yui:name">drawables.cam</a>
+                                        - <code><span property="yui:type">Array(Drawable)</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            The Drawables which will be used to represent the ARObject
+in the camera view. <br/><br/> Drawables in the array will
+be printed starting with the Drawable at position 0, causing
+Drawables at later indices to overlap the previously drawn
+Drawables. <br/><br/> <div class="paragraph">Remark:</div><br/>
+The array content
+should not be manipulated via the [] operator, as it cannot
+be guaranteed that the changes will be propagated through to
+the native application. The property should only be
+manipulated with arobject.drawables.addCamDrawable() and
+arobject.drawables.removeCamDrawable(), or directly set with
+arobject.drawables.cam = new Array(...);.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_enabled">
+                                    <h4><a name="property_enabled" property="yui:name">enabled</a>
+                                        - <code><span property="yui:type">boolean</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            A boolean flag to enable or disable the ARObject.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: true
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_renderingOrder">
+                                    <h4><a name="property_renderingOrder" property="yui:name">renderingOrder</a>
+                                        - <code><span property="yui:type">int</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Drawables of different ARObjects might overlap. In this case, renderingOrder defines the rendering order of the Drawables of the ARObject.
+ARObjects with higher renderingOrder values cause their Drawables to be drawn on top of the Drawables of ARObjects with lower renderingOrder values.
+In case two ARObjects have set the same renderingOrder, the Drawables are rendered based on the distance, causing objects closer to the user to
+overlap objects further away.  
+<br/>For example, If you want to bring Drawables of a certain ARObject to the very front, set the renderingOrder value of the corresponding ARObject
+to a very high value.
+<br/><br/>For the printing order of Drawables within the same ARObject, refer to Drawable2D.zOrder.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: 0
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">
+                        <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                            <h4>Properties inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="ARchitectObject.html#property_destroyed">
+                                        <a class="" href="ARchitectObject.html#property_destroyed" property="yui:name" title="destroyed">destroyed</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:method" resource="#method_drawables.addCamDrawable">
+                                    <h4>
+                                        <a name="method_drawables.addCamDrawable">drawables.addCamDrawable</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">drawables.addCamDrawable</strong>
+                                           (
+                                                
+                                                        
+                                                         drawable
+                                                    
+                                                
+                                                        , 
+                                                         position
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Adds Drawables to the ARObject in the camera.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">drawable</span>
+                                                        &lt;<span property="yui:type">Drawable|Array(Drawable)</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> The drawable(s) that should be added to the camera. Can either be a
+single Drawable, or an Array of Drawables.</span>
+                                                        </dd>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">position</span>
+                                                        &lt;<span property="yui:type">int</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> The position where the Drawable should be added in the array. If
+not specified, the Drawable will be added at the end of the
+array.</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_drawables.removeCamDrawable">
+                                    <h4>
+                                        <a name="method_drawables.removeCamDrawable">drawables.removeCamDrawable</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">drawables.removeCamDrawable</strong>
+                                           (
+                                                
+                                                        
+                                                         drawable|position
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Removes Drawables from the ARObject in the cam.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">drawable|position</span>
+                                                        &lt;<span property="yui:type">Drawable|Array(Drawable)|int</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> When a single Drawable or an Array of
+Drawables is given, these Drawables will be removed from the
+array. When an integer is given, the Drawable at the specified
+position will be removed.</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_isVisible">
+                                    <h4>
+                                        <a name="method_isVisible">isVisible</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        boolean
+                                            <strong property="yui:name">isVisible</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Returns the current visibility state of the
+ARObject. An ARObject is defined visible when at
+least one of the ARObject's locations (geolocations or visual tracker) is projected
+onto a screen coordinate which is currently visible
+on the screen.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        boolean
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo">Whether the ARObject is currently visible on
+the screen (true) or invisble (false).</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_onClick">
+                                    <h4>
+                                        <a name="method_onClick">onClick</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        boolean
+                                            <strong property="yui:name">onClick</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Will be executed when any of the ARObject's Drawables have been clicked,
+and none of the clicked Drawables's onClick() triggers (might also be referenced by another ARObject)
+have been set to quit the click chain. ARObject.onClick() will be executed after any Drawable.onClick() triggers have
+been executed.<br/><br/>
+In case multiple ARObjects are hit by the click, the order of the execution is defined by the distance
+of the ARObject to the user, with the closest ARObject's click trigger executed first.<br/><br/>
+The return value of the
+function determines if, after the onClick()-Function was
+executed for this ARObject, the queue shall continue to execute
+onClick() for the next ARObject in the queue. In case the last
+ARObject in the queue still requests to continue the click-queue,
+context.onScreenClick() will be executed.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        boolean
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"><ul>
+<li>false - The click-queue should not stop with this ARObject.
+Thus, the next ARObject's onClick() function will be
+executed. This is the default value in case no return value is
+set or the function is not defined for this ARObject.</li>
+<li>true - The queue-execution will stop at the current
+ARObject, underlying ARObjects will not receive
+onClick() calls.</li>
+</ul></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_onEnterFieldOfVision">
+                                    <h4>
+                                        <a name="method_onEnterFieldOfVision">onEnterFieldOfVision</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">onEnterFieldOfVision</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            The trigger will fire when the ARObject's visibility has
+changed from invisible to visible.<br/><br/>
+The trigger is null by default, and will thus result in no action
+executed when the trigger fires. A developer can add custom functionality
+by assigning a custom function to onEnterFieldOfVision.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_onExitFieldOfVision">
+                                    <h4>
+                                        <a name="method_onExitFieldOfVision">onExitFieldOfVision</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">onExitFieldOfVision</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Will be executed when the ARObject's visibility has changed
+from visible to invisible.<br/><br/>
+The trigger is null by default, and will thus result in no action
+executed when the trigger fires. A developer can add custom functionality
+by assigning a custom function to onExitFieldOfVision.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:method" resource="#method_triggers.onEnterFieldOfVision">
+                                    <h4>
+                                        <a name="method_triggers.onEnterFieldOfVision">triggers.onEnterFieldOfVision</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">triggers.onEnterFieldOfVision</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Use onEnterFieldOfVision instead.
+                                            </div>        
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:method" resource="#method_triggers.onExitFieldOfVision">
+                                    <h4>
+                                        <a name="method_triggers.onExitFieldOfVision">triggers.onExitFieldOfVision</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">triggers.onExitFieldOfVision</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Use onExitFieldOfVision instead.
+                                            </div>        
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">                    
+                            <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                                <h4>Methods inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="ARchitectObject.html#method_destroy">                                        
+                                            <a class="" href="ARchitectObject.html#method_destroy" property="yui:name" title="destroy">destroy</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_AR.html" title="AR">AR</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="ActionArea.html" title="ActionArea">ActionArea</a></li>
+                                <li class=""><a href="ActionRange.html" title="ActionRange">ActionRange</a></li>
+                                <li class=""><a href="AnimatedImageDrawable.html" title="AnimatedImageDrawable">AnimatedImageDrawable</a></li>
+                                <li class=""><a href="Animation.html" title="Animation">Animation</a></li>
+                                <li class=""><a href="AnimationGroup.html" title="AnimationGroup">AnimationGroup</a></li>
+                                <li class=""><a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a></li>
+                                <li class="selected"><a href="ARObject.html" title="ARObject">ARObject</a></li>
+                                <li class=""><a href="BoundingRectangle.html" title="BoundingRectangle">BoundingRectangle</a></li>
+                                <li class=""><a href="Circle.html" title="Circle">Circle</a></li>
+                                <li class=""><a href="CONST.html" title="CONST">CONST</a></li>
+                                <li class=""><a href="context.html" title="context">context</a></li>
+                                <li class=""><a href="Drawable.html" title="Drawable">Drawable</a></li>
+                                <li class=""><a href="Drawable2D.html" title="Drawable2D">Drawable2D</a></li>
+                                <li class=""><a href="GeoLocation.html" title="GeoLocation">GeoLocation</a></li>
+                                <li class=""><a href="GeoObject.html" title="GeoObject">GeoObject</a></li>
+                                <li class=""><a href="HtmlDrawable.html" title="HtmlDrawable">HtmlDrawable</a></li>
+                                <li class=""><a href="ImageDrawable.html" title="ImageDrawable">ImageDrawable</a></li>
+                                <li class=""><a href="ImageResource.html" title="ImageResource">ImageResource</a></li>
+                                <li class=""><a href="Label.html" title="Label">Label</a></li>
+                                <li class=""><a href="Location.html" title="Location">Location</a></li>
+                                <li class=""><a href="logger.html" title="logger">logger</a></li>
+                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+                                <li class=""><a href="ModelAnimation.html" title="ModelAnimation">ModelAnimation</a></li>
+                                <li class=""><a href="PropertyAnimation.html" title="PropertyAnimation">PropertyAnimation</a></li>
+                                <li class=""><a href="radar.html" title="radar">radar</a></li>
+                                <li class=""><a href="RelativeLocation.html" title="RelativeLocation">RelativeLocation</a></li>
+                                <li class=""><a href="Sound.html" title="Sound">Sound</a></li>
+                                <li class=""><a href="Style.html" title="Style">Style</a></li>
+                                <li class=""><a href="Trackable2DObject.html" title="Trackable2DObject">Trackable2DObject</a></li>
+                                <li class=""><a href="Tracker.html" title="Tracker">Tracker</a></li>
+                        </ul>
+                    </div>
+
+                    <!--<div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="architect_generated.js.html" title="architect_generated.js">architect_generated.js</a></li>
+                        </ul>
+                    </div>-->
+
+                    <div id="propertyList" class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#property_drawables.cam" title="drawables.cam">drawables.cam</a></li>
+                                <li class=""><a href="#property_enabled" title="enabled">enabled</a></li>
+                                <li class=""><a href="#property_renderingOrder" title="renderingOrder">renderingOrder</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#method_drawables.addCamDrawable" title="drawables.addCamDrawable">drawables.addCamDrawable</a></li>
+                                <li class=""><a href="#method_drawables.removeCamDrawable" title="drawables.removeCamDrawable">drawables.removeCamDrawable</a></li>
+                                <li class=""><a href="#method_isVisible" title="isVisible">isVisible</a></li>
+                                <li class=""><a href="#method_onClick" title="onClick">onClick</a></li>
+                                <li class=""><a href="#method_onEnterFieldOfVision" title="onEnterFieldOfVision">onEnterFieldOfVision</a></li>
+                                <li class=""><a href="#method_onExitFieldOfVision" title="onExitFieldOfVision">onExitFieldOfVision</a></li>
+                                <li class=" deprecated"><a href="#method_triggers.onEnterFieldOfVision" title="triggers.onEnterFieldOfVision">triggers.onEnterFieldOfVision</a></li>
+                                <li class=" deprecated"><a href="#method_triggers.onExitFieldOfVision" title="triggers.onExitFieldOfVision">triggers.onExitFieldOfVision</a></li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2013 Wikitude GmbH. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "ARchitectObject.html#method_destroy", "access": "", "host": "ARchitectObject", "type": "method", "name": "destroy"}, {"url": "ARchitectObject.html#property_destroyed", "access": "", "host": "ARchitectObject", "type": "property", "name": "destroyed"}, {"url": "ARObject.html#method_drawables.addCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.addCamDrawable"}, {"url": "ARObject.html#property_drawables.cam", "access": "", "host": "ARObject", "type": "property", "name": "drawables.cam"}, {"url": "ARObject.html#method_drawables.removeCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.removeCamDrawable"}, {"url": "ARObject.html#property_enabled", "access": "", "host": "ARObject", "type": "property", "name": "enabled"}, {"url": "ARObject.html#method_isVisible", "access": "", "host": "ARObject", "type": "method", "name": "isVisible"}, {"url": "ARObject.html#method_onClick", "access": "", "host": "ARObject", "type": "method", "name": "onClick"}, {"url": "ARObject.html#method_onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onEnterFieldOfVision"}, {"url": "ARObject.html#method_onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onExitFieldOfVision"}, {"url": "ARObject.html#property_renderingOrder", "access": "", "host": "ARObject", "type": "property", "name": "renderingOrder"}, {"url": "ARObject.html#method_triggers.onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onEnterFieldOfVision"}, {"url": "ARObject.html#method_triggers.onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onExitFieldOfVision"}];
+</script>
+</body>
+</html>

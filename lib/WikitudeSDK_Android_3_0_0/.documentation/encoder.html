@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Wikitude SDK for Android documentation</title>
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/docs.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css" media="print">
+    <link type="text/css" rel="stylesheet" href="css/github.min.css">
+    
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/highlight-7.3.min.js"></script>
+   
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Every image referenced from a Markdown document
+            $("#content img").each(function() {
+                // Let's put a caption if there is one
+                if($(this).attr("alt"))
+                    $(this).wrap('<figure class="image"></figure>')
+                        .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
+                });
+        });
+    </script>
+
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        
+            <header id="header">
+                <h1><a href="">Wikitude SDK for Android</a></h1>
+            </header>
+        
+        
+
+
+    <div id="sidebar">
+        <nav id="toc">
+            
+    <ol>
+    
+        <li>
+            <a href="gettingstartedandroid.html#getting-started">Getting started</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="setupguideandroid.html#setup-guide-android">Setup Guide Android</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="samples.html#examples">Examples</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="imagerecognition.html#image-recognition">Image Recognition</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionand3d.html#image-recognition-and-3d">Image Recognition And 3D</a>
+            
+        </li>
+    
+        <li>
+            <a href="poi.html#point-of-interest-poi">Point Of Interest (POI)</a>
+            
+        </li>
+    
+        <li>
+            <a href="retrievingpoidata.html#retrieving-poi-data">Retrieving POI Data</a>
+            
+        </li>
+    
+        <li>
+            <a href="browsingpois.html#browsing-pois">Browsing POIs</a>
+            
+        </li>
+    
+        <li>
+            <a href="imagerecognitionandgeo.html#image-recognition-and-geo">Image Recognition And Geo</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemir.html#solar-system-ir">Solar System (IR)</a>
+            
+        </li>
+    
+        <li>
+            <a href="solarsystemgeo.html#solar-system-geo">Solar System (Geo)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#development-workflow">Development Workflow</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="workflow.html#code-test-debug">Code, Test, Debug</a>
+            
+        </li>
+    
+        <li>
+            <a href="workflow.html#on-device-debugging">On-Device Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#3d-assets-workflow">3D Assets Workflow</a>
+            
+        </li>
+    
+        <li>
+            <a href="assetsworkflow.html#working-with-3d-animations">Working with 3D Animations</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="tools.html#tools">Tools</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="ade.html#ade">ADE</a>
+            
+        </li>
+    
+        <li>
+            <a href="logger.html#logger">Logger</a>
+            
+        </li>
+    
+        <li>
+            <a href="targetmanagement.html#target-management">Target Management</a>
+            
+        </li>
+    
+        <li>
+            <a href="encoder.html#wikitude-3d-encoder">Wikitude 3D Encoder</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="architectapi.html#architect-api-reference">ARchitect API Reference</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="migration-android.html#migration">Migration</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="migration-android.html#migrate-from-20-to-30">Migrate from 2.0 to 3.0</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+        </nav>
+    </div>
+
+<article id="content">
+    <a name="wikitude-3d-encoder"></a><h2>Wikitude 3D Encoder</h2>
+<a name="wikitude-3d-encoder-getting-started-with-3d-models-in-wikitude"></a><h3>Wikitude 3D Encoder - Getting Started with 3D models in Wikitude</h3>
+<p>Prerequisites</p>
+<ul>
+<li>A 3D model in FBX (.fbx) or Collada (.dae) file format</li>
+<li>The Wikitude 3D Encoder for Windows or MacOS X</li>
+</ul>
+<a name="general-workflow"></a><h4>General Workflow</h4>
+<p>3D content within Wikitude can only be loaded from so-called <em>Wikitude
+3D Format</em> files (.wt3).  This is a compressed binary format for
+describing 3D content, which is optimized for fast loading and handling
+of 3D content on a mobile devices. You still can use 3D models from your
+favorite 3D modeling tools (such as Autodesk® Maya® or Blender) but you&#39;ll need
+to convert them to the wt3 file format. Wikitude offers a desktop
+application called the Wikitude 3D Encoder, which handles the task of
+encoding your 3D source file.  The Encoder is compatible with Autodesk® FBX®
+files (.fbx) and the open standard Collada (.dae) file formats for
+encoding to .wt3.</p>
+<p>Each step for getting a .wt3 file from your 3D content is explained in
+more detail below.</p>
+<ol>
+<li>How to install the Wikitude 3D Encoder</li>
+<li>Supported 3D Models</li>
+<li>The Wikitude 3D Encoder user interface</li>
+<li>First Steps Using the Wikitude 3D Encoder</li>
+<li>Export files to .wt3</li>
+</ol>
+<a name="how-to-install-wikitude-3d-encoder"></a><h4>How to install Wikitude 3D Encoder</h4>
+<a name="install-wikitude-3d-encoder-on-windows-xp-windows-7-windows-8"></a><h5>Install Wikitude 3D Encoder on Windows XP/ Windows 7/ Windows 8</h5>
+<ul>
+<li>Download the Encoder from
+<a href="http://developer.wikitude.com/download">developer.wikitude.com/download</a></li>
+<li>Run the setup.exe installation file and follow the installation
+wizard</li>
+</ul>
+<a name="install-wikitude-3d-encoder-on-mac-os-x"></a><h5>Install Wikitude 3D Encoder on Mac OS X</h5>
+<ul>
+<li>Download the Encoder from
+<a href="http://developer.wikitude.com/download">devleoper.wikitude.com/download</a></li>
+<li>Open the .dmg installation image and drag the Wikitude 3D Encoder
+application to your Applications folder.</li>
+</ul>
+<a name="supported-3d-models"></a><h5>Supported 3D Models</h5>
+<p>The Encoder can import Autodesk® FBX® and Collada files. FBX is the
+preferred way as Collada&#39;s open standard allows for customized tags that
+might not be supported.</p>
+<p>Features you can use in your 3D model source files:</p>
+<ul>
+<li>Static model (composed of triangles)</li>
+<li>Materials (Phong, Lambert, Blinn)</li>
+</ul>
+<p>Features that are not (yet) supported</p>
+<ul>
+<li>Animations</li>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+<li>NURBS</li>
+</ul>
+<p>If you are not sure whether the 3D model at hand fits the requirements,
+try to encode it. You will receive a list of warnings and/or errors that
+tell you if the 3D content will work within Wikitude and/or uses unsupported
+features.</p>
+<a name="the-wikitude-3d-encoder-user-interface"></a><h5>The Wikitude 3D Encoder user interface</h5>
+<p>On startup you are presented with the following interface.</p>
+<ol>
+<li>Toolbar for frequently used functions</li>
+<li>3D working area to view your 3D content.</li>
+<li>Scene graph that lists all 3D content in a tree view</li>
+<li>A properties area that shows details about a selected node from the
+scene graph</li>
+<li>Status bar</li>
+</ol>
+<p><img src="images/Wikitude3DEncoderInterface.png" alt="Wikitude 3D Encoder Interface"></p>
+<a name="first-steps-using-the-wikitude-3d-encoder"></a><h5>First steps using the Wikitude 3D Encoder</h5>
+<p>Start by opening a supported 3D model file (.fbx, .dae). Select <code>Open</code>
+from the toolbar or drag and drop a supported file onto the 3D working
+area. Depending on the size of the file this can take a while. Once
+finished, the 3D content will be shown in the 3D working area.</p>
+<p>In case the Wikitude 3D Encoder encounters features not supported in
+your file, it will present a list of errors or warnings in a dialog box. The
+popup window summarizes the issues found during the import process. You
+can bring up this information again at a later time via <code>Window -&gt; Show
+Logging Window</code>. Check the message and details carefully to identify
+areas that need to be altered in your 3D model file, ensuring that it can be
+encoded properly.</p>
+<p>The 3D working area shows your encoded 3D model file in the exact way as
+it would show in Wikitude. Drag, pan and zoom to verify that your model
+looks ok.  If you need to check specific properties (e.g. materials
+or lights) select the corresponding node in the scene graph. The details
+of a selected node are displayed in the properties view.</p>
+<a name="export-files-to-wt3"></a><h5>Export files to .wt3</h5>
+<p>Once you are satisfied with the encoded file, choose <code>Export from the
+toolbar. Then choose the location where the exported file should be
+saved. Exported .wt3 files can be used directly in an augmented reality
+experience using Wikitude. If you want to view a .wt3 file on the
+desktop, simply choose</code>Open` or drag and drop it into the
+Wikitude 3D Encoder.</p>
+<a name="wikitude-3d-encoder-tips-and-tricks"></a><h3>Wikitude 3D Encoder - Tips and Tricks</h3>
+<a name="choosing-the-right-3d-model-for-wikitude"></a><h4>Choosing the right 3D Model for Wikitude</h4>
+<p>This guide should give an overview on how to choose the right 3D models
+for displaying it in Wikitude&#39;s augmented reality SDK. As Wikitude is
+basing 3D support on a converted file format (.wt3) it is good to follow
+the best practices below.</p>
+<a name="input-format"></a><h4>Input format</h4>
+<a name="supported-3d-model-files-for-encoding-it-into-wt3-files-are"></a><h4>Supported 3D model files for encoding it into wt3 files are:</h4>
+<ul>
+<li>FBX (.fbx)</li>
+<li>Collada (.dae)</li>
+</ul>
+<p>We recommend using FBX wherever possible as tools support for FBX is
+widely available. Furthermore Collada allows you to include customized
+attributes that might not be understood by the Wikitude 3D Encoder.</p>
+<a name="features-you-can-use-in-your-3d-model-source-files"></a><h5>Features you can use in your 3D model source files:</h5>
+<ul>
+<li>Static model (made-up of triangles)</li>
+<li>Materials (Phong, Lambert, Blinn)</li>
+</ul>
+<a name="features-that-are-not-yet-supported"></a><h5>Features that are not (yet) supported</h5>
+<ul>
+<li>Animations</li>
+<li>Normal Mapping</li>
+<li>Multi Textures</li>
+<li>NURBS</li>
+</ul>
+<a name="good-practice"></a><h4>Good practice</h4>
+<a name="use-png-textures"></a><h5>Use png textures</h5>
+<p>Textures are stored in png format within wt3 files. While the Wikitude 3D
+Encoder takes care of automatically converting textures to png, it is
+good practice to use png textures in the source 3D Model file.</p>
+<a name="use-power-of-2-textures"></a><h5>Use power of 2 textures</h5>
+<p>The current rendering hardware on mobile devices requires certain
+texture attributes if the texture is not a power of 2 textures. This can
+result in unexpectedly textured models. Using power of 2
+textures yields a better performance when running on the device. A
+power of 2 textures has a width and height of 2^x - e.g. 64x64,
+128x128, and so on.</p>
+<a name="validate-texture-paths"></a><h5>Validate Texture paths</h5>
+<p>If your opened model appears without textures, very often the texture
+paths are not set correctly. Make sure your texture paths are valid and
+accessible. For example, check that they reference the texture files in a
+relative way and that all required textures exist and are accessible.</p>
+<a name="keep-texture-size-as-low-as-possible"></a><h5>Keep texture size as low as possible</h5>
+<p>Keeping texture sizes as low as possible, while maintaining the required
+details, has several benefits. The exported .wt3 file will be smaller and
+therefore quicker to load over the network or from the application
+bundle. Additionally, it will take up less graphics memory thus freeing
+up space for additional models or content.</p>
+<a name="use-only-one-light"></a><h5>Use only one light</h5>
+<p>To maintain a good rendering performance, each part of your model (node)
+is only affected by a single light source. You may use multiple lights
+in the source file but at render time only a single node is selected to
+affect a mesh part. We make a best guess, utilizing the scene graph to
+assign a light to the node.
+If lighting is not required, simply remove the lights from your source
+3D model file and/or set the corresponding material properties. This
+helps to speed up rendering.</p>
+<a name="resolving-problems"></a><h4>Resolving problems</h4>
+<a name="3d-model-displays-correctly-in-the-wikitude-3d-encoder-but-does-not-show-on-the-device"></a><h5>3D Model displays correctly in the Wikitude 3D Encoder but does not show on the device.</h5>
+<p>Check that your textures have a reasonable size. Limiting the textures
+to the lowest size that maintains the required details is recommended.</p>
+<a name="textures-are-missing"></a><h5>Textures are missing</h5>
+<p>Check the error/warning dialog during the import process of the model. It
+will give you detailed information on which textures are problematic.
+Make sure the texture paths are valid and accessible.</p>
+
+</article>
+
+        <footer id="footer">
+        &copy; 2013 <a href="http://www.wikitude.com">Wikitude GmbH</a> · <a href="http://www.wikitude.com/imprint">Imprint</a>
+        </footer>
+    </div>
+</body>
+</html>

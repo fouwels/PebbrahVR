@@ -1,0 +1,510 @@
+<!--
+This documentation has been created by using YUI Doc: Copyright © 2011 Yahoo! Inc. All rights reserved.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+The syntax highlighting capability has been created by using gallery-prettify: Copyright (C) 2006 Google Inc. 
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>ARchitect API Documentation  - Drawable  </title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=1371109929.53" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=1371109929.53" />
+
+    <script type="text/javascript" src="assets/api-js?stamp=1371109929.53"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=1371109929.53"></script>
+    
+    <script type="text/javascript" src="assets/yui.js"></script>
+    <script type="text/javascript">
+        YUI({
+            modules: {
+                'gallery-prettify': {
+                    fullpath: 'assets/gallery-prettify.js'
+                }
+            }
+        }).use('gallery-prettify', function(Y) {
+            // It's loaded, now make everything pretty!
+            Y.prettyPrint();
+        });
+    </script>
+    <link type="text/css" rel="stylesheet" href="assets/gallery-prettify.css">
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://architect.wikitude.com" title="Wikitude ARchitect">Wikitude ARchitect v3.0 API Documentation</a></h1>
+        <!--<h3>AR</h3>-->
+        <b>
+        <a href="./index.html" title="Wikitude ARchitect"><u>Wikitude ARchitect</u></a> 
+            &gt; <a href="./module_AR.html" title="AR"><u>AR</u></a>
+                 &gt; Drawable 
+        </b>
+        <!--<form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>-->
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <!--<span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>-->
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">Drawable</b>
+                        <span class="extends">
+                           - extends <a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                        <dl class="subclasses" rel="yui:subclasses">
+                            <dt>Known Subclasses:</dt>
+                            <dd>
+                                    <span rel="yui:subclass" resource="Drawable2D.html">
+                                    <a href="Drawable2D.html" property="yui:name" title="Drawable2D">Drawable2D</a>
+                                    </span>
+                                    <span rel="yui:subclass" resource="Model.html">
+                                    <a href="Model.html" property="yui:name" title="Model">Model</a>
+                                    </span>
+                            </dd>
+                       </dl>
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        A Drawable is the base class for any graphical representation of
+a GeoObject. <br/><br/>
+Drawable is a superclass for other classes and must not be directly
+instantiated by the developer.<br/><br/>
+Rotations can be applied to Drawables. The local coordinate system of a Drawable is defined as
+a righthanded coordinate system, following the definitions below:
+<ul>
+<li>The origin of the coordinate system is in the location of the Object the Drawable
+is attached to.</li>
+<li>The x axis is pointing right</li>
+<li>The y axis is pointing up</li>
+<li>The z axis is pointing out of the screen.</li>
+</ul>
+The definition of right and up depend on the type of the ARObject the Drawable is attached to.
+In case of a GeoObject, the direction are defined relative to the earth's surface, and the Drawable is always oriented towards the user. In case of
+an Trackable2DObject, the directions are defined relative to the underlying tracked object.<br/><br/>
+Rotations are defined and applied in roll-tilt-heading definition (in this order), using static axis.
+                    </div>
+
+                    
+                    <div rel="yui:properties" resource="#properties">
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:property" resource="#property_enabled">
+                                    <h4><a name="property_enabled" property="yui:name">enabled</a>
+                                        - <code><span property="yui:type">boolean</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Flag to enable/disable the Drawable. If the Drawable is
+disabled, it will never appear on the screen and triggers on
+this Drawable will never be fired. In case it is enabled, it
+can be rendered on the screen and fire triggers.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: true
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:property" resource="#property_heading">
+                                    <h4><a name="property_heading" property="yui:name">heading</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+                                    </div>
+     
+                                        
+
+                                    <div class="deprecated" property="yui:deprecated">
+                                        <strong>Deprecated:</strong> Use rotate.heading instead.
+                                    </div>        
+
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:property" resource="#property_roll">
+                                    <h4><a name="property_roll" property="yui:name">roll</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+                                    </div>
+     
+                                        
+
+                                    <div class="deprecated" property="yui:deprecated">
+                                        <strong>Deprecated:</strong> Use rotate.roll instead.
+                                    </div>        
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_rotate.heading">
+                                    <h4><a name="property_rotate.heading" property="yui:name">rotate.heading</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Defines a rotation of the Drawable around the y-axis, specified in degrees. Values will be applied modulo 360.
+A value of 361 degrees has the same effect as setting the value to 1 degree.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: 0
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_rotate.roll">
+                                    <h4><a name="property_rotate.roll" property="yui:name">rotate.roll</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Defines a rotation of the Drawable around the z-axis, specified in degrees. Values will be applied modulo 360.
+A value of 361 degrees has the same effect as setting the value to 1 degree.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: 0
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_rotate.tilt">
+                                    <h4><a name="property_rotate.tilt" property="yui:name">rotate.tilt</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Defines a rotation of the Drawable around the x-axis, specified in degrees. Values will be applied modulo 360.
+A value of 361 degrees has the same effect as setting the value to 1 degree.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default" property="yui:defaultValue">
+                                        Default Value: 0
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:property" resource="#property_tilt">
+                                    <h4><a name="property_tilt" property="yui:name">tilt</a>
+                                        - <code><span property="yui:type">float</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+                                    </div>
+     
+                                        
+
+                                    <div class="deprecated" property="yui:deprecated">
+                                        <strong>Deprecated:</strong> Use rotate.tilt instead.
+                                    </div>        
+
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">
+                        <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                            <h4>Properties inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="ARchitectObject.html#property_destroyed">
+                                        <a class="" href="ARchitectObject.html#property_destroyed" property="yui:name" title="destroyed">destroyed</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:method" resource="#method_onClick">
+                                    <h4>
+                                        <a name="method_onClick">onClick</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        boolean
+                                            <strong property="yui:name">onClick</strong>
+                                           (
+                                                
+                                                        
+                                                         arObject
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            When the Drawable is clicked, the system will trigger
+Drawable.onClick(ARObject). A click on the screen might hit multiple
+Drawables, thus a click creates a "clicked Drawables-queue", with the
+uppermost Drawable in the front of the queue. The return value of the
+function determines if, after the onClick()-Function was
+executed for this Drawable, the queue shall continue to execute
+onClick() for the next Drawable in the queue. In case the last
+Drawable in the queue still requests to continue the click-queue,
+ARObject.onClick() will be executed. If the queue still continues,
+context.onScreenClick() will be executed.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl rel="yui:parameters">
+                                                    <dt>Parameters:</dt>
+                                                        <dd rel="yui:parameter">
+                                                        <code><span property="yui:name">arObject</span>
+                                                        &lt;<span property="yui:type">ARObject</span>&gt;
+                                                        </code>
+                                                        <span property="yui:description"> the ARObject the clicked Drawable is attached to.</span>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        boolean
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"><ul>
+<li>false - The click-queue should not stop with this Drawable.
+Thus, the next Drawable's onClick() function will be
+executed. This is the default value in case no return value is
+set or the function is not defined for this Drawable.</li>
+<li>true - The queue-execution will stop at the current
+Drawable, underlying Drawables will not receive
+onClick() calls.</li>
+</ul>
+The trigger is null by default, and will thus result in no action
+executed when the trigger fires. A developer can add custom functionality
+by assigning a custom function to onClick.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class=" deprecated" rel="yui:method" resource="#method_triggers.onClick">
+                                    <h4>
+                                        <a name="method_triggers.onClick">triggers.onClick</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">triggers.onClick</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code property="yui:return">
+                                                        void
+                                                    </code></dt>
+                                                    <dd property="yui:returnInfo"></dd>
+                                                </dl>
+
+
+             
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Use onClick instead.
+                                            </div>        
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">                    
+                            <div class="section field inheritance" rel="yui:superclass"  resource="ARchitectObject.html">
+                                <h4>Methods inherited from <a href="ARchitectObject.html" property="yui:name" title="ARchitectObject">ARchitectObject</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="ARchitectObject.html#method_destroy">                                        
+                                            <a class="" href="ARchitectObject.html#method_destroy" property="yui:name" title="destroy">destroy</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_AR.html" title="AR">AR</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="ActionArea.html" title="ActionArea">ActionArea</a></li>
+                                <li class=""><a href="ActionRange.html" title="ActionRange">ActionRange</a></li>
+                                <li class=""><a href="AnimatedImageDrawable.html" title="AnimatedImageDrawable">AnimatedImageDrawable</a></li>
+                                <li class=""><a href="Animation.html" title="Animation">Animation</a></li>
+                                <li class=""><a href="AnimationGroup.html" title="AnimationGroup">AnimationGroup</a></li>
+                                <li class=""><a href="ARchitectObject.html" title="ARchitectObject">ARchitectObject</a></li>
+                                <li class=""><a href="ARObject.html" title="ARObject">ARObject</a></li>
+                                <li class=""><a href="BoundingRectangle.html" title="BoundingRectangle">BoundingRectangle</a></li>
+                                <li class=""><a href="Circle.html" title="Circle">Circle</a></li>
+                                <li class=""><a href="CONST.html" title="CONST">CONST</a></li>
+                                <li class=""><a href="context.html" title="context">context</a></li>
+                                <li class="selected"><a href="Drawable.html" title="Drawable">Drawable</a></li>
+                                <li class=""><a href="Drawable2D.html" title="Drawable2D">Drawable2D</a></li>
+                                <li class=""><a href="GeoLocation.html" title="GeoLocation">GeoLocation</a></li>
+                                <li class=""><a href="GeoObject.html" title="GeoObject">GeoObject</a></li>
+                                <li class=""><a href="HtmlDrawable.html" title="HtmlDrawable">HtmlDrawable</a></li>
+                                <li class=""><a href="ImageDrawable.html" title="ImageDrawable">ImageDrawable</a></li>
+                                <li class=""><a href="ImageResource.html" title="ImageResource">ImageResource</a></li>
+                                <li class=""><a href="Label.html" title="Label">Label</a></li>
+                                <li class=""><a href="Location.html" title="Location">Location</a></li>
+                                <li class=""><a href="logger.html" title="logger">logger</a></li>
+                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+                                <li class=""><a href="ModelAnimation.html" title="ModelAnimation">ModelAnimation</a></li>
+                                <li class=""><a href="PropertyAnimation.html" title="PropertyAnimation">PropertyAnimation</a></li>
+                                <li class=""><a href="radar.html" title="radar">radar</a></li>
+                                <li class=""><a href="RelativeLocation.html" title="RelativeLocation">RelativeLocation</a></li>
+                                <li class=""><a href="Sound.html" title="Sound">Sound</a></li>
+                                <li class=""><a href="Style.html" title="Style">Style</a></li>
+                                <li class=""><a href="Trackable2DObject.html" title="Trackable2DObject">Trackable2DObject</a></li>
+                                <li class=""><a href="Tracker.html" title="Tracker">Tracker</a></li>
+                        </ul>
+                    </div>
+
+                    <!--<div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="architect_generated.js.html" title="architect_generated.js">architect_generated.js</a></li>
+                        </ul>
+                    </div>-->
+
+                    <div id="propertyList" class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#property_enabled" title="enabled">enabled</a></li>
+                                <li class=" deprecated"><a href="#property_heading" title="heading">heading</a></li>
+                                <li class=" deprecated"><a href="#property_roll" title="roll">roll</a></li>
+                                <li class=""><a href="#property_rotate.heading" title="rotate.heading">rotate.heading</a></li>
+                                <li class=""><a href="#property_rotate.roll" title="rotate.roll">rotate.roll</a></li>
+                                <li class=""><a href="#property_rotate.tilt" title="rotate.tilt">rotate.tilt</a></li>
+                                <li class=" deprecated"><a href="#property_tilt" title="tilt">tilt</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#method_onClick" title="onClick">onClick</a></li>
+                                <li class=" deprecated"><a href="#method_triggers.onClick" title="triggers.onClick">triggers.onClick</a></li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2013 Wikitude GmbH. All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+    ALL_YUI_PROPS = [{"url": "ARchitectObject.html#method_destroy", "access": "", "host": "ARchitectObject", "type": "method", "name": "destroy"}, {"url": "ARchitectObject.html#property_destroyed", "access": "", "host": "ARchitectObject", "type": "property", "name": "destroyed"}, {"url": "ARObject.html#method_drawables.addCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.addCamDrawable"}, {"url": "ARObject.html#property_drawables.cam", "access": "", "host": "ARObject", "type": "property", "name": "drawables.cam"}, {"url": "ARObject.html#method_drawables.removeCamDrawable", "access": "", "host": "ARObject", "type": "method", "name": "drawables.removeCamDrawable"}, {"url": "ARObject.html#property_enabled", "access": "", "host": "ARObject", "type": "property", "name": "enabled"}, {"url": "Drawable.html#property_enabled", "access": "", "host": "Drawable", "type": "property", "name": "enabled"}, {"url": "Drawable.html#property_heading", "access": "", "host": "Drawable", "type": "property", "name": "heading"}, {"url": "ARObject.html#method_isVisible", "access": "", "host": "ARObject", "type": "method", "name": "isVisible"}, {"url": "ARObject.html#method_onClick", "access": "", "host": "ARObject", "type": "method", "name": "onClick"}, {"url": "Drawable.html#method_onClick", "access": "", "host": "Drawable", "type": "method", "name": "onClick"}, {"url": "ARObject.html#method_onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onEnterFieldOfVision"}, {"url": "ARObject.html#method_onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "onExitFieldOfVision"}, {"url": "ARObject.html#property_renderingOrder", "access": "", "host": "ARObject", "type": "property", "name": "renderingOrder"}, {"url": "Drawable.html#property_roll", "access": "", "host": "Drawable", "type": "property", "name": "roll"}, {"url": "Drawable.html#property_rotate.heading", "access": "", "host": "Drawable", "type": "property", "name": "rotate.heading"}, {"url": "Drawable.html#property_rotate.roll", "access": "", "host": "Drawable", "type": "property", "name": "rotate.roll"}, {"url": "Drawable.html#property_rotate.tilt", "access": "", "host": "Drawable", "type": "property", "name": "rotate.tilt"}, {"url": "Drawable.html#property_tilt", "access": "", "host": "Drawable", "type": "property", "name": "tilt"}, {"url": "Drawable.html#method_triggers.onClick", "access": "", "host": "Drawable", "type": "method", "name": "triggers.onClick"}, {"url": "ARObject.html#method_triggers.onEnterFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onEnterFieldOfVision"}, {"url": "ARObject.html#method_triggers.onExitFieldOfVision", "access": "", "host": "ARObject", "type": "method", "name": "triggers.onExitFieldOfVision"}];
+</script>
+</body>
+</html>

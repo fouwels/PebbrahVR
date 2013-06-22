@@ -1,0 +1,83 @@
+# 3.0 ARchitect Release (18.06.2013)
+  New: Integrated image recognition and tracking engine
+  New: Examples application
+  New: Support for 3D model animations
+  New: Support for transparent materials, textures and colors on 3D models
+  New: API method for setting distance based scaling parameters. See reference on AR.context.scene
+  Fixed: Under certain circumstances the light of a 3D model was ignored
+  Fixed: Issue when locking screen and radar is visible
+  Fixed: Possible crash when using wrong license key
+  Fixed: Possible crash when returning to an ArchitectView that uses HTMLDrawables
+  Fixed: Aspect ratio in camera for devices with image recognition capability
+  Improved: Image recognition supports up to 1000 targets
+  Improved: Rewritten, extended and improved SDK documentation.
+  Improved: Significant increase of start up time and general performance 
+  Improved: Minor fixes
+  Removed: Support for Vuforia SDK
+
+# 2.0 ARchitect Release (26.02.2013)
+  New: Support for 3D models via new ARchitect class Model 
+  Fixed: Missing SD card prevented image recognition from running successfully.
+  Improved: Minor fixes and performance improvements
+
+# 1.2 ARchitect Release (18.12.2012)
+  New: Improved bridge performance (SteelBridge and Weasel)
+  New: onFinish trigger for AnimatedImageDrawables
+  New: ImageResource onLoad() reports width and height of loaded image
+  New: PropertyAnimation can be paused and resumed
+  New: Customize clicking behavior (click, touch down, touch up)
+  New: Set culling distance from JavaScript
+  New: Support for Vuforia SDK v2.0
+
+  Improved: Architect Desktop Engine (ADE) now overlays world
+  Removed: (iOS) SBJSON library, resolves duplicated symbols error if SBJSON library was used by application as well
+  Required: (iOS) New linker flag: -ObjC
+  
+
+# 1.1.1 Maintenance Release (26.09.2012)
+  New: iOS 6 support (see http://bit.ly/P4lSlL for details)
+
+  Fixed: Possible crash when using openInBorwser or startVideoPlayer while IR is active
+  Fixed: Possible crash when calling start / stop while IR is active
+  Improved: Handling of unavailable gyroscope on iOS
+  Improved: Minor performance increase for rendering HTML drawables.
+  Improved: Handling of images with semi transparency
+  
+
+# 1.1 ARchitect Release (16.08.2012)
+ New features:
+   New: HTML Drawables 
+   New: Relative locations 
+   New: Customizable AR radar
+   New: Sprite Animations
+   New: 3D Transformation
+   New: Animation Groups
+   New: Extension for Qualcomm Vuforia SDK for Image Recognition
+   New: Possibility to turn off camera and sensors
+   New: Possibility to add a single drawable to multiple GeoObjects
+ 
+ Fixes:
+   Fixed: Autorotation support (iOS)
+   Fixed: ADE shown in certain conditions on device (iOS) 
+  
+ Improvements:
+   Improved: New tutorials and snippets
+   Improved: Library Reference examples and texts
+   Improved: New simple IR example
+   Improved: Streamlined trigger properties
+   Improved: Rendering performance in general
+   Improved: Performance of AR.logger output on device
+ 
+# 1.0.5 Maintenance Release
+   Added setCullingDistance to ArchitectView (SDK)
+   Added possibility for better error handling when loading an ARchitect World (SDK)
+   Improved SimpleARBrowser example (Android, iOS)
+   Fixed: Location service not turned off in certain conditions (iOS)
+   Fixed: Camera is displayed bigger than it should be in certain conditions (iOS)
+   Fixed: WTArchtiectView does not properly work when created for the 2nd time (iOS)
+   Note: If you are targetting iOS version 4.x you have to additionally include the following Other Linker Flags: -fobjc-arc  (iOS)
+   Note: Including a viewport meta-tag in your ARchitect World is recommended if you target different screen resolutions (see ARchitectTools/Hello World/Hello World.html for more details)
+
+# 1.0.4 Licensable SDK
+  
+# 1.0.3 Initial Public SDK Release
