@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PebbrahRT2.Templates
 {
@@ -31,6 +27,7 @@ namespace PebbrahRT2.Templates
         public string country { get; set; }
         public string cc { get; set; }
         public string crossStreet { get; set; }
+        public double myStarting { get; set; }
     }
 
     public class Icon

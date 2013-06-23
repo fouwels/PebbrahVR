@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PebbrahRT2.Templates;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 using Windows.Media.Capture;
 using Windows.UI;
 using Windows.UI.Core;
@@ -33,20 +34,32 @@ namespace PebbrahRT2
         private double geoLat;
         private double geoLong;
 
+        private double m;
+        
+
+        private double speed = 1;
+
+        private bool autoEnabled = false;
+        
+        private bool triggerRampDown = false;
+
+        private List<Venue> venues = new List<Venue>();
+
+        Random rnd = new Random();
 
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             Status.Text = "Status: " + "App started";
 
             //compass
             var compass = Windows.Devices.Sensors.Compass.GetDefault();
-            //compass.ReportInterval = 1;
-            compass.ReadingChanged += compass_ReadingChanged;
+            compass.ReportInterval = 10;
+            //compass.ReadingChanged += compass_ReadingChanged;
             Status.Text = "Status: " + "Compass started";
 
             //geo
@@ -55,6 +68,11 @@ namespace PebbrahRT2
             gloc.ReportInterval = 60000;
             gloc.PositionChanged += gloc_PositionChanged;
             Status.Text = "Status: " + "Geo started";
+
+            //Accelerometer
+            var aclom = Accelerometer.GetDefault();
+            aclom.ReportInterval = 1;
+            aclom.ReadingChanged += aclom_ReadingChanged;
 
             //foursquare
             await GetEstablishmentsfromWed();
@@ -67,11 +85,12 @@ namespace PebbrahRT2
             Status.Text = "Status: " + "Camera feed running";
         }
 
-        async Task<Establishment> GetEstablishmentsfromWed()
+        private async Task<Establishment> GetEstablishmentsfromWed()
         {
             //shitty code
-            string url = "https://api.foursquare.com/v2/venues/search?ll=51.50758,-0.131537&limit=" + fourSquareLimit + "&client_id=LTXFP1QPO2LIF5EWMG3X0CPH5CW0NPKMVUJPBJTO5BH001KG&client_secret=3AQHWW4XRMYWF0L13TQC4P2KLJXN2ICUC2IL00NFKEBXH4VX&v=20130622";
-            var req = (HttpWebRequest)HttpWebRequest.Create(url);
+            string url = "https://api.foursquare.com/v2/venues/search?ll=51.50758,-0.131537&limit=" + fourSquareLimit +
+                         "&client_id=LTXFP1QPO2LIF5EWMG3X0CPH5CW0NPKMVUJPBJTO5BH001KG&client_secret=3AQHWW4XRMYWF0L13TQC4P2KLJXN2ICUC2IL00NFKEBXH4VX&v=20130622";
+            var req = (HttpWebRequest) HttpWebRequest.Create(url);
             req.ContentType = "application/json";
             req.Method = "GET";
             var resp = await req.GetResponseAsync();
@@ -81,18 +100,16 @@ namespace PebbrahRT2
 
             using (var sr = new StreamReader(respStream))
             {
-                 clean = sr.ReadToEnd();
+                clean = sr.ReadToEnd();
             }
 
-            string debug = clean;
-
-            var venues = JsonConvert.DeserializeObject<FoursquareResponseRootObject>(clean).response.venues;
+            venues = JsonConvert.DeserializeObject<FoursquareResponseRootObject>(clean).response.venues;
 
             foreach (var venue in venues)
             {
                 StackPanel aStackPanel = new StackPanel();
                 aStackPanel.HorizontalAlignment = HorizontalAlignment.Center;
-                
+
                 Ellipse aEllipse = new Ellipse();
 
                 aEllipse.Height = 50;
@@ -101,50 +118,16 @@ namespace PebbrahRT2
                 aEllipse.Fill = new SolidColorBrush(Colors.Gray) {Opacity = 0.75};
 
                 aEllipse.StrokeThickness = 2;
-                aEllipse.Stroke = new SolidColorBrush(Colors.Black) { Opacity = 1 };
+                aEllipse.Stroke = new SolidColorBrush(Colors.Black) {Opacity = 1};
 
                 TextBlock aTextBlock = new TextBlock();
                 aTextBlock.Text = venue.name;
                 aTextBlock.FontSize = 12;
 
-                //mafs
+                ////mafs
 
-                var usLat = geoLat;
-                var usLong = geoLong;
-                var themLat = venue.location.lat;
-                var themLong = venue.location.lng;
-
-                var x = Math.Tanh((themLong - usLong)/(themLat - usLat));
-                double y = 0;
-                
-                if (usLat < themLat)
-                {
-                    if (usLong < themLong)
-                    {
-                        y = 0 + x;
-                    }
-                    if (usLong > themLong)
-                    {
-                        y = 360 - x;
-                    }
-                }
-                if (usLat > themLat)
-                {
-                    if (usLong < themLong)
-                    {
-                        y = 180 + x;
-                    }
-                    if (usLong > themLong)
-                    {
-                        y = 180 - x;
-                    }
-                }
-
-                //end mafs
-
-
-                //stuff
-                aStackPanel.Margin = new Thickness(0, 0, Math.Floor(Convert.ToDouble(Thing2.Text) + y) , 0);
+                venue.location.myStarting = 0 + (geoLong - venue.location.lng)*1000000; //debug
+                aStackPanel.Margin = new Thickness(0, 0, Math.Floor(venue.location.myStarting), 0);
                 aStackPanel.Name = venue.name;
 
                 placeElementNames.Add(aStackPanel.Name);
@@ -155,7 +138,8 @@ namespace PebbrahRT2
             }
             return null;
         }
-        void gloc_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+
+        private void gloc_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
             geoLat = args.Position.Coordinate.Latitude;
             geoLong = args.Position.Coordinate.Longitude;
@@ -165,27 +149,90 @@ namespace PebbrahRT2
                 });
         }
 
-        void compass_ReadingChanged(Windows.Devices.Sensors.Compass sender, Windows.Devices.Sensors.CompassReadingChangedEventArgs args)
+        //private void compass_ReadingChanged(Windows.Devices.Sensors.Compass sender,
+        //                                    Windows.Devices.Sensors.CompassReadingChangedEventArgs args)
+        void aclom_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
         {
-               if (!isCompassUpdating)
-               {
-                   isCompassUpdating = true;
-                   double rawMinusOne = compassReadingRaw;
-                   compassReadingRaw = args.Reading.HeadingMagneticNorth;
+            
+            if (!isCompassUpdating)
+            {
+                isCompassUpdating = true;
+                //double rawMinusOne = compassReadingRaw;
 
-                   this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                   {
-                       Thing2.Text = compassReadingRaw.ToString();
+                if (autoEnabled)
+                {
+                    if (triggerRampDown)
+                    {
+                        m = m - speed;
+                    }
+                    else if (!triggerRampDown)
+                    {
+                        m = m + speed;
+                    }
+                    if (m > 1300*2)
+                    {
+                        m = 0;
+                    }
 
-                       foreach (var name in placeElementNames)
-                       {
-                           (this.FindName(name) as StackPanel).Margin = new Thickness(0, 0, Math.Floor(rawMinusOne - compassReadingRaw), 0);
-                       }
+                    if (m < 0)
+                    {
+                        m = 1300*2;
+                    }
+                }
+                else
+                {
+                    //m = Math.Floor((rawMinusOne - compassReadingRaw)*1);
+                    m = m + Math.Floor(args.Reading.AccelerationX*100);
+                    if (m > 1300*2)
+                    {
+                        m = m - 1300*2;
+                    }
 
-                   });
-                   isCompassUpdating = false;
-               }
+                    if (m < -1300*2)
+                    {
+                        m = m + 1300*2;
+                    }
+                }
 
+                this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Thing2.Text = m.ToString();
+
+                        foreach (var venue in venues)
+                        {
+                            
+   
+                            var x = Math.Floor(venue.location.myStarting + m);
+                            if (x > 1300)
+                            {
+                                x = x - 1300*2;
+                            }
+                            else if (x < -1300)
+                            {
+                                x = x + 1300*2;
+                            }
+
+                            (this.FindName(venue.name) as StackPanel).Margin = new Thickness(0, 0, x, 0);
+                            
+                        }
+                        isCompassUpdating = false;
+                    });
+            }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            triggerRampDown = !triggerRampDown;
+        }
+
+        private void ButtonBase_OnClickUp(object sender, RoutedEventArgs e)
+        {
+            speed++;
+        }
+
+        private void ButtonBase_OnClickDown(object sender, RoutedEventArgs e)
+        {
+            speed--;
         }
     }
 }

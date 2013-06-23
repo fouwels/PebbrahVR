@@ -26,6 +26,7 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            
             <Grid x:Name="PlacesStack" Grid.Row="2">
                 <Rectangle Height="1" Fill="Gray" Opacity="0.75" Grid.Column="0" VerticalAlignment="Top" Margin="0,25,0,0" />                
             </Grid>
@@ -33,7 +34,11 @@
                 <TextBlock x:Name="Thing1" FontSize="20" Text="Null" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <TextBlock x:Name="Thing2" FontSize="20" Text="Null" Margin="10,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
-        </Grid>
+                <Button x:ConnectionId='1' Content="Swap W/E" HorizontalAlignment="Left" Margin="1182,53,0,0" Grid.Row="5" VerticalAlignment="Top" Height="54" Width="174"                           />
+                <Button x:ConnectionId='2' Content="+" HorizontalAlignment="Left" Margin="1123,53,0,10" Grid.Row="5" VerticalAlignment="Stretch" Width="54"                             />
+                <Button x:ConnectionId='3' Content="-" HorizontalAlignment="Left" Margin="1064,53,0,10" Grid.Row="5" VerticalAlignment="Stretch" Width="54"                               />
+            <ToggleSwitch x:Name="autoSwitch" Margin="905,53,0,11" Grid.Row="5"/>
+            </Grid>
     </Grid>
     </Viewbox>
 </Page>

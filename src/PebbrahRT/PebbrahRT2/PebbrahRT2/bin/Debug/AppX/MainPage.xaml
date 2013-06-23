@@ -7,8 +7,52 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-
+    <Viewbox Stretch="Uniform">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Width="1366" Height="768">
+        <TextBlock x:Name="Status"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10"/>
+        <CaptureElement x:Name="CaptureElement" Stretch="Fill"/>
+        
+        <Grid x:Name="Overlay">
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel x:Name="Deals" Margin="10,10,10,10" Width="300">
+                <StackPanel Background="Gray" Margin="0,0,0,10" Opacity="0.75">
+                    <TextBlock FontSize="20" Text="20% off selected tickets "/>
+                    <TextBlock FontSize="10" Text="Phantom of the Opera"/>
+                </StackPanel >
+                <StackPanel Background="Gray" Margin="0,0,0,10" Opacity="0.75">
+                    <TextBlock FontSize="20" Text="Free drink with Mayorship "/>
+                    <TextBlock FontSize="10" Text="McDonals"/>
+                </StackPanel>
+                <StackPanel Background="Gray" Margin="0,0,0,10" Opacity="0.75">
+                    <TextBlock FontSize="20" Text="2 for one on selected lines"/>
+                    <TextBlock FontSize="10" Text="Topman"/>
+                </StackPanel>
+                </StackPanel>
+            <Grid x:Name="PlacesStack" Grid.Row="2">
+                <Rectangle Height="1" Fill="Gray" Opacity="0.75" Grid.Column="0" VerticalAlignment="Top" Margin="0,25,0,0" />                
+            </Grid>
+            <StackPanel x:Name="DataStack" Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center"   >
+                <TextBlock x:Name="Thing1" FontSize="20" Text="Null" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="Thing2" FontSize="20" Text="Null" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+                <Button x:ConnectionId='1' Content="Swap W/E" HorizontalAlignment="Left" Margin="1182,53,0,0" Grid.Row="5" VerticalAlignment="Top" Height="54" Width="174"                           />
+                <Button x:ConnectionId='2' Content="+" HorizontalAlignment="Left" Margin="1123,53,0,10" Grid.Row="5" VerticalAlignment="Stretch" Width="54"                             />
+                <Button x:ConnectionId='3' Content="-" HorizontalAlignment="Left" Margin="1064,53,0,10" Grid.Row="5" VerticalAlignment="Stretch" Width="54"                               />
+            <ToggleSwitch x:Name="autoSwitch" Margin="905,53,0,11" Grid.Row="5"/>
+            </Grid>
     </Grid>
+    </Viewbox>
 </Page>
 
