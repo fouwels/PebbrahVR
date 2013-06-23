@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PebbrahRT2.Templates;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Media.Capture;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Networking;
-using Newtonsoft.Json;
 using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -31,9 +24,16 @@ namespace PebbrahRT2
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private const string fourSquareLimit = "1";
+        private const string fourSquareLimit = "10";
         private List<string> placeElementNames = new List<string>();
+
         private bool isCompassUpdating = false;
+        private double compassReadingRaw;
+
+        private double geoLat;
+        private double geoLong;
+
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -107,8 +107,44 @@ namespace PebbrahRT2
                 aTextBlock.Text = venue.name;
                 aTextBlock.FontSize = 12;
 
+                //mafs
+
+                var usLat = geoLat;
+                var usLong = geoLong;
+                var themLat = venue.location.lat;
+                var themLong = venue.location.lng;
+
+                var x = Math.Tanh((themLong - usLong)/(themLat - usLat));
+                double y = 0;
+                
+                if (usLat < themLat)
+                {
+                    if (usLong < themLong)
+                    {
+                        y = 0 + x;
+                    }
+                    if (usLong > themLong)
+                    {
+                        y = 360 - x;
+                    }
+                }
+                if (usLat > themLat)
+                {
+                    if (usLong < themLong)
+                    {
+                        y = 180 + x;
+                    }
+                    if (usLong > themLong)
+                    {
+                        y = 180 - x;
+                    }
+                }
+
+                //end mafs
+
+
                 //stuff
-                aStackPanel.Margin = new Thickness(0, 0, 0, 0);
+                aStackPanel.Margin = new Thickness(0, 0, Math.Floor(Convert.ToDouble(Thing2.Text) + y) , 0);
                 aStackPanel.Name = venue.name;
 
                 placeElementNames.Add(aStackPanel.Name);
@@ -121,11 +157,12 @@ namespace PebbrahRT2
         }
         void gloc_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
+            geoLat = args.Position.Coordinate.Latitude;
+            geoLong = args.Position.Coordinate.Longitude;
             this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Thing1.Text = args.Position.Coordinate.Latitude.ToString() +
-                              args.Position.Coordinate.Longitude.ToString();
-            });
+                {
+                    Thing1.Text = geoLat.ToString() + " " + geoLong.ToString();
+                });
         }
 
         void compass_ReadingChanged(Windows.Devices.Sensors.Compass sender, Windows.Devices.Sensors.CompassReadingChangedEventArgs args)
@@ -133,16 +170,16 @@ namespace PebbrahRT2
                if (!isCompassUpdating)
                {
                    isCompassUpdating = true;
-                   string asdf = args.Reading.HeadingMagneticNorth.ToString();
+                   double rawMinusOne = compassReadingRaw;
+                   compassReadingRaw = args.Reading.HeadingMagneticNorth;
 
                    this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                    {
-                       Thing2.Text = asdf;
+                       Thing2.Text = compassReadingRaw.ToString();
 
                        foreach (var name in placeElementNames)
                        {
-                           (this.FindName(name) as StackPanel).Margin = new Thickness(0, 0, Convert.ToDouble(asdf), 0);
-
+                           (this.FindName(name) as StackPanel).Margin = new Thickness(0, 0, Math.Floor(rawMinusOne - compassReadingRaw), 0);
                        }
 
                    });
