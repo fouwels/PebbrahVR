@@ -25,3 +25,10 @@ H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\priconfig.xml.intermediate
 H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\layout.resfiles.intermediate
 H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\resources.resfiles.intermediate
 H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\pri.resfiles.intermediate
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\DevDefined.OAuth.dll
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\Castle.Core.dll
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\DevDefined.OAuth.pdb
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\PebbrahRT2.csprojResolveAssemblyReference.cache
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\obj\Debug\PebbrahRT2.csproj.GenerateResource.Cache
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\Newtonsoft.Json.dll
+H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\Newtonsoft.Json.xml

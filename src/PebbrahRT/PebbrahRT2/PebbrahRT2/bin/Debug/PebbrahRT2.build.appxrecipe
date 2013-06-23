@@ -19,6 +19,21 @@
     <AppxPackagedFile Include="H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\bin\Debug\PebbrahRT2.pdb">
       <PackagePath>PebbrahRT2.pdb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="H:\Hack\lib\DevDefined.OAuth.dll">
+      <PackagePath>DevDefined.OAuth.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="H:\Hack\src\PebbrahRT\PebbrahRT2\packages\Newtonsoft.Json.5.0.6\lib\netcore45\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="H:\Hack\lib\Castle.Core.dll">
+      <PackagePath>Castle.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="H:\Hack\lib\DevDefined.OAuth.pdb">
+      <PackagePath>DevDefined.OAuth.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="H:\Hack\src\PebbrahRT\PebbrahRT2\packages\Newtonsoft.Json.5.0.6\lib\netcore45\Newtonsoft.Json.xml">
+      <PackagePath>Newtonsoft.Json.xml</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="H:\Hack\src\PebbrahRT\PebbrahRT2\PebbrahRT2\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>

@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Viewbox Stretch="Uniform">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Width="1366" Height="768">
         <TextBlock x:Name="Status"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -18,15 +19,22 @@
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <StackPanel x:Name="DataStack" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Background="Gray" Opacity="0.5" >
-                <TextBlock x:Name="Thing1" FontSize="48" Text="Null" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <TextBlock x:Name="Thing2" FontSize="48" Text="Null" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Grid x:Name="PlacesStack" Grid.Row="2">
+                <Rectangle Height="1" Fill="Gray" Opacity="0.75" Grid.Column="0" VerticalAlignment="Top" Margin="0,25,0,0" />                
+            </Grid>
+            <StackPanel x:Name="DataStack" Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center"   >
+                <TextBlock x:Name="Thing1" FontSize="20" Text="Null" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="Thing2" FontSize="20" Text="Null" Margin="10,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>
+    </Viewbox>
 </Page>
 
